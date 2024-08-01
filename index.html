@@ -169,25 +169,25 @@
                     <div class="panel-title">Aprender</div>
                     <button id="generateKnowledge">Gerar Conhecimento (Custo: 10)</button>
                     <div class="progress-bar"><div class="progress" id="knowledgeProgress"></div></div>
-                    <div class="timer" id="knowledgeTimer"></div>
+                    <div class="timer" id="knowledgeTimer">Tempo restante: 0s</div>
                 </div>
                 <div id="workPanel" class="panel hidden">
                     <div class="panel-title">Trabalhar</div>
                     <button id="generateGrana">Gerar Grana (Custo: 10)</button>
                     <div class="progress-bar"><div class="progress" id="granaProgress"></div></div>
-                    <div class="timer" id="granaTimer"></div>
+                    <div class="timer" id="granaTimer">Tempo restante: 0s</div>
                 </div>
                 <div id="codePanelGeneration" class="panel hidden">
                     <div class="panel-title">Programar</div>
                     <button id="generateCode">Gerar Código (Custo: 10)</button>
                     <div class="progress-bar"><div class="progress" id="codeProgress"></div></div>
-                    <div class="timer" id="codeTimer"></div>
+                    <div class="timer" id="codeTimer">Tempo restante: 0s</div>
                 </div>
                 <div id="trainPanelGeneration" class="panel hidden">
                     <div class="panel-title">Treinar</div>
                     <button id="generateData">Gerar Dados (Custo: 10)</button>
                     <div class="progress-bar"><div class="progress" id="dataProgress"></div></div>
-                    <div class="timer" id="dataTimer"></div>
+                    <div class="timer" id="dataTimer">Tempo restante: 0s</div>
                 </div>
             </div>
         </div>
@@ -300,6 +300,7 @@
                         generationTimers[resource] = null;
                         timerElement.textContent = '';
                         progressBar.style.width = '0%';
+                        startGeneration(resource); // Reinicia a geração automaticamente
                     } else {
                         countdown--;
                     }
