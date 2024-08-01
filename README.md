@@ -1,77 +1,101 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo Idle Clicker</title>
     <style>
-        body {
+        body, html {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
         }
         #game {
-            text-align: center;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            width: 800px;
+            display: flex;
+            height: 100vh;
+        }
+        .left-column {
             display: flex;
             flex-direction: column;
+            width: 30%;
         }
-        #resources {
+        .center-column {
             display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
+            flex-direction: column;
+            width: 30%;
         }
-        .resource {
-            font-size: 24px;
+        .right-column {
+            width: 40%;
+        }
+        .resource-panel {
+            flex: 3;
+            background-color: #f0f0f0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        .minigames-panel {
+            flex: 1;
+            background-color: #d0d0d0;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .click-panel {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        .upgrades-panel {
+            flex: 2;
+            background-color: #e0e0e0;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .generation-panel {
+            height: 100%;
+            background-color: #f0f0f0;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .panel {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: white;
+        }
+        .panel-title {
             font-weight: bold;
+            margin-bottom: 5px;
+            background-color: #e0e0e0;
+            padding: 5px;
+        }
+        .resource-counter {
+            font-size: 18px;
+            margin-bottom: 10px;
         }
         #clickable {
             width: 100px;
             height: 100px;
             background-color: #4CAF50;
             border-radius: 50%;
-            margin: 20px auto;
             cursor: pointer;
             transition: transform 0.1s;
+            margin-bottom: 20px;
         }
         #clickable:active {
             transform: scale(0.95);
-        }
-        #panels {
-            display: flex;
-            justify-content: space-between;
-        }
-        .panel {
-            width: 48%;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .upgrade, .knowledge-item {
-            margin: 10px 0;
         }
         button {
             margin: 5px;
             padding: 10px;
             cursor: pointer;
-            width: 200px;
-        }
-        #perSecond {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        .upgrade-count {
-            font-size: 14px;
-            color: #666;
+            width: 180px;
         }
         .progress-bar {
             width: 100%;
@@ -92,173 +116,207 @@
             color: #666;
             margin-top: 5px;
         }
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <div id="game">
-        <div id="resources">
-            <div class="resource">Grana: <span id="granaCounter">0</span></div>
-            <div class="resource">Conhecimento: <span id="knowledgeCounter">0</span></div>
-        </div>
-        <div id="perSecond">0 grana por segundo</div>
-        <div id="clickable"></div>
-        <div id="panels">
-            <div id="granaPanel" class="panel">
-                <h2>Grana</h2>
-                <div class="upgrade">
-                    <button id="btn1">Comprar +1/s (Custo: 10)</button>
-                    <div id="count1" class="upgrade-count">Quantidade: 0</div>
+        <div class="left-column">
+            <div class="resource-panel">
+                <div class="panel-title">Recursos</div>
+                <div id="knowledgePanel" class="panel">
+                    <div class="panel-title">Conhecimento</div>
+                    <div class="resource-counter">Quantidade: <span id="knowledgeCounter">0</span></div>
                 </div>
-                <div class="upgrade">
-                    <button id="btn2">Comprar +5/s (Custo: 50)</button>
-                    <div id="count2" class="upgrade-count">Quantidade: 0</div>
+                <div id="granaPanel" class="panel hidden">
+                    <div class="panel-title">Grana</div>
+                    <div class="resource-counter">Quantidade: <span id="granaCounter">0</span></div>
                 </div>
-                <div class="upgrade">
-                    <button id="btn3">Comprar +20/s (Custo: 200)</button>
-                    <div id="count3" class="upgrade-count">Quantidade: 0</div>
+                <div id="codePanel" class="panel hidden">
+                    <div class="panel-title">Código</div>
+                    <div class="resource-counter">Quantidade: <span id="codeCounter">0</span></div>
+                </div>
+                <div id="dataPanel" class="panel hidden">
+                    <div class="panel-title">Dados</div>
+                    <div class="resource-counter">Quantidade: <span id="dataCounter">0</span></div>
                 </div>
             </div>
-            <div id="knowledgePanel" class="panel">
-                <h2>Conhecimento</h2>
-                <div class="knowledge-item">
-                    <button id="knowledge1">Gerar conhecimento (Custo: 1000)</button>
-                    <div class="progress-bar"><div class="progress" id="progress1"></div></div>
-                    <div class="timer" id="timer1"></div>
-                    <div class="upgrade-count" id="knowledgeCount1">Nível: 0</div>
+            <div class="minigames-panel">
+                <div class="panel-title">Minigames</div>
+                <!-- Conteúdo dos minigames será adicionado aqui -->
+            </div>
+        </div>
+        <div class="center-column">
+            <div class="click-panel">
+                <div id="clickable"></div>
+                <div>
+                    <button id="learnBtn">Aprender</button>
+                    <button id="workBtn" class="hidden">Trabalhar</button>
+                    <button id="codeBtn" class="hidden">Programar</button>
+                    <button id="trainBtn" class="hidden">Treinar</button>
                 </div>
-                <div class="knowledge-item">
-                    <button id="knowledge2">Gerar conhecimento (Custo: 5000)</button>
-                    <div class="progress-bar"><div class="progress" id="progress2"></div></div>
-                    <div class="timer" id="timer2"></div>
-                    <div class="upgrade-count" id="knowledgeCount2">Nível: 0</div>
+            </div>
+            <div class="upgrades-panel">
+                <div class="panel-title">Upgrades</div>
+                <!-- Conteúdo dos upgrades será adicionado aqui -->
+            </div>
+        </div>
+        <div class="right-column">
+            <div class="generation-panel">
+                <div id="learnPanel" class="panel">
+                    <div class="panel-title">Aprender</div>
+                    <button id="generateKnowledge">Gerar Conhecimento (Custo: 10)</button>
+                    <div class="progress-bar"><div class="progress" id="knowledgeProgress"></div></div>
+                    <div class="timer" id="knowledgeTimer"></div>
                 </div>
-                <div class="knowledge-item">
-                    <button id="knowledge3">Gerar conhecimento (Custo: 50000)</button>
-                    <div class="progress-bar"><div class="progress" id="progress3"></div></div>
-                    <div class="timer" id="timer3"></div>
-                    <div class="upgrade-count" id="knowledgeCount3">Nível: 0</div>
+                <div id="workPanel" class="panel hidden">
+                    <div class="panel-title">Trabalhar</div>
+                    <button id="generateGrana">Gerar Grana (Custo: 10)</button>
+                    <div class="progress-bar"><div class="progress" id="granaProgress"></div></div>
+                    <div class="timer" id="granaTimer"></div>
+                </div>
+                <div id="codePanelGeneration" class="panel hidden">
+                    <div class="panel-title">Programar</div>
+                    <button id="generateCode">Gerar Código (Custo: 10)</button>
+                    <div class="progress-bar"><div class="progress" id="codeProgress"></div></div>
+                    <div class="timer" id="codeTimer"></div>
+                </div>
+                <div id="trainPanelGeneration" class="panel hidden">
+                    <div class="panel-title">Treinar</div>
+                    <button id="generateData">Gerar Dados (Custo: 10)</button>
+                    <div class="progress-bar"><div class="progress" id="dataProgress"></div></div>
+                    <div class="timer" id="dataTimer"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        let grana = 0;
         let conhecimento = 0;
-        let autoClickers = [0, 0, 0];
-        let knowledgeLevels = [0, 0, 0];
-        const granaCosts = [10, 50, 200];
-        const granaIncrements = [1, 5, 20];
-        const knowledgeCosts = [1000, 5000, 50000];
-        const knowledgeBaseIncrements = [1, 100, 200];
-        const knowledgeTimes = [10, 60, 300]; // em segundos
-        let knowledgeTimers = [null, null, null];
-        let knowledgeCountdowns = [0, 0, 0];
+        let grana = 0;
+        let codigo = 0;
+        let dados = 0;
+        let currentResource = 'conhecimento';
+        const generationCost = 10;
+        const generationTime = 10; // segundos
+        const generationAmount = 10;
+        let generationTimers = {
+            conhecimento: null,
+            grana: null,
+            codigo: null,
+            dados: null
+        };
 
-        function updateGrana() {
-            document.getElementById('granaCounter').textContent = Math.floor(grana);
-        }
-
-        function updateKnowledge() {
+        function updateResources() {
             document.getElementById('knowledgeCounter').textContent = Math.floor(conhecimento);
+            document.getElementById('granaCounter').textContent = Math.floor(grana);
+            document.getElementById('codeCounter').textContent = Math.floor(codigo);
+            document.getElementById('dataCounter').textContent = Math.floor(dados);
         }
 
-        function updatePerSecond() {
-            let totalPerSecond = autoClickers.reduce((total, current, index) => total + current * granaIncrements[index], 0);
-            document.getElementById('perSecond').textContent = totalPerSecond + ' grana por segundo';
+        function showPanel(panelId) {
+            document.querySelectorAll('.generation-panel .panel').forEach(panel => panel.classList.add('hidden'));
+            document.getElementById(panelId).classList.remove('hidden');
         }
 
-        function updateUpgradeCounts() {
-            for (let i = 0; i < 3; i++) {
-                document.getElementById(`count${i+1}`).textContent = `Quantidade: ${autoClickers[i]}`;
-                document.getElementById(`knowledgeCount${i+1}`).textContent = `Nível: ${knowledgeLevels[i]}`;
-            }
+        function showResourcePanel(resourceId) {
+            document.getElementById(resourceId).classList.remove('hidden');
+        }
+
+        function showButton(buttonId) {
+            document.getElementById(buttonId).classList.remove('hidden');
         }
 
         document.getElementById('clickable').addEventListener('click', () => {
-            grana++;
-            updateGrana();
+            switch(currentResource) {
+                case 'conhecimento':
+                    conhecimento++;
+                    break;
+                case 'grana':
+                    grana++;
+                    if (grana === 1) {
+                        showResourcePanel('granaPanel');
+                        showButton('workBtn');
+                    }
+                    break;
+                case 'codigo':
+                    codigo++;
+                    if (codigo === 1) {
+                        showResourcePanel('codePanel');
+                        showButton('codeBtn');
+                    }
+                    break;
+                case 'dados':
+                    dados++;
+                    if (dados === 1) {
+                        showResourcePanel('dataPanel');
+                        showButton('trainBtn');
+                    }
+                    break;
+            }
+            updateResources();
         });
 
-        function buyAutoClicker(index) {
-            if (grana >= granaCosts[index]) {
-                grana -= granaCosts[index];
-                autoClickers[index]++;
-                updateGrana();
-                updateButtons();
-                updatePerSecond();
-                updateUpgradeCounts();
-            }
-        }
+        document.getElementById('learnBtn').addEventListener('click', () => {
+            currentResource = 'conhecimento';
+            showPanel('learnPanel');
+        });
 
-        function generateKnowledge(index) {
-            if (grana >= knowledgeCosts[index]) {
-                grana -= knowledgeCosts[index];
-                knowledgeLevels[index]++;
-                updateGrana();
-                updateButtons();
-                updateUpgradeCounts();
+        document.getElementById('workBtn').addEventListener('click', () => {
+            currentResource = 'grana';
+            showPanel('workPanel');
+        });
 
-                if (!knowledgeTimers[index]) {
-                    startKnowledgeGeneration(index);
-                }
-            }
-        }
+        document.getElementById('codeBtn').addEventListener('click', () => {
+            currentResource = 'codigo';
+            showPanel('codePanelGeneration');
+        });
 
-        function startKnowledgeGeneration(index) {
-            knowledgeCountdowns[index] = knowledgeTimes[index];
-            const progressBar = document.getElementById(`progress${index+1}`);
-            const timerElement = document.getElementById(`timer${index+1}`);
-            
-            function updateProgress() {
-                const progress = 1 - (knowledgeCountdowns[index] / knowledgeTimes[index]);
-                progressBar.style.width = `${progress * 100}%`;
-                timerElement.textContent = `Tempo restante: ${knowledgeCountdowns[index]}s`;
+        document.getElementById('trainBtn').addEventListener('click', () => {
+            currentResource = 'dados';
+            showPanel('trainPanelGeneration');
+        });
+
+        function startGeneration(resource) {
+            if (window[resource] >= generationCost) {
+                window[resource] -= generationCost;
+                updateResources();
+
+                let countdown = generationTime;
+                const progressBar = document.getElementById(`${resource}Progress`);
+                const timerElement = document.getElementById(`${resource}Timer`);
                 
-                if (knowledgeCountdowns[index] <= 0) {
-                    conhecimento += knowledgeBaseIncrements[index] + knowledgeLevels[index];
-                    updateKnowledge();
-                    knowledgeCountdowns[index] = knowledgeTimes[index];
-                } else {
-                    knowledgeCountdowns[index]--;
+                function updateProgress() {
+                    const progress = 1 - (countdown / generationTime);
+                    progressBar.style.width = `${progress * 100}%`;
+                    timerElement.textContent = `Tempo restante: ${countdown}s`;
+                    
+                    if (countdown <= 0) {
+                        window[resource] += generationAmount;
+                        updateResources();
+                        clearInterval(generationTimers[resource]);
+                        generationTimers[resource] = null;
+                        timerElement.textContent = '';
+                        progressBar.style.width = '0%';
+                    } else {
+                        countdown--;
+                    }
                 }
-            }
 
-            updateProgress();
-            knowledgeTimers[index] = setInterval(updateProgress, 1000);
-        }
-
-        document.getElementById('btn1').addEventListener('click', () => buyAutoClicker(0));
-        document.getElementById('btn2').addEventListener('click', () => buyAutoClicker(1));
-        document.getElementById('btn3').addEventListener('click', () => buyAutoClicker(2));
-
-        document.getElementById('knowledge1').addEventListener('click', () => generateKnowledge(0));
-        document.getElementById('knowledge2').addEventListener('click', () => generateKnowledge(1));
-        document.getElementById('knowledge3').addEventListener('click', () => generateKnowledge(2));
-
-        function updateButtons() {
-            for (let i = 0; i < 3; i++) {
-                const granaBtn = document.getElementById(`btn${i+1}`);
-                granaBtn.disabled = grana < granaCosts[i];
-
-                const knowledgeBtn = document.getElementById(`knowledge${i+1}`);
-                knowledgeBtn.disabled = grana < knowledgeCosts[i];
+                updateProgress();
+                generationTimers[resource] = setInterval(updateProgress, 1000);
             }
         }
 
-        setInterval(() => {
-            for (let i = 0; i < 3; i++) {
-                grana += autoClickers[i] * granaIncrements[i];
-            }
-            updateGrana();
-            updateButtons();
-        }, 1000);
+        document.getElementById('generateKnowledge').addEventListener('click', () => startGeneration('conhecimento'));
+        document.getElementById('generateGrana').addEventListener('click', () => startGeneration('grana'));
+        document.getElementById('generateCode').addEventListener('click', () => startGeneration('codigo'));
+        document.getElementById('generateData').addEventListener('click', () => startGeneration('dados'));
 
-        updateGrana();
-        updateKnowledge();
-        updateButtons();
-        updatePerSecond();
-        updateUpgradeCounts();
+        updateResources();
+        showPanel('learnPanel');
     </script>
 </body>
 </html>
