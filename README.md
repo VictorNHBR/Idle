@@ -96,24 +96,24 @@
 <body>
     <div id="game">
         <div id="resources">
-            <div class="resource">Trabalhar: <span id="granaCounter">0</span></div>
+            <div class="resource">Grana: <span id="granaCounter">0</span></div>
             <div class="resource">Conhecimento: <span id="knowledgeCounter">0</span></div>
         </div>
         <div id="perSecond">0 grana por segundo</div>
         <div id="clickable"></div>
         <div id="panels">
             <div id="granaPanel" class="panel">
-                <h2>Trabalhar</h2>
+                <h2>Grana</h2>
                 <div class="upgrade">
-                    <button id="btn1">Webdesign (Custo: 10)</button>
+                    <button id="btn1">Comprar +1/s (Custo: 10)</button>
                     <div id="count1" class="upgrade-count">Quantidade: 0</div>
                 </div>
                 <div class="upgrade">
-                    <button id="btn2">Dropshipping (Custo: 50)</button>
+                    <button id="btn2">Comprar +5/s (Custo: 50)</button>
                     <div id="count2" class="upgrade-count">Quantidade: 0</div>
                 </div>
                 <div class="upgrade">
-                    <button id="btn3">Venda de Info Produtos (Custo: 200)</button>
+                    <button id="btn3">Comprar +20/s (Custo: 200)</button>
                     <div id="count3" class="upgrade-count">Quantidade: 0</div>
                 </div>
             </div>
@@ -232,5 +232,32 @@
         document.getElementById('btn3').addEventListener('click', () => buyAutoClicker(2));
 
         document.getElementById('knowledge1').addEventListener('click', () => generateKnowledge(0));
-        document.getElementById('knowledge
+        document.getElementById('knowledge2').addEventListener('click', () => generateKnowledge(1));
+        document.getElementById('knowledge3').addEventListener('click', () => generateKnowledge(2));
 
+        function updateButtons() {
+            for (let i = 0; i < 3; i++) {
+                const granaBtn = document.getElementById(`btn${i+1}`);
+                granaBtn.disabled = grana < granaCosts[i];
+
+                const knowledgeBtn = document.getElementById(`knowledge${i+1}`);
+                knowledgeBtn.disabled = grana < knowledgeCosts[i];
+            }
+        }
+
+        setInterval(() => {
+            for (let i = 0; i < 3; i++) {
+                grana += autoClickers[i] * granaIncrements[i];
+            }
+            updateGrana();
+            updateButtons();
+        }, 1000);
+
+        updateGrana();
+        updateKnowledge();
+        updateButtons();
+        updatePerSecond();
+        updateUpgradeCounts();
+    </script>
+</body>
+</html>
