@@ -54,6 +54,7 @@
             border: 1px solid #ccc;
             padding: 10px;
             border-radius: 5px;
+            position: relative;
         }
         .upgrade, .knowledge-item {
             margin: 10px 0;
@@ -91,6 +92,16 @@
             color: #666;
             margin-top: 5px;
         }
+        .minimize-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            background-color: #ccc;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
     </style>
 </head>
 <body>
@@ -103,6 +114,7 @@
         <div id="clickable"></div>
         <div id="panels">
             <div id="granaPanel" class="panel">
+                <button class="minimize-btn" onclick="togglePanel('granaPanel')">-</button>
                 <h2>Grana</h2>
                 <div class="upgrade">
                     <button id="btn1">Comprar +1/s (Custo: 10)</button>
@@ -118,6 +130,7 @@
                 </div>
             </div>
             <div id="knowledgePanel" class="panel">
+                <button class="minimize-btn" onclick="togglePanel('knowledgePanel')">-</button>
                 <h2>Conhecimento</h2>
                 <div class="knowledge-item">
                     <button id="knowledge1">Gerar conhecimento (Custo: 1000)</button>
@@ -243,6 +256,18 @@
                 const knowledgeBtn = document.getElementById(`knowledge${i+1}`);
                 knowledgeBtn.disabled = grana < knowledgeCosts[i];
             }
+        }
+
+        function togglePanel(panelId) {
+            const panel = document.getElementById(panelId);
+            const content = panel.querySelectorAll('.upgrade, .knowledge-item');
+            const minimizeBtn = panel.querySelector('.minimize-btn');
+
+            content.forEach(element => {
+                element.style.display = element.style.display === 'none' ? 'block' : 'none';
+            });
+
+            minimizeBtn.textContent = minimizeBtn.textContent === '-' ? '+' : '-';
         }
 
         setInterval(() => {
