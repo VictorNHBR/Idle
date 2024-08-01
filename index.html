@@ -127,7 +127,7 @@
             <div class="resource-panel">
                 <div class="panel-title">Recursos</div>
                 <div id="knowledgePanel" class="panel">
-                    <div class="panel-title">Conhecimentooo</div>
+                    <div class="panel-title">Conhecimento</div>
                     <div class="resource-counter">Quantidade: <span id="knowledgeCounter">0</span></div>
                 </div>
                 <div id="granaPanel" class="panel hidden">
@@ -198,16 +198,11 @@
         let grana = 0;
         let codigo = 0;
         let dados = 0;
-        let currentResource = 'conhecimento';
-        const generationCost = 10;
-        const generationTime = 10; // segundos
-        const generationAmount = 10;
-        let generationTimers = {
-            conhecimento: null,
-            grana: null,
-            codigo: null,
-            dados: null
-        };
+        const knowledgeCost = 10;
+        const knowledgeTime = 10; // segundos
+        const knowledgeAmount = 10;
+        let knowledgeTimer = null;
+        let knowledgeCountdown = 0;
 
         function updateResources() {
             document.getElementById('knowledgeCounter').textContent = Math.floor(conhecimento);
@@ -230,88 +225,59 @@
         }
 
         document.getElementById('clickable').addEventListener('click', () => {
-            switch(currentResource) {
-                case 'conhecimento':
-                    conhecimento++;
-                    break;
-                case 'grana':
-                    grana++;
-                    if (grana === 1) {
-                        showResourcePanel('granaPanel');
-                        showButton('workBtn');
-                    }
-                    break;
-                case 'codigo':
-                    codigo++;
-                    if (codigo === 1) {
-                        showResourcePanel('codePanel');
-                        showButton('codeBtn');
-                    }
-                    break;
-                case 'dados':
-                    dados++;
-                    if (dados === 1) {
-                        showResourcePanel('dataPanel');
-                        showButton('trainBtn');
-                    }
-                    break;
-            }
+            conhecimento++;
             updateResources();
         });
 
         document.getElementById('learnBtn').addEventListener('click', () => {
-            currentResource = 'conhecimento';
             showPanel('learnPanel');
         });
 
         document.getElementById('workBtn').addEventListener('click', () => {
-            currentResource = 'grana';
             showPanel('workPanel');
         });
 
         document.getElementById('codeBtn').addEventListener('click', () => {
-            currentResource = 'codigo';
             showPanel('codePanelGeneration');
         });
 
         document.getElementById('trainBtn').addEventListener('click', () => {
-            currentResource = 'dados';
             showPanel('trainPanelGeneration');
         });
 
-        function startGeneration(resource) {
-            if (window[resource] >= generationCost && !generationTimers[resource]) {
-                window[resource] -= generationCost;
+        function startKnowledgeGeneration() {
+            if (conhecimento >= knowledgeCost && !knowledgeTimer) {
+                conhecimento -= knowledgeCost;
                 updateResources();
 
-                let countdown = generationTime;
-                const progressBar = document.getElementById(`${resource}Progress`);
-                const timerElement = document.getElementById(`${resource}Timer`);
+                knowledgeCountdown = knowledgeTime;
+                const progressBar = document.getElementById('knowledgeProgress');
+                const timerElement = document.getElementById('knowledgeTimer');
                 
                 function updateProgress() {
-                    const progress = 1 - (countdown / generationTime);
+                    const progress = 1 - (knowledgeCountdown / knowledgeTime);
                     progressBar.style.width = `${progress * 100}%`;
-                    timerElement.textContent = `Tempo restante: ${countdown}s`;
+                    timerElement.textContent = `Tempo restante: ${knowledgeCountdown}s`;
                     
-                    if (countdown <= 0) {
-                        window[resource] += generationAmount;
+                    if (knowledgeCountdown <= 0) {
+                        conhecimento += knowledgeAmount;
                         updateResources();
-                        clearInterval(generationTimers[resource]);
-                        generationTimers[resource] = null;
+                        clearInterval(knowledgeTimer);
+                        knowledgeTimer = null;
                         timerElement.textContent = '';
                         progressBar.style.width = '0%';
-                        startGeneration(resource); // Reinicia a geração automaticamente
+                        startKnowledgeGeneration(); // Reinicia a geração automaticamente
                     } else {
-                        countdown--;
+                        knowledgeCountdown--;
                     }
                 }
 
                 updateProgress();
-                generationTimers[resource] = setInterval(updateProgress, 1000);
+                knowledgeTimer = setInterval(updateProgress, 1000);
             }
         }
 
-        document.getElementById('generateKnowledge').addEventListener('click', () => startGeneration('conhecimento'));
+        document.getElementById('generateKnowledge').addEventListener('click', startKnowledgeGeneration);
 
         updateResources();
         showPanel('learnPanel');
