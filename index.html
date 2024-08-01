@@ -280,7 +280,7 @@
         });
 
         function startGeneration(resource) {
-            if (window[resource] >= generationCost) {
+            if (window[resource] >= generationCost && !generationTimers[resource]) {
                 window[resource] -= generationCost;
                 updateResources();
 
@@ -311,9 +311,6 @@
         }
 
         document.getElementById('generateKnowledge').addEventListener('click', () => startGeneration('conhecimento'));
-        document.getElementById('generateGrana').addEventListener('click', () => startGeneration('grana'));
-        document.getElementById('generateCode').addEventListener('click', () => startGeneration('codigo'));
-        document.getElementById('generateData').addEventListener('click', () => startGeneration('dados'));
 
         updateResources();
         showPanel('learnPanel');
