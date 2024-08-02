@@ -258,7 +258,7 @@
     </div>
 	    
 <script>
-(function() {
+document.addEventListener('DOMContentLoaded', function() {
     let conhecimento = 0;
     let grana = 0;
     let codigo = 0;
@@ -437,7 +437,7 @@
         showResourcePanel(`${resource}Panel`);
         showPanel(`${resource}GenerationPanel`);
         showButton(`${resource}Btn`);
-        document.getElementById(`unlock${resource.charAt(0).toUpperCase() + resource.slice(1)}`).disabled = true;
+        // document.getElementById(`unlock${resource.charAt(0).toUpperCase() + resource.slice(1)}`).disabled = true;
     }
 
     document.getElementById('unlockGrana').addEventListener('click', () => {
