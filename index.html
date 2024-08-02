@@ -299,14 +299,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
 
-        // Adicionar event listeners para os botões de upgrade
-        document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100));
-        document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
-        document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados', 300));
+    	document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100, 'work'));
+        document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200, 'code'));
+        document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados', 300, 'train'));
 
-        // Inicialização do jogo (exemplo)
-        document.getElementById('conhecimentoCounter').textContent = '500'; // Começar com 500 de conhecimento
-
+	document.getElementById('conhecimentoCounter').textContent = '500'; // Começar com 500 de conhecimento
 	
     function getGenerationAmount(resource) {
         return productionRates[resource];
@@ -432,53 +429,10 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById(buttonId).addEventListener('click', () => startGeneration(resource));
     });
 
-    // Funções de upgrade
-    function unlockResource(resource) {
-        showResourcePanel(`${resource}Panel`);
-        showPanel(`${resource}GenerationPanel`);
-        showButton(`${resource}Btn`);
-        // document.getElementById(`unlock${resource.charAt(0).toUpperCase() + resource.slice(1)}`).disabled = true;
-    }
-
-    document.getElementById('unlockGrana').addEventListener('click', () => {
-        if (conhecimento >= 50) {
-            conhecimento -= 50;
-            unlockResource('grana');
-            updateResources();
-        }
-    });
-
-    document.getElementById('unlockCodigo').addEventListener('click', () => {
-        if (conhecimento >= 100) {
-            conhecimento -= 100;
-            unlockResource('codigo');
-            updateResources();
-        }
-    });
-
-    document.getElementById('unlockDados').addEventListener('click', () => {
-        if (conhecimento >= 150) {
-            conhecimento -= 150;
-            unlockResource('dados');
-            updateResources();
-        }
-    });
-
-    function checkUpgrades() {
-        document.getElementById('unlockGrana').disabled = conhecimento < 50;
-        document.getElementById('unlockCodigo').disabled = conhecimento < 100;
-        document.getElementById('unlockDados').disabled = conhecimento < 150;
-    }
-
-    // Atualizar recursos e verificar upgrades a cada segundo
-    setInterval(() => {
-        updateResources();
-        checkUpgrades();
-    }, 1000);
-
+    
     updateResources();
     updateProductionLabels();
-    checkUpgrades();
+  
 })();
 </script>
 	    
