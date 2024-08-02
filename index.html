@@ -212,7 +212,6 @@
     </div>
 <script>
 (function() {
-    // Declare as variáveis no escopo global deste módulo
     let conhecimento = 0;
     let grana = 0;
     let codigo = 0;
@@ -237,12 +236,10 @@
     }
 
     function updateResources() {
-        console.log('Atualizando recursos. Valores antes da atualização:', { conhecimento, grana, codigo, dados });
         document.getElementById('conhecimentoCounter').textContent = Math.floor(conhecimento);
         document.getElementById('granaCounter').textContent = Math.floor(grana);
         document.getElementById('codigoCounter').textContent = Math.floor(codigo);
         document.getElementById('dadosCounter').textContent = Math.floor(dados);
-        console.log('Recursos atualizados. Novos valores:', { conhecimento, grana, codigo, dados });
     }
 
     function showPanel(panelId) {
@@ -259,66 +256,59 @@
     }
 
     function startGeneration(resource) {
-        console.log(`Iniciando geração para ${resource}. Conhecimento atual: ${conhecimento}`);
-        if (conhecimento >= generationCost && !generationTimers[resource]) {
+        if (conhecimento >= generationCost) {
             conhecimento -= generationCost;
-            console.log(`Custo de geração deduzido. Novo valor de conhecimento: ${conhecimento}`);
             updateResources();
 
             generationLevels[resource]++;
             document.getElementById(`${resource}Level1`).textContent = generationLevels[resource];
 
-            let countdown = generationTime;
-            const progressBar = document.getElementById(`${resource}Progress1`);
-            const timerElement = document.getElementById(`${resource}Timer1`);
-            const generateButton = document.getElementById(`generate${resource.charAt(0).toUpperCase() + resource.slice(1)}1`);
-            
-            generateButton.disabled = true;
-
-            function updateProgress() {
-                const progress = 1 - (countdown / generationTime);
-                progressBar.style.width = `${progress * 100}%`;
-                timerElement.textContent = `Tempo restante: ${countdown}s`;
-                
-                if (countdown <= 0) {
-                    const generationAmount = getGenerationAmount(generationLevels[resource]);
-                    console.log(`Geração concluída para ${resource}. Valor anterior: ${window[resource]}, Adicionando: ${generationAmount}`);
-                    // Use a variável correta em vez de window[resource]
-                    switch(resource) {
-                        case 'conhecimento':
-                            conhecimento += generationAmount;
-                            break;
-                        case 'grana':
-                            grana += generationAmount;
-                            break;
-                        case 'codigo':
-                            codigo += generationAmount;
-                            break;
-                        case 'dados':
-                            dados += generationAmount;
-                            break;
-                    }
-                    console.log(`Novo valor de ${resource}: ${eval(resource)}`);
-                    updateResources();
-                    clearInterval(generationTimers[resource]);
-                    generationTimers[resource] = null;
-                    timerElement.textContent = '';
-                    progressBar.style.width = '0%';
-                    generateButton.disabled = false;
-                } else {
-                    countdown--;
-                }
-            }
-
-            updateProgress();
-            generationTimers[resource] = setInterval(updateProgress, 1000);
-        } else {
-            console.log(`Não foi possível iniciar a geração. Conhecimento: ${conhecimento}, Timer ativo: ${!!generationTimers[resource]}`);
+            restartGenerationTimer(resource);
         }
     }
 
+    function restartGenerationTimer(resource) {
+        if (generationTimers[resource]) {
+            clearInterval(generationTimers[resource]);
+        }
+
+        let countdown = generationTime;
+        const progressBar = document.getElementById(`${resource}Progress1`);
+        const timerElement = document.getElementById(`${resource}Timer1`);
+
+        function updateProgress() {
+            const progress = 1 - (countdown / generationTime);
+            progressBar.style.width = `${progress * 100}%`;
+            timerElement.textContent = `Tempo restante: ${countdown}s`;
+            
+            if (countdown <= 0) {
+                const generationAmount = getGenerationAmount(generationLevels[resource]);
+                switch(resource) {
+                    case 'conhecimento':
+                        conhecimento += generationAmount;
+                        break;
+                    case 'grana':
+                        grana += generationAmount;
+                        break;
+                    case 'codigo':
+                        codigo += generationAmount;
+                        break;
+                    case 'dados':
+                        dados += generationAmount;
+                        break;
+                }
+                updateResources();
+                restartGenerationTimer(resource); // Reinicia o timer imediatamente
+            } else {
+                countdown--;
+            }
+        }
+
+        updateProgress();
+        generationTimers[resource] = setInterval(updateProgress, 1000);
+    }
+
     document.getElementById('clickable').addEventListener('click', () => {
-        console.log(`Clique em ${currentResource}`);
         switch(currentResource) {
             case 'conhecimento':
                 conhecimento++;
@@ -350,22 +340,18 @@
 
     document.getElementById('learnBtn').addEventListener('click', () => {
         currentResource = 'conhecimento';
-        console.log('Recurso atual: conhecimento');
     });
 
     document.getElementById('workBtn').addEventListener('click', () => {
         currentResource = 'grana';
-        console.log('Recurso atual: grana');
     });
 
     document.getElementById('codeBtn').addEventListener('click', () => {
         currentResource = 'codigo';
-        console.log('Recurso atual: codigo');
     });
 
     document.getElementById('trainBtn').addEventListener('click', () => {
         currentResource = 'dados';
-        console.log('Recurso atual: dados');
     });
 
     resources.forEach(resource => {
@@ -374,9 +360,7 @@
     });
 
     updateResources();
-
-    console.log('Script inicializado. Valores iniciais:', { conhecimento, grana, codigo, dados });
-})()
+})();
 </script>
 </body>
 </html>
