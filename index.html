@@ -131,18 +131,23 @@
     text-align: right;
 }
 
-.upgrade-button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
+        .upgrade-button {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            margin: 5px;
+            padding: 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 12px;
+            line-height: 25px;
+            text-align: center;
+            overflow: hidden;
+        }
 
 .upgrade-button:hover {
     background-color: #45a049;
@@ -203,10 +208,10 @@
 </div>
 		<div class="upgrades-panel">
     <div class="panel-title">Upgrades</div>
-    <button id="unlockGrana" class="upgrade-button">Liberar Grana</button>
-    <button id="unlockCodigo" class="upgrade-button">Liberar Código</button>
-    <button id="unlockDados" class="upgrade-button">Liberar Dados</button>
-
+                <button id="unlockGrana" class="upgrade-button" data-cost="100">G</button>
+                <button id="unlockCodigo" class="upgrade-button" data-cost="200">C</button>
+                <button id="unlockDados" class="upgrade-button" data-cost="300">D</button>
+<!-- Adicionamos um atributo data-cost a cada botão para armazenar o custo do upgrade. -->
 </div>
         </div>
 
@@ -272,6 +277,34 @@
         productionRates[resource] = baseGenerationAmount;
     });
 
+
+  function buyUpgrade(buttonId, cost) {
+            const button = document.getElementById(buttonId);
+            const conhecimento = parseInt(document.getElementById('conhecimentoCounter').textContent);
+
+            if (conhecimento >= cost) {
+                // Subtrair o custo do conhecimento
+                document.getElementById('conhecimentoCounter').textContent = conhecimento - cost;
+                
+                // Esconder o botão
+                button.classList.add('hidden');
+
+                // Aqui você pode adicionar a lógica para ativar o recurso desbloqueado
+                console.log(`Upgrade ${buttonId} comprado!`);
+            } else {
+                console.log("Conhecimento insuficiente para comprar este upgrade.");
+            }
+        }
+
+        // Adicionar event listeners para os botões de upgrade
+        document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100));
+        document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
+        document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados', 300));
+
+        // Inicialização do jogo (exemplo)
+        // document.getElementById('conhecimentoCounter').textContent = '500'; // Começar com 500 de conhecimento
+
+	
     function getGenerationAmount(resource) {
         return productionRates[resource];
     }
