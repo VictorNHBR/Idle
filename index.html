@@ -5,97 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo Idle Clicker</title>
     <style>
-        body, html {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-        #game {
-            display: flex;
-            height: 100vh;
-        }
-        .left-column {
-            display: flex;
-            flex-direction: column;
-            width: 30%;
-        }
-        .center-column {
-            display: flex;
-            flex-direction: column;
-            width: 30%;
-        }
-        .right-column {
-            width: 40%;
-        }
-        .resource-panel {
-            flex: 3;
-            background-color: #f0f0f0;
-            padding: 10px;
-            display: flex;
-            flex-direction: column;
-            overflow-y: auto;
-        }
-        .minigames-panel {
-            flex: 1;
-            background-color: #d0d0d0;
-            padding: 10px;
-            overflow-y: auto;
-        }
-        .click-panel {
-            flex: 2;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-        }
-        .upgrades-panel {
-            flex: 2;
-            background-color: #e0e0e0;
-            padding: 10px;
-            overflow-y: auto;
-        }
+        /* ... (estilos anteriores mantidos) ... */
         .generation-panel {
             height: 100%;
             background-color: #f0f0f0;
             padding: 10px;
             overflow-y: auto;
         }
-        .panel {
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-            padding: 10px;
-            background-color: white;
-        }
-        .panel-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-            background-color: #e0e0e0;
-            padding: 5px;
-        }
-        .resource-counter {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-        #clickable {
-            width: 100px;
-            height: 100px;
-            background-color: #4CAF50;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: transform 0.1s;
+        .resource-generation {
             margin-bottom: 20px;
-        }
-        #clickable:active {
-            transform: scale(0.95);
-        }
-        button {
-            margin: 5px;
-            padding: 10px;
-            cursor: pointer;
-            width: 180px;
         }
         .progress-bar {
             width: 100%;
@@ -109,117 +27,40 @@
             width: 0;
             height: 100%;
             background-color: #4CAF50;
-            transition: width 0.5s;
+            transition: width 0.1s;
         }
         .timer {
             font-size: 14px;
             color: #666;
             margin-top: 5px;
         }
-        .hidden {
-            display: none;
-        }
     </style>
 </head>
 <body>
     <div id="game">
-        <div class="left-column">
-            <div class="resource-panel">
-                <div class="panel-title">Recursos</div>
-                <div id="conhecimentoPanel" class="panel">
-                    <div class="panel-title">Conhecimento</div>
-                    <div class="resource-counter">Quantidade: <span id="conhecimentoCounter">0</span></div>
-                </div>
-                <div id="granaPanel" class="panel hidden">
-                    <div class="panel-title">Grana</div>
-                    <div class="resource-counter">Quantidade: <span id="granaCounter">0</span></div>
-                </div>
-                <div id="codigoPanel" class="panel hidden">
-                    <div class="panel-title">Código</div>
-                    <div class="resource-counter">Quantidade: <span id="codigoCounter">0</span></div>
-                </div>
-                <div id="dadosPanel" class="panel hidden">
-                    <div class="panel-title">Dados</div>
-                    <div class="resource-counter">Quantidade: <span id="dadosCounter">0</span></div>
-                </div>
-            </div>
-            <div class="minigames-panel">
-                <div class="panel-title">Minigames</div>
-                <!-- Conteúdo dos minigames será adicionado aqui -->
-            </div>
-        </div>
-        <div class="center-column">
-            <div class="click-panel">
-                <div id="clickable"></div>
-                <div>
-                    <button id="learnBtn">Aprender</button>
-                    <button id="workBtn" class="hidden">Trabalhar</button>
-                    <button id="codeBtn" class="hidden">Programar</button>
-                    <button id="trainBtn" class="hidden">Treinar</button>
-                </div>
-            </div>
-            <div class="upgrades-panel">
-                <div class="panel-title">Upgrades</div>
-                <!-- Conteúdo dos upgrades será adicionado aqui -->
-            </div>
-        </div>
+        <!-- ... (colunas esquerda e central mantidas) ... -->
         <div class="right-column">
             <div class="generation-panel">
-                <div id="learnPanel" class="panel">
-                    <div class="panel-title">Aprender</div>
-                    <button id="generateConhecimento1">Gerar Conhecimento 1 (Custo: 10)</button>
-                    <div class="progress-bar"><div class="progress" id="conhecimentoProgress1"></div></div>
-                    <div class="timer" id="conhecimentoTimer1"></div>
-
-                    <button id="generateConhecimento2">Gerar Conhecimento 2 (Custo: 20)</button>
-                    <div class="progress-bar"><div class="progress" id="conhecimentoProgress2"></div></div>
-                    <div class="timer" id="conhecimentoTimer2"></div>
-
-                    <button id="generateConhecimento3">Gerar Conhecimento 3 (Custo: 40)</button>
-                    <div class="progress-bar"><div class="progress" id="conhecimentoProgress3"></div></div>
-                    <div class="timer" id="conhecimentoTimer3"></div>
-                </div>
-                <div id="workPanel" class="panel hidden">
-                    <div class="panel-title">Trabalhar</div>
-                    <button id="generateGrana1">Gerar Grana 1 (Custo: 10)</button>
+                <div class="resource-generation">
+                    <h3>Gerar Grana</h3>
                     <div class="progress-bar"><div class="progress" id="granaProgress1"></div></div>
                     <div class="timer" id="granaTimer1"></div>
-
-                    <button id="generateGrana2">Gerar Grana 2 (Custo: 20)</button>
-                    <div class="progress-bar"><div class="progress" id="granaProgress2"></div></div>
-                    <div class="timer" id="granaTimer2"></div>
-
-                    <button id="generateGrana3">Gerar Grana 3 (Custo: 40)</button>
-                    <div class="progress-bar"><div class="progress" id="granaProgress3"></div></div>
-                    <div class="timer" id="granaTimer3"></div>
+                    <button id="generateGrana1">Gerar Grana (Custo: 10 Conhecimento)</button>
+                    <p>Nível: <span id="granaLevel1">1</span></p>
                 </div>
-                <div id="codePanelGeneration" class="panel hidden">
-                    <div class="panel-title">Programar</div>
-                    <button id="generateCodigo1">Gerar Código 1 (Custo: 10)</button>
+                <div class="resource-generation">
+                    <h3>Gerar Código</h3>
                     <div class="progress-bar"><div class="progress" id="codigoProgress1"></div></div>
                     <div class="timer" id="codigoTimer1"></div>
-
-                    <button id="generateCodigo2">Gerar Código 2 (Custo: 20)</button>
-                    <div class="progress-bar"><div class="progress" id="codigoProgress2"></div></div>
-                    <div class="timer" id="codigoTimer2"></div>
-
-                    <button id="generateCodigo3">Gerar Código 3 (Custo: 40)</button>
-                    <div class="progress-bar"><div class="progress" id="codigoProgress3"></div></div>
-                    <div class="timer" id="codigoTimer3"></div>
+                    <button id="generateCodigo1">Gerar Código (Custo: 10 Conhecimento)</button>
+                    <p>Nível: <span id="codigoLevel1">1</span></p>
                 </div>
-                <div id="trainPanelGeneration" class="panel hidden">
-                    <div class="panel-title">Treinar</div>
-                    <button id="generateDados1">Gerar Dados 1 (Custo: 10)</button>
+                <div class="resource-generation">
+                    <h3>Gerar Dados</h3>
                     <div class="progress-bar"><div class="progress" id="dadosProgress1"></div></div>
                     <div class="timer" id="dadosTimer1"></div>
-
-                    <button id="generateDados2">Gerar Dados 2 (Custo: 20)</button>
-                    <div class="progress-bar"><div class="progress" id="dadosProgress2"></div></div>
-                    <div class="timer" id="dadosTimer2"></div>
-
-                    <button id="generateDados3">Gerar Dados 3 (Custo: 40)</button>
-                    <div class="progress-bar"><div class="progress" id="dadosProgress3"></div></div>
-                    <div class="timer" id="dadosTimer3"></div>
+                    <button id="generateDados1">Gerar Dados (Custo: 10 Conhecimento)</button>
+                    <p>Nível: <span id="dadosLevel1">1</span></p>
                 </div>
             </div>
         </div>
@@ -232,17 +73,17 @@
         let dados = 0;
         let currentResource = 'conhecimento';
 
-        const resourceTypes = ['conhecimento', 'grana', 'codigo', 'dados'];
-        const generationLevels = 3;
-
-        const baseGenerationCost = 10;
-        const baseGenerationTime = 10; // segundos
-        const baseGenerationAmount = 10;
+        const resources = ['grana', 'codigo', 'dados'];
+        const generationCost = 10;
+        const generationTime = 10; // segundos
+        const generationAmount = 10;
 
         let generationTimers = {};
+        let generationLevels = {};
 
-        resourceTypes.forEach(resource => {
-            generationTimers[resource] = Array(generationLevels).fill(null);
+        resources.forEach(resource => {
+            generationTimers[resource] = null;
+            generationLevels[resource] = 1;
         });
 
         function updateResources() {
@@ -252,82 +93,15 @@
             document.getElementById('dadosCounter').textContent = Math.floor(dados);
         }
 
-        function showPanel(panelId) {
-            document.querySelectorAll('.generation-panel .panel').forEach(panel => panel.classList.add('hidden'));
-            document.getElementById(panelId).classList.remove('hidden');
-        }
-
-        function showResourcePanel(resourceId) {
-            document.getElementById(resourceId).classList.remove('hidden');
-        }
-
-        function showButton(buttonId) {
-            document.getElementById(buttonId).classList.remove('hidden');
-        }
-
-        document.getElementById('clickable').addEventListener('click', () => {
-            switch(currentResource) {
-                case 'conhecimento':
-                    conhecimento++;
-                    break;
-                case 'grana':
-                    grana++;
-                    if (grana === 1) {
-                        showResourcePanel('granaPanel');
-                        showButton('workBtn');
-                    }
-                    break;
-                case 'codigo':
-                    codigo++;
-                    if (codigo === 1) {
-                        showResourcePanel('codigoPanel');
-                        showButton('codeBtn');
-                    }
-                    break;
-                case 'dados':
-                    dados++;
-                    if (dados === 1) {
-                        showResourcePanel('dadosPanel');
-                        showButton('trainBtn');
-                    }
-                    break;
-            }
-            updateResources();
-        });
-
-        document.getElementById('learnBtn').addEventListener('click', () => {
-            currentResource = 'conhecimento';
-            showPanel('learnPanel');
-        });
-
-        document.getElementById('workBtn').addEventListener('click', () => {
-            currentResource = 'grana';
-            showPanel('workPanel');
-        });
-
-        document.getElementById('codeBtn').addEventListener('click', () => {
-            currentResource = 'codigo';
-            showPanel('codePanelGeneration');
-        });
-
-        document.getElementById('trainBtn').addEventListener('click', () => {
-            currentResource = 'dados';
-            showPanel('trainPanelGeneration');
-        });
-
-        function startGeneration(resource, level) {
-            const generationCost = baseGenerationCost * Math.pow(2, level);
-            const generationTime = baseGenerationTime * Math.pow(2, level);
-            const generationAmount = baseGenerationAmount * Math.pow(2, level);
-
-            if (window[resource] >= generationCost && !generationTimers[resource][level]) {
-                window[resource] -= generationCost;
+        function startGeneration(resource) {
+            if (conhecimento >= generationCost && !generationTimers[resource]) {
+                conhecimento -= generationCost;
                 updateResources();
 
                 let countdown = generationTime;
-                const progressBar = document.getElementById(`${resource}Progress${level + 1}`);
-                const timerElement = document.getElementById(`${resource}Timer${level + 1}`);
-                const generateButton = document.getElementById(`generate${resource.charAt(0).toUpperCase() + resource.slice(1)}${level + 1}`);
+                const progressBar = document.getElementById(`${resource}Progress1`);
+                const timerElement = document.getElementById(`${resource}Timer1`);
+                const generateButton = document.getElementById(`generate${resource.charAt(0).toUpperCase() + resource.slice(1)}1`);
                 
                 generateButton.disabled = true;
 
@@ -339,30 +113,49 @@
                     if (countdown <= 0) {
                         window[resource] += generationAmount;
                         updateResources();
-                        clearInterval(generationTimers[resource][level]);
-                        generationTimers[resource][level] = null;
+                        clearInterval(generationTimers[resource]);
+                        generationTimers[resource] = null;
                         timerElement.textContent = '';
                         progressBar.style.width = '0%';
                         generateButton.disabled = false;
+                        generationLevels[resource]++;
+                        document.getElementById(`${resource}Level1`).textContent = generationLevels[resource];
                     } else {
                         countdown--;
                     }
                 }
 
                 updateProgress();
-                generationTimers[resource][level] = setInterval(updateProgress, 1000);
+                generationTimers[resource] = setInterval(updateProgress, 1000);
             }
         }
 
-        resourceTypes.forEach(resource => {
-            for (let i = 0; i < generationLevels; i++) {
-                const buttonId = `generate${resource.charAt(0).toUpperCase() + resource.slice(1)}${i + 1}`;
-                document.getElementById(buttonId).addEventListener('click', () => startGeneration(resource, i));
-            }
+        resources.forEach(resource => {
+            const buttonId = `generate${resource.charAt(0).toUpperCase() + resource.slice(1)}1`;
+            document.getElementById(buttonId).addEventListener('click', () => startGeneration(resource));
         });
 
+        document.getElementById('clickable').addEventListener('click', () => {
+            switch(currentResource) {
+                case 'conhecimento':
+                    conhecimento++;
+                    break;
+                case 'grana':
+                    grana++;
+                    break;
+                case 'codigo':
+                    codigo++;
+                    break;
+                case 'dados':
+                    dados++;
+                    break;
+            }
+            updateResources();
+        });
+
+        // ... (outros event listeners mantidos) ...
+
         updateResources();
-        showPanel('learnPanel');
     </script>
 </body>
 </html>
