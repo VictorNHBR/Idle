@@ -214,7 +214,6 @@
                 <button id="unlockCodigo" class="upgrade-button" data-cost="200">C</button>
                 <button id="unlockDados" class="upgrade-button" data-cost="300">D</button>
 			
-<!-- CHAT GPT: <button id="upgradeButton1" onclick="buyUpgrade('upgradeButton1', 50) -->
 <!-- Adicionamos um atributo data-cost a cada botão para armazenar o custo do upgrade. -->
 </div>
         </div>
@@ -291,7 +290,7 @@
                 document.getElementById('conhecimentoCounter').textContent = conhecimento - cost;
                 
                 // Esconder o botão
-                button.classList.add('hidden');
+                button.style.display = 'none';
 
                 // Aqui você pode adicionar a lógica para ativar o recurso desbloqueado
                 console.log(`Upgrade ${buttonId} comprado!`);
