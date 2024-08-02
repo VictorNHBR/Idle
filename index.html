@@ -232,6 +232,7 @@ function updateResources() {
     document.getElementById('granaCounter').textContent = Math.floor(grana);
     document.getElementById('codigoCounter').textContent = Math.floor(codigo);
     document.getElementById('dadosCounter').textContent = Math.floor(dados);
+    console.log('Recursos atualizados:', { conhecimento, grana, codigo, dados });
 }
 
 function showPanel(panelId) {
@@ -248,11 +249,11 @@ function showButton(buttonId) {
 }
 
 function startGeneration(resource) {
+    console.log(`Iniciando geração para ${resource}`);
     if (conhecimento >= generationCost && !generationTimers[resource]) {
         conhecimento -= generationCost;
         updateResources();
 
-        // Aumenta o nível imediatamente
         generationLevels[resource]++;
         document.getElementById(`${resource}Level1`).textContent = generationLevels[resource];
 
@@ -270,6 +271,7 @@ function startGeneration(resource) {
             
             if (countdown <= 0) {
                 const generationAmount = getGenerationAmount(generationLevels[resource]);
+                console.log(`Geração concluída para ${resource}. Adicionando ${generationAmount}`);
                 window[resource] += generationAmount;
                 updateResources();
                 clearInterval(generationTimers[resource]);
@@ -288,6 +290,7 @@ function startGeneration(resource) {
 }
 
 document.getElementById('clickable').addEventListener('click', () => {
+    console.log(`Clique em ${currentResource}`);
     switch(currentResource) {
         case 'conhecimento':
             conhecimento++;
@@ -319,18 +322,22 @@ document.getElementById('clickable').addEventListener('click', () => {
 
 document.getElementById('learnBtn').addEventListener('click', () => {
     currentResource = 'conhecimento';
+    console.log('Recurso atual: conhecimento');
 });
 
 document.getElementById('workBtn').addEventListener('click', () => {
     currentResource = 'grana';
+    console.log('Recurso atual: grana');
 });
 
 document.getElementById('codeBtn').addEventListener('click', () => {
     currentResource = 'codigo';
+    console.log('Recurso atual: codigo');
 });
 
 document.getElementById('trainBtn').addEventListener('click', () => {
     currentResource = 'dados';
+    console.log('Recurso atual: dados');
 });
 
 resources.forEach(resource => {
@@ -339,6 +346,8 @@ resources.forEach(resource => {
 });
 
 updateResources();
+
+console.log('Script inicializado');
     </script>
 </body>
 </html>
