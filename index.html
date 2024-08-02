@@ -54,7 +54,7 @@
             padding: 10px;
         }
         .upgrades-panel {
-            flex: 2;
+            flex: 1;
             background-color: #e0e0e0;
             padding: 10px;
             overflow-y: auto;
@@ -131,7 +131,7 @@
     text-align: right;
 }
 
-	    .upgrade-button {
+.upgrade-button {
     display: block;
     width: 100%;
     padding: 10px;
@@ -182,6 +182,7 @@
                     <div class="resource-counter">Quantidade: <span id="dadosCounter">0</span></div>
                 </div>
             </div>
+		
             <div class="minigames-panel">
                 <div class="panel-title">Minigames</div>
                 <!-- Conteúdo dos minigames será adicionado aqui -->
@@ -190,6 +191,7 @@
 		
 		
         <div class="center-column">
+		
             <div class="click-panel">
                 <div id="clickable"></div>
                 <div>
@@ -198,18 +200,17 @@
                     <button id="codeBtn" class="hidden">Programar</button>
                     <button id="trainBtn" class="hidden">Treinar</button>
                 </div>
-
-		    <div class="upgrades-panel">
+</div>
+		<div class="upgrades-panel">
     <div class="panel-title">Upgrades</div>
     <button id="unlockGrana" class="upgrade-button">Liberar Grana</button>
     <button id="unlockCodigo" class="upgrade-button">Liberar Código</button>
     <button id="unlockDados" class="upgrade-button">Liberar Dados</button>
-</div>
-		</div>
-		
 
-		
-		
+</div>
+        </div>
+
+
 <div class="right-column">
 <div class="generation-panel">
 <div id="conhecimentoGenerationPanel" class="panel resource-generation">
@@ -247,6 +248,7 @@
             </div>
         </div>
     </div>
+	    
 <script>
 (function() {
     let conhecimento = 0;
@@ -443,5 +445,6 @@
     checkUpgrades();
 })();
 </script>
+	    
 </body>
 </html>
