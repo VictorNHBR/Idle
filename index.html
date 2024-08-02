@@ -315,44 +315,44 @@
             showPanel('trainPanelGeneration');
         });
 
-        function startGeneration(resource, level) {
-            const generationCost = baseGenerationCost * Math.pow(2, level);
-            const generationTime = baseGenerationTime * Math.pow(2, level);
-            const generationAmount = baseGenerationAmount * Math.pow(2, level);
+       function startGeneration(resource, level) {
+    const generationCost = baseGenerationCost * Math.pow(2, level);
+    const generationTime = baseGenerationTime * Math.pow(2, level);
+    const generationAmount = baseGenerationAmount * Math.pow(2, level);
 
-            if (window[resource] >= generationCost && !generationTimers[resource][level]) {
-                window[resource] -= generationCost;
+    if (window[resource] >= generationCost && !generationTimers[resource][level]) {
+        window[resource] -= generationCost;
+        updateResources();
+
+        let countdown = generationTime;
+        const progressBar = document.getElementById(`${resource}Progress${level + 1}`);
+        const timerElement = document.getElementById(`${resource}Timer${level + 1}`);
+        const generateButton = document.getElementById(`generate${resource.charAt(0).toUpperCase() + resource.slice(1)}${level + 1}`);
+        
+        generateButton.disabled = true;
+
+        function updateProgress() {
+            const progress = 1 - (countdown / generationTime);
+            progressBar.style.width = `${progress * 100}%`;
+            timerElement.textContent = `Tempo restante: ${countdown}s`;
+            
+            if (countdown <= 0) {
+                window[resource] += generationAmount;
                 updateResources();
-
-                let countdown = generationTime;
-                const progressBar = document.getElementById(`${resource}Progress${level + 1}`);
-                const timerElement = document.getElementById(`${resource}Timer${level + 1}`);
-                const generateButton = document.getElementById(`generate${resource.charAt(0).toUpperCase() + resource.slice(1)}${level + 1}`);
-                
-                generateButton.disabled = true;
-
-                function updateProgress() {
-                    const progress = 1 - (countdown / generationTime);
-                    progressBar.style.width = `${progress * 100}%`;
-                    timerElement.textContent = `Tempo restante: ${countdown}s`;
-                    
-                    if (countdown <= 0) {
-                        window[resource] += generationAmount;
-                        updateResources();
-                        clearInterval(generationTimers[resource][level]);
-                        generationTimers[resource][level] = null;
-                        timerElement.textContent = '';
-                        progressBar.style.width = '0%';
-                        generateButton.disabled = false;
-                    } else {
-                        countdown--;
-                    }
-                }
-
-                updateProgress();
-                generationTimers[resource][level] = setInterval(updateProgress, 1000);
+                clearInterval(generationTimers[resource][level]);
+                generationTimers[resource][level] = null;
+                timerElement.textContent = '';
+                progressBar.style.width = '0%';
+                generateButton.disabled = false;
+            } else {
+                countdown--;
             }
         }
+
+        updateProgress();
+        generationTimers[resource][level] = setInterval(updateProgress, 1000);
+    }
+}
 
         resourceTypes.forEach(resource => {
             for (let i = 0; i < generationLevels; i++) {
