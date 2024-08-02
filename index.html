@@ -1,11 +1,171 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <!-- ... (cabeçalho e estilos permanecem os mesmos) ... -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo Idle Clicker</title>
+    <style>
+        body, html {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #game {
+            display: flex;
+            height: 100vh;
+        }
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+        }
+        .center-column {
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+        }
+        .right-column {
+            width: 40%;
+        }
+        .resource-panel {
+            flex: 3;
+            background-color: #f0f0f0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        .minigames-panel {
+            flex: 1;
+            background-color: #d0d0d0;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .click-panel {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        .upgrades-panel {
+            flex: 2;
+            background-color: #e0e0e0;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .generation-panel {
+            height: 100%;
+            background-color: #f0f0f0;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        .panel {
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: white;
+        }
+        .panel-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            background-color: #e0e0e0;
+            padding: 5px;
+        }
+        .resource-counter {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        #clickable {
+            width: 100px;
+            height: 100px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.1s;
+            margin-bottom: 20px;
+        }
+        #clickable:active {
+            transform: scale(0.95);
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+            width: 180px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 5px;
+        }
+        .progress {
+            width: 0;
+            height: 100%;
+            background-color: #4CAF50;
+            transition: width 0.1s;
+        }
+        .timer {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+        .hidden {
+            display: none;
+        }
+        .resource-generation {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <div id="game">
-        <!-- ... (colunas esquerda e central permanecem as mesmas) ... -->
+        <div class="left-column">
+            <div class="resource-panel">
+                <div class="panel-title">Recursos</div>
+                <div id="conhecimentoPanel" class="panel">
+                    <div class="panel-title">Conhecimento</div>
+                    <div class="resource-counter">Quantidade: <span id="conhecimentoCounter">0</span></div>
+                </div>
+                <div id="granaPanel" class="panel hidden">
+                    <div class="panel-title">Grana</div>
+                    <div class="resource-counter">Quantidade: <span id="granaCounter">0</span></div>
+                </div>
+                <div id="codigoPanel" class="panel hidden">
+                    <div class="panel-title">Código</div>
+                    <div class="resource-counter">Quantidade: <span id="codigoCounter">0</span></div>
+                </div>
+                <div id="dadosPanel" class="panel hidden">
+                    <div class="panel-title">Dados</div>
+                    <div class="resource-counter">Quantidade: <span id="dadosCounter">0</span></div>
+                </div>
+            </div>
+            <div class="minigames-panel">
+                <div class="panel-title">Minigames</div>
+                <!-- Conteúdo dos minigames será adicionado aqui -->
+            </div>
+        </div>
+        <div class="center-column">
+            <div class="click-panel">
+                <div id="clickable"></div>
+                <div>
+                    <button id="learnBtn">Aprender</button>
+                    <button id="workBtn" class="hidden">Trabalhar</button>
+                    <button id="codeBtn" class="hidden">Programar</button>
+                    <button id="trainBtn" class="hidden">Treinar</button>
+                </div>
+            </div>
+            <div class="upgrades-panel">
+                <div class="panel-title">Upgrades</div>
+                <!-- Conteúdo dos upgrades será adicionado aqui -->
+            </div>
+        </div>
         <div class="right-column">
             <div class="generation-panel">
                 <div class="resource-generation">
