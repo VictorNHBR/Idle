@@ -203,7 +203,7 @@
         </div>
     </div>
 
-    <script>
+ <script>
         let conhecimento = 0;
         let grana = 0;
         let codigo = 0;
@@ -213,7 +213,7 @@
         const resources = ['conhecimento', 'grana', 'codigo', 'dados'];
         const generationCost = 10;
         const generationTime = 10; // segundos
-        const generationAmount = 10;
+        const generationAmount = 10; // Alterado para 10
 
         let generationTimers = {};
         let generationLevels = {};
@@ -261,6 +261,7 @@
                     timerElement.textContent = `Tempo restante: ${countdown}s`;
                     
                     if (countdown <= 0) {
+                        // Incrementar o recurso específico em 10 unidades
                         window[resource] += generationAmount;
                         updateResources();
                         clearInterval(generationTimers[resource]);
