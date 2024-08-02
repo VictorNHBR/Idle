@@ -124,6 +124,12 @@
         .resource-generation {
             margin-bottom: 20px;
         }
+	.production-label {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+    text-align: right;
+}
     </style>
 </head>
 
@@ -179,34 +185,38 @@
 		
         <div class="right-column">
             <div class="generation-panel">
- 		<div id="conhecimentoGenerationPanel" class="panel resource-generation">
-                    <h3>Gerar Conhecimento</h3>
-                    <div class="progress-bar"><div class="progress" id="conhecimentoProgress1"></div></div>
-                    <div class="timer" id="conhecimentoTimer1"></div>
-                    <button id="generateConhecimento1">Gerar Conhecimento (Custo: 10 Conhecimento)</button>
-                    <p>Nível: <span id="conhecimentoLevel1">1</span></p>
-                </div>
-                <div id="granaGenerationPanel" class="panel resource-generation hidden">
-                    <h3>Gerar Grana</h3>
-                    <div class="progress-bar"><div class="progress" id="granaProgress1"></div></div>
-                    <div class="timer" id="granaTimer1"></div>
-                    <button id="generateGrana1">Gerar Grana (Custo: 10 Conhecimento)</button>
-                    <p>Nível: <span id="granaLevel1">1</span></p>
-                </div>
-                <div id="codigoGenerationPanel" class="panel resource-generation hidden">
-                    <h3>Gerar Código</h3>
-                    <div class="progress-bar"><div class="progress" id="codigoProgress1"></div></div>
-                    <div class="timer" id="codigoTimer1"></div>
-                    <button id="generateCodigo1">Gerar Código (Custo: 10 Conhecimento)</button>
-                    <p>Nível: <span id="codigoLevel1">1</span></p>
-                </div>
-                <div id="dadosGenerationPanel" class="panel resource-generation hidden">
-                    <h3>Gerar Dados</h3>
-                    <div class="progress-bar"><div class="progress" id="dadosProgress1"></div></div>
-                    <div class="timer" id="dadosTimer1"></div>
-                    <button id="generateDados1">Gerar Dados (Custo: 10 Conhecimento)</button>
-                    <p>Nível: <span id="dadosLevel1">1</span></p>
-                </div>
+<div id="conhecimentoGenerationPanel" class="panel resource-generation">
+    <h3>Gerar Conhecimento</h3>
+    <div class="production-label" id="conhecimentoProductionLabel">Produção: 10/10s</div>
+    <div class="progress-bar"><div class="progress" id="conhecimentoProgress1"></div></div>
+    <div class="timer" id="conhecimentoTimer1"></div>
+    <button id="generateConhecimento1">Gerar Conhecimento (Custo: 10 Conhecimento)</button>
+    <p>Nível: <span id="conhecimentoLevel1">1</span></p>
+</div>
+<div id="granaGenerationPanel" class="panel resource-generation hidden">
+    <h3>Gerar Grana</h3>
+    <div class="production-label" id="granaProductionLabel">Produção: 10/10s</div>
+    <div class="progress-bar"><div class="progress" id="granaProgress1"></div></div>
+    <div class="timer" id="granaTimer1"></div>
+    <button id="generateGrana1">Gerar Grana (Custo: 10 Conhecimento)</button>
+    <p>Nível: <span id="granaLevel1">1</span></p>
+</div>
+<div id="codigoGenerationPanel" class="panel resource-generation hidden">
+    <h3>Gerar Código</h3>
+    <div class="production-label" id="codigoProductionLabel">Produção: 10/10s</div>
+    <div class="progress-bar"><div class="progress" id="codigoProgress1"></div></div>
+    <div class="timer" id="codigoTimer1"></div>
+    <button id="generateCodigo1">Gerar Código (Custo: 10 Conhecimento)</button>
+    <p>Nível: <span id="codigoLevel1">1</span></p>
+</div>
+<div id="dadosGenerationPanel" class="panel resource-generation hidden">
+    <h3>Gerar Dados</h3>
+    <div class="production-label" id="dadosProductionLabel">Produção: 10/10s</div>
+    <div class="progress-bar"><div class="progress" id="dadosProgress1"></div></div>
+    <div class="timer" id="dadosTimer1"></div>
+    <button id="generateDados1">Gerar Dados (Custo: 10 Conhecimento)</button>
+    <p>Nível: <span id="dadosLevel1">1</span></p>
+</div>
             </div>
         </div>
     </div>
@@ -225,14 +235,16 @@
 
     let generationTimers = {};
     let generationLevels = {};
+    let productionRates = {};
 
     resources.forEach(resource => {
         generationTimers[resource] = null;
         generationLevels[resource] = 1;
+        productionRates[resource] = baseGenerationAmount;
     });
 
-    function getGenerationAmount(level) {
-        return baseGenerationAmount + (level - 1) * 2;
+    function getGenerationAmount(resource) {
+        return productionRates[resource];
     }
 
     function updateResources() {
@@ -240,6 +252,15 @@
         document.getElementById('granaCounter').textContent = Math.floor(grana);
         document.getElementById('codigoCounter').textContent = Math.floor(codigo);
         document.getElementById('dadosCounter').textContent = Math.floor(dados);
+    }
+
+    function updateProductionLabels() {
+        resources.forEach(resource => {
+            const label = document.getElementById(`${resource}ProductionLabel`);
+            if (label) {
+                label.textContent = `Produção: ${productionRates[resource]}/10s`;
+            }
+        });
     }
 
     function showPanel(panelId) {
@@ -282,7 +303,7 @@
             timerElement.textContent = `Tempo restante: ${countdown}s`;
             
             if (countdown <= 0) {
-                const generationAmount = getGenerationAmount(generationLevels[resource]);
+                const generationAmount = getGenerationAmount(resource);
                 switch(resource) {
                     case 'conhecimento':
                         conhecimento += generationAmount;
@@ -298,7 +319,7 @@
                         break;
                 }
                 updateResources();
-                restartGenerationTimer(resource); // Reinicia o timer imediatamente
+                restartGenerationTimer(resource);
             } else {
                 countdown--;
             }
@@ -360,6 +381,7 @@
     });
 
     updateResources();
+    updateProductionLabels();
 })();
 </script>
 </body>
