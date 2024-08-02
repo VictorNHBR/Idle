@@ -228,9 +228,6 @@ function getGenerationAmount(level) {
 }
 
 function updateResources() {
-    // Adicionando console.log para depuração
-    console.log("Atualizando recursos:", { conhecimento, grana, codigo, dados });
-    
     document.getElementById('conhecimentoCounter').textContent = Math.floor(conhecimento);
     document.getElementById('granaCounter').textContent = Math.floor(grana);
     document.getElementById('codigoCounter').textContent = Math.floor(codigo);
@@ -255,6 +252,7 @@ function startGeneration(resource) {
         conhecimento -= generationCost;
         updateResources();
 
+        // Aumenta o nível imediatamente
         generationLevels[resource]++;
         document.getElementById(`${resource}Level1`).textContent = generationLevels[resource];
 
@@ -272,10 +270,7 @@ function startGeneration(resource) {
             
             if (countdown <= 0) {
                 const generationAmount = getGenerationAmount(generationLevels[resource]);
-                
-                // Usando uma função para incrementar o recurso
-                incrementResource(resource, generationAmount);
-                
+                window[resource] += generationAmount;
                 updateResources();
                 clearInterval(generationTimers[resource]);
                 generationTimers[resource] = null;
@@ -343,12 +338,6 @@ resources.forEach(resource => {
     document.getElementById(buttonId).addEventListener('click', () => startGeneration(resource));
 });
 
-function incrementResource(resource, amount) {
-    console.log(`Incrementando ${resource} em ${amount}`);
-    window[resource] += amount;
-    console.log(`Novo valor de ${resource}: ${window[resource]}`);
-}
-    
 updateResources();
     </script>
 </body>
