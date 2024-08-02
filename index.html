@@ -118,9 +118,11 @@
             color: #666;
             margin-top: 5px;
         }
+	    
         .hidden {
             display: none;
         }
+	    
         .resource-generation {
             margin-bottom: 20px;
         }
@@ -207,10 +209,13 @@
                 </div>
 </div>
 		<div class="upgrades-panel">
-    <div class="panel-title">Upgrades</div>
-                <button id="unlockGrana" class="upgrade-button" data-cost="100">G</button>
+    		<div class="panel-title">Upgrades</div>
+<!--                 <button id="unlockGrana" class="upgrade-button" data-cost="100">G</button> -->
+		<button id="upgradeButton1" onclick="buyUpgrade('upgradeButton1', 50)
                 <button id="unlockCodigo" class="upgrade-button" data-cost="200">C</button>
                 <button id="unlockDados" class="upgrade-button" data-cost="300">D</button>
+			
+<!-- CHAT GPT: <button id="upgradeButton1" onclick="buyUpgrade('upgradeButton1', 50) -->
 <!-- Adicionamos um atributo data-cost a cada botão para armazenar o custo do upgrade. -->
 </div>
         </div>
