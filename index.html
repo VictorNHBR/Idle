@@ -126,21 +126,21 @@
         <div class="left-column">
             <div class="resource-panel">
                 <div class="panel-title">Recursos</div>
-                <div id="knowledgePanel" class="panel">
+                <div id="conhecimentoPanel" class="panel">
                     <div class="panel-title">Conhecimento</div>
-                    <div class="resource-counter">Quantidade: <span id="knowledgeCounter">0</span></div>
+                    <div class="resource-counter">Quantidade: <span id="conhecimentoCounter">0</span></div>
                 </div>
                 <div id="granaPanel" class="panel hidden">
                     <div class="panel-title">Grana</div>
                     <div class="resource-counter">Quantidade: <span id="granaCounter">0</span></div>
                 </div>
-                <div id="codePanel" class="panel hidden">
+                <div id="codigoPanel" class="panel hidden">
                     <div class="panel-title">Código</div>
-                    <div class="resource-counter">Quantidade: <span id="codeCounter">0</span></div>
+                    <div class="resource-counter">Quantidade: <span id="codigoCounter">0</span></div>
                 </div>
-                <div id="dataPanel" class="panel hidden">
+                <div id="dadosPanel" class="panel hidden">
                     <div class="panel-title">Dados</div>
-                    <div class="resource-counter">Quantidade: <span id="dataCounter">0</span></div>
+                    <div class="resource-counter">Quantidade: <span id="dadosCounter">0</span></div>
                 </div>
             </div>
             <div class="minigames-panel">
@@ -167,17 +167,17 @@
             <div class="generation-panel">
                 <div id="learnPanel" class="panel">
                     <div class="panel-title">Aprender</div>
-                    <button id="generateKnowledge1">Gerar Conhecimento 1 (Custo: 10)</button>
-                    <div class="progress-bar"><div class="progress" id="knowledgeProgress1"></div></div>
-                    <div class="timer" id="knowledgeTimer1"></div>
+                    <button id="generateConhecimento1">Gerar Conhecimento 1 (Custo: 10)</button>
+                    <div class="progress-bar"><div class="progress" id="conhecimentoProgress1"></div></div>
+                    <div class="timer" id="conhecimentoTimer1"></div>
 
-                    <button id="generateKnowledge2">Gerar Conhecimento 2 (Custo: 20)</button>
-                    <div class="progress-bar"><div class="progress" id="knowledgeProgress2"></div></div>
-                    <div class="timer" id="knowledgeTimer2"></div>
+                    <button id="generateConhecimento2">Gerar Conhecimento 2 (Custo: 20)</button>
+                    <div class="progress-bar"><div class="progress" id="conhecimentoProgress2"></div></div>
+                    <div class="timer" id="conhecimentoTimer2"></div>
 
-                    <button id="generateKnowledge3">Gerar Conhecimento 3 (Custo: 40)</button>
-                    <div class="progress-bar"><div class="progress" id="knowledgeProgress3"></div></div>
-                    <div class="timer" id="knowledgeTimer3"></div>
+                    <button id="generateConhecimento3">Gerar Conhecimento 3 (Custo: 40)</button>
+                    <div class="progress-bar"><div class="progress" id="conhecimentoProgress3"></div></div>
+                    <div class="timer" id="conhecimentoTimer3"></div>
                 </div>
                 <div id="workPanel" class="panel hidden">
                     <div class="panel-title">Trabalhar</div>
@@ -246,10 +246,10 @@
         });
 
         function updateResources() {
-            document.getElementById('knowledgeCounter').textContent = Math.floor(conhecimento);
+            document.getElementById('conhecimentoCounter').textContent = Math.floor(conhecimento);
             document.getElementById('granaCounter').textContent = Math.floor(grana);
-            document.getElementById('codeCounter').textContent = Math.floor(codigo);
-            document.getElementById('dataCounter').textContent = Math.floor(dados);
+            document.getElementById('codigoCounter').textContent = Math.floor(codigo);
+            document.getElementById('dadosCounter').textContent = Math.floor(dados);
         }
 
         function showPanel(panelId) {
@@ -280,14 +280,14 @@
                 case 'codigo':
                     codigo++;
                     if (codigo === 1) {
-                        showResourcePanel('codePanel');
+                        showResourcePanel('codigoPanel');
                         showButton('codeBtn');
                     }
                     break;
                 case 'dados':
                     dados++;
                     if (dados === 1) {
-                        showResourcePanel('dataPanel');
+                        showResourcePanel('dadosPanel');
                         showButton('trainBtn');
                     }
                     break;
@@ -315,44 +315,44 @@
             showPanel('trainPanelGeneration');
         });
 
-       function startGeneration(resource, level) {
-    const generationCost = baseGenerationCost * Math.pow(2, level);
-    const generationTime = baseGenerationTime * Math.pow(2, level);
-    const generationAmount = baseGenerationAmount * Math.pow(2, level);
+        function startGeneration(resource, level) {
+            const generationCost = baseGenerationCost * Math.pow(2, level);
+            const generationTime = baseGenerationTime * Math.pow(2, level);
+            const generationAmount = baseGenerationAmount * Math.pow(2, level);
 
-    if (window[resource] >= generationCost && !generationTimers[resource][level]) {
-        window[resource] -= generationCost;
-        updateResources();
-
-        let countdown = generationTime;
-        const progressBar = document.getElementById(`${resource}Progress${level + 1}`);
-        const timerElement = document.getElementById(`${resource}Timer${level + 1}`);
-        const generateButton = document.getElementById(`generate${resource.charAt(0).toUpperCase() + resource.slice(1)}${level + 1}`);
-        
-        generateButton.disabled = true;
-
-        function updateProgress() {
-            const progress = 1 - (countdown / generationTime);
-            progressBar.style.width = `${progress * 100}%`;
-            timerElement.textContent = `Tempo restante: ${countdown}s`;
-            
-            if (countdown <= 0) {
-                window[resource] += generationAmount;
+            if (window[resource] >= generationCost && !generationTimers[resource][level]) {
+                window[resource] -= generationCost;
                 updateResources();
-                clearInterval(generationTimers[resource][level]);
-                generationTimers[resource][level] = null;
-                timerElement.textContent = '';
-                progressBar.style.width = '0%';
-                generateButton.disabled = false;
-            } else {
-                countdown--;
+
+                let countdown = generationTime;
+                const progressBar = document.getElementById(`${resource}Progress${level + 1}`);
+                const timerElement = document.getElementById(`${resource}Timer${level + 1}`);
+                const generateButton = document.getElementById(`generate${resource.charAt(0).toUpperCase() + resource.slice(1)}${level + 1}`);
+                
+                generateButton.disabled = true;
+
+                function updateProgress() {
+                    const progress = 1 - (countdown / generationTime);
+                    progressBar.style.width = `${progress * 100}%`;
+                    timerElement.textContent = `Tempo restante: ${countdown}s`;
+                    
+                    if (countdown <= 0) {
+                        window[resource] += generationAmount;
+                        updateResources();
+                        clearInterval(generationTimers[resource][level]);
+                        generationTimers[resource][level] = null;
+                        timerElement.textContent = '';
+                        progressBar.style.width = '0%';
+                        generateButton.disabled = false;
+                    } else {
+                        countdown--;
+                    }
+                }
+
+                updateProgress();
+                generationTimers[resource][level] = setInterval(updateProgress, 1000);
             }
         }
-
-        updateProgress();
-        generationTimers[resource][level] = setInterval(updateProgress, 1000);
-    }
-}
 
         resourceTypes.forEach(resource => {
             for (let i = 0; i < generationLevels; i++) {
