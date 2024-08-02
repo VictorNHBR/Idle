@@ -225,143 +225,144 @@
         </div>
     </div>
 
-let conhecimento = 0;
-let grana = 0;
-let codigo = 0;
-let dados = 0;
-let currentResource = 'conhecimento';
+    <script>
+        let conhecimento = 0;
+        let grana = 0;
+        let codigo = 0;
+        let dados = 0;
+        let currentResource = 'conhecimento';
 
-const resourceTypes = ['conhecimento', 'grana', 'codigo', 'dados'];
-const generationLevels = 3;
+        const resourceTypes = ['conhecimento', 'grana', 'codigo', 'dados'];
+        const generationLevels = 3;
 
-const baseGenerationCost = 10;
-const baseGenerationTime = 10; // segundos
-const baseGenerationAmount = 10;
+        const baseGenerationCost = 10;
+        const baseGenerationTime = 10; // segundos
+        const baseGenerationAmount = 10;
 
-let generationTimers = {};
+        let generationTimers = {};
 
-resourceTypes.forEach(resource => {
-    generationTimers[resource] = Array(generationLevels).fill(null);
-});
+        resourceTypes.forEach(resource => {
+            generationTimers[resource] = Array(generationLevels).fill(null);
+        });
 
-function updateResources() {
-    document.getElementById('conhecimentoCounter').textContent = Math.floor(conhecimento);
-    document.getElementById('granaCounter').textContent = Math.floor(grana);
-    document.getElementById('codigoCounter').textContent = Math.floor(codigo);
-    document.getElementById('dadosCounter').textContent = Math.floor(dados);
-}
+        function updateResources() {
+            document.getElementById('conhecimentoCounter').textContent = Math.floor(conhecimento);
+            document.getElementById('granaCounter').textContent = Math.floor(grana);
+            document.getElementById('codigoCounter').textContent = Math.floor(codigo);
+            document.getElementById('dadosCounter').textContent = Math.floor(dados);
+        }
 
-function showPanel(panelId) {
-    document.querySelectorAll('.generation-panel .panel').forEach(panel => panel.classList.add('hidden'));
-    document.getElementById(panelId).classList.remove('hidden');
-}
+        function showPanel(panelId) {
+            document.querySelectorAll('.generation-panel .panel').forEach(panel => panel.classList.add('hidden'));
+            document.getElementById(panelId).classList.remove('hidden');
+        }
 
-function showResourcePanel(resourceId) {
-    document.getElementById(resourceId).classList.remove('hidden');
-}
+        function showResourcePanel(resourceId) {
+            document.getElementById(resourceId).classList.remove('hidden');
+        }
 
-function showButton(buttonId) {
-    document.getElementById(buttonId).classList.remove('hidden');
-}
+        function showButton(buttonId) {
+            document.getElementById(buttonId).classList.remove('hidden');
+        }
 
-document.getElementById('clickable').addEventListener('click', () => {
-    switch(currentResource) {
-        case 'conhecimento':
-            conhecimento++;
-            break;
-        case 'grana':
-            grana++;
-            if (grana === 1) {
-                showResourcePanel('granaPanel');
-                showButton('workBtn');
+        document.getElementById('clickable').addEventListener('click', () => {
+            switch(currentResource) {
+                case 'conhecimento':
+                    conhecimento++;
+                    break;
+                case 'grana':
+                    grana++;
+                    if (grana === 1) {
+                        showResourcePanel('granaPanel');
+                        showButton('workBtn');
+                    }
+                    break;
+                case 'codigo':
+                    codigo++;
+                    if (codigo === 1) {
+                        showResourcePanel('codigoPanel');
+                        showButton('codeBtn');
+                    }
+                    break;
+                case 'dados':
+                    dados++;
+                    if (dados === 1) {
+                        showResourcePanel('dadosPanel');
+                        showButton('trainBtn');
+                    }
+                    break;
             }
-            break;
-        case 'codigo':
-            codigo++;
-            if (codigo === 1) {
-                showResourcePanel('codigoPanel');
-                showButton('codeBtn');
-            }
-            break;
-        case 'dados':
-            dados++;
-            if (dados === 1) {
-                showResourcePanel('dadosPanel');
-                showButton('trainBtn');
-            }
-            break;
-    }
-    updateResources();
-});
+            updateResources();
+        });
 
-document.getElementById('learnBtn').addEventListener('click', () => {
-    currentResource = 'conhecimento';
-    showPanel('learnPanel');
-});
+        document.getElementById('learnBtn').addEventListener('click', () => {
+            currentResource = 'conhecimento';
+            showPanel('learnPanel');
+        });
 
-document.getElementById('workBtn').addEventListener('click', () => {
-    currentResource = 'grana';
-    showPanel('workPanel');
-});
+        document.getElementById('workBtn').addEventListener('click', () => {
+            currentResource = 'grana';
+            showPanel('workPanel');
+        });
 
-document.getElementById('codeBtn').addEventListener('click', () => {
-    currentResource = 'codigo';
-    showPanel('codePanelGeneration');
-});
+        document.getElementById('codeBtn').addEventListener('click', () => {
+            currentResource = 'codigo';
+            showPanel('codePanelGeneration');
+        });
 
-document.getElementById('trainBtn').addEventListener('click', () => {
-    currentResource = 'dados';
-    showPanel('trainPanelGeneration');
-});
+        document.getElementById('trainBtn').addEventListener('click', () => {
+            currentResource = 'dados';
+            showPanel('trainPanelGeneration');
+        });
 
-function startGeneration(resource, level) {
-    const generationCost = baseGenerationCost * Math.pow(2, level);
-    const generationTime = baseGenerationTime * Math.pow(2, level);
-    const generationAmount = baseGenerationAmount * Math.pow(2, level);
+        function startGeneration(resource, level) {
+            const generationCost = baseGenerationCost * Math.pow(2, level);
+            const generationTime = baseGenerationTime * Math.pow(2, level);
+            const generationAmount = baseGenerationAmount * Math.pow(2, level);
 
-    if (window[resource] >= generationCost && !generationTimers[resource][level]) {
-        window[resource] -= generationCost;
-        updateResources();
-
-        let countdown = generationTime;
-        const progressBar = document.getElementById(`${resource}Progress${level + 1}`);
-        const timerElement = document.getElementById(`${resource}Timer${level + 1}`);
-        const generateButton = document.getElementById(`generate${resource.charAt(0).toUpperCase() + resource.slice(1)}${level + 1}`);
-        
-        generateButton.disabled = true;
-
-        function updateProgress() {
-            const progress = 1 - (countdown / generationTime);
-            progressBar.style.width = `${progress * 100}%`;
-            timerElement.textContent = `Tempo restante: ${countdown}s`;
-            
-            if (countdown <= 0) {
-                window[resource] += generationAmount;
+            if (window[resource] >= generationCost && !generationTimers[resource][level]) {
+                window[resource] -= generationCost;
                 updateResources();
-                clearInterval(generationTimers[resource][level]);
-                generationTimers[resource][level] = null;
-                timerElement.textContent = '';
-                progressBar.style.width = '0%';
-                generateButton.disabled = false;
-            } else {
-                countdown--;
+
+                let countdown = generationTime;
+                const progressBar = document.getElementById(`${resource}Progress${level + 1}`);
+                const timerElement = document.getElementById(`${resource}Timer${level + 1}`);
+                const generateButton = document.getElementById(`generate${resource.charAt(0).toUpperCase() + resource.slice(1)}${level + 1}`);
+                
+                generateButton.disabled = true;
+
+                function updateProgress() {
+                    const progress = 1 - (countdown / generationTime);
+                    progressBar.style.width = `${progress * 100}%`;
+                    timerElement.textContent = `Tempo restante: ${countdown}s`;
+                    
+                    if (countdown <= 0) {
+                        window[resource] += generationAmount;
+                        updateResources();
+                        clearInterval(generationTimers[resource][level]);
+                        generationTimers[resource][level] = null;
+                        timerElement.textContent = '';
+                        progressBar.style.width = '0%';
+                        generateButton.disabled = false;
+                    } else {
+                        countdown--;
+                    }
+                }
+
+                updateProgress();
+                generationTimers[resource][level] = setInterval(updateProgress, 1000);
             }
         }
 
-        updateProgress();
-        generationTimers[resource][level] = setInterval(updateProgress, 1000);
-    }
-}
+        resourceTypes.forEach(resource => {
+            for (let i = 0; i < generationLevels; i++) {
+                const buttonId = `generate${resource.charAt(0).toUpperCase() + resource.slice(1)}${i + 1}`;
+                document.getElementById(buttonId).addEventListener('click', () => startGeneration(resource, i));
+            }
+        });
 
-resourceTypes.forEach(resource => {
-    for (let i = 0; i < generationLevels; i++) {
-        const buttonId = `generate${resource.charAt(0).toUpperCase() + resource.slice(1)}${i + 1}`;
-        document.getElementById(buttonId).addEventListener('click', () => startGeneration(resource, i));
-    }
-});
-
-updateResources();
-showPanel('learnPanel');
+        updateResources();
+        showPanel('learnPanel');
     </script>
 </body>
 </html>
