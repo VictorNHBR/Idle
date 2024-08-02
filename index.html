@@ -219,6 +219,8 @@ let codigo = 0;
 let dados = 0;
 let currentResource = 'conhecimento';
 
+console.log('Valores iniciais:', { conhecimento, grana, codigo, dados });
+
 const resources = ['conhecimento', 'grana', 'codigo', 'dados'];
 const generationCost = 10;
 const generationTime = 10; // segundos
@@ -237,11 +239,13 @@ function getGenerationAmount(level) {
 }
 
 function updateResources() {
+    console.log('Atualizando recursos. Valores antes da atualização:', { conhecimento, grana, codigo, dados });
     document.getElementById('conhecimentoCounter').textContent = Math.floor(conhecimento);
     document.getElementById('granaCounter').textContent = Math.floor(grana);
     document.getElementById('codigoCounter').textContent = Math.floor(codigo);
     document.getElementById('dadosCounter').textContent = Math.floor(dados);
-    console.log('Recursos atualizados:', { conhecimento, grana, codigo, dados });
+    console.log('Recursos atualizados. Novos valores:', { conhecimento, grana, codigo, dados });
+    console.log('Valor atual do conhecimentoCounter:', document.getElementById('conhecimentoCounter').textContent);
 }
 
 function showPanel(panelId) {
@@ -258,9 +262,10 @@ function showButton(buttonId) {
 }
 
 function startGeneration(resource) {
-    console.log(`Iniciando geração para ${resource}`);
+    console.log(`Iniciando geração para ${resource}. Conhecimento atual: ${conhecimento}`);
     if (conhecimento >= generationCost && !generationTimers[resource]) {
         conhecimento -= generationCost;
+        console.log(`Custo de geração deduzido. Novo valor de conhecimento: ${conhecimento}`);
         updateResources();
 
         generationLevels[resource]++;
@@ -280,8 +285,9 @@ function startGeneration(resource) {
             
             if (countdown <= 0) {
                 const generationAmount = getGenerationAmount(generationLevels[resource]);
-                console.log(`Geração concluída para ${resource}. Adicionando ${generationAmount}`);
+                console.log(`Geração concluída para ${resource}. Valor anterior: ${window[resource]}, Adicionando: ${generationAmount}`);
                 window[resource] += generationAmount;
+				console.log(`Novo valor de ${resource}: ${window[resource]}`);
                 updateResources();
                 clearInterval(generationTimers[resource]);
                 generationTimers[resource] = null;
@@ -295,7 +301,9 @@ function startGeneration(resource) {
 
         updateProgress();
         generationTimers[resource] = setInterval(updateProgress, 1000);
-    }
+    }        
+	console.log(`Não foi possível iniciar a geração. Conhecimento: ${conhecimento}, Timer ativo: ${!!generationTimers[resource]}`);
+
 }
 
 document.getElementById('clickable').addEventListener('click', () => {
@@ -357,6 +365,6 @@ resources.forEach(resource => {
 updateResources();
 
 console.log('Script inicializado');
-</script>
+    </script>
 </body>
 </html>
