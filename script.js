@@ -97,10 +97,11 @@ function buyUpgrade(buttonId, cost) {
     }
 
    function restartGenerationTimer(resource) {
-        if (generationTimers[resource]) {
-            clearInterval(generationTimers[resource]);
-        }
-
+        
+       
+	if (generationTimers[resource]) {
+	//     clearInterval(generationTimers[resource]);
+        // } RESETAR AO COMPRAR
         let countdown = generationTime;
         const progressBar = document.getElementById(`${resource}Progress1`);
         const timerElement = document.getElementById(`${resource}Timer1`);
