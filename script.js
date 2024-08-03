@@ -1,4 +1,6 @@
- document.addEventListener('DOMContentLoaded', function() {
+   
+
+document.addEventListener('DOMContentLoaded', function() {
     let conhecimento = 500;
     let grana = 0;
     let codigo = 0;
@@ -95,11 +97,10 @@ function buyUpgrade(buttonId, cost) {
     }
 
    function restartGenerationTimer(resource) {
-        
-       
-	if (generationTimers[resource]) {
-	//     clearInterval(generationTimers[resource]);
-        // } RESETAR AO COMPRAR
+        if (generationTimers[resource]) {
+            clearInterval(generationTimers[resource]);
+        }
+
         let countdown = generationTime;
         const progressBar = document.getElementById(`${resource}Progress1`);
         const timerElement = document.getElementById(`${resource}Timer1`);
@@ -233,8 +234,6 @@ function checkUpgrades() {
     updateResources();
     updateProductionLabels();
     checkUpgrades();
-
-   }
-   })();
+})();
 
 	    
