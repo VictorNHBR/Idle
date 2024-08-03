@@ -82,6 +82,9 @@
             cursor: pointer;
             transition: transform 0.1s;
             margin-bottom: 20px;
+ 	    background-image: url('path/to/your/image.png');
+    	    background-size: cover; /* Para garantir que a imagem cubra todo o elemento */
+   	    background-position: center; /* Para centralizar a imagem */
         }
         #clickable:active {
             transform: scale(0.95);
