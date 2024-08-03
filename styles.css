@@ -152,3 +152,95 @@
     background-color: #cccccc;
     cursor: not-allowed;
 }
+
+
+<body>
+    <div id="game">
+	
+        <div class="left-column">
+            <div class="resource-panel">
+                <div class="panel-title">Recursos</div>
+                <div id="conhecimentoPanel" class="panel">
+                    <div class="panel-title">Conhecimento</div>
+                    <div class="resource-counter">Quantidade: <span id="conhecimentoCounter">0</span></div>
+                </div>
+                <div id="granaPanel" class="panel hidden">
+                    <div class="panel-title">Grana</div>
+                    <div class="resource-counter">Quantidade: <span id="granaCounter">0</span></div>
+                </div>
+                <div id="codigoPanel" class="panel hidden">
+                    <div class="panel-title">Código</div>
+                    <div class="resource-counter">Quantidade: <span id="codigoCounter">0</span></div>
+                </div>
+                <div id="dadosPanel" class="panel hidden">
+                    <div class="panel-title">Dados</div>
+                    <div class="resource-counter">Quantidade: <span id="dadosCounter">0</span></div>
+                </div>
+            </div>
+		
+            <div class="minigames-panel">
+                <div class="panel-title">Minigames</div>
+                <!-- Conteúdo dos minigames será adicionado aqui -->
+            </div>
+        </div>
+		
+		
+        <div class="center-column">
+		
+            <div class="click-panel">
+                <div id="clickable"></div>
+                <div>
+                    <button id="learnBtn">Aprender</button>
+                    <button id="workBtn" class="hidden">Trabalhar</button>
+                    <button id="codeBtn" class="hidden">Programar</button>
+                    <button id="trainBtn" class="hidden">Treinar</button>
+                </div>
+</div>
+		<div class="upgrades-panel">
+    		<div class="panel-title">Upgrades</div>
+		<button id="unlockGrana" class="upgrade-button" data-cost="100">G</button>		
+                <button id="unlockCodigo" class="upgrade-button" data-cost="200">C</button>
+                <button id="unlockDados" class="upgrade-button" data-cost="300">D</button>
+			
+<!-- Adicionamos um atributo data-cost a cada botão para armazenar o custo do upgrade. -->
+</div>
+        </div>
+
+
+<div class="right-column">
+<div class="generation-panel">
+<div id="conhecimentoGenerationPanel" class="panel resource-generation">
+    <h3>Gerar Conhecimento</h3>
+    <div class="production-label" id="conhecimentoProductionLabel">Produção: 10/10s</div>
+    <div class="progress-bar"><div class="progress" id="conhecimentoProgress1"></div></div>
+    <div class="timer" id="conhecimentoTimer1"></div>
+    <button id="generateConhecimento1">Gerar Conhecimento (Custo: 10 Conhecimento)</button>
+    <p>Nível: <span id="conhecimentoLevel1">1</span></p>
+</div>
+<div id="granaGenerationPanel" class="panel resource-generation hidden">
+    <h3>Gerar Grana</h3>
+    <div class="production-label" id="granaProductionLabel">Produção: 10/10s</div>
+    <div class="progress-bar"><div class="progress" id="granaProgress1"></div></div>
+    <div class="timer" id="granaTimer1"></div>
+    <button id="generateGrana1">Gerar Grana (Custo: 10 Conhecimento)</button>
+    <p>Nível: <span id="granaLevel1">1</span></p>
+</div>
+<div id="codigoGenerationPanel" class="panel resource-generation hidden">
+    <h3>Gerar Código</h3>
+    <div class="production-label" id="codigoProductionLabel">Produção: 10/10s</div>
+    <div class="progress-bar"><div class="progress" id="codigoProgress1"></div></div>
+    <div class="timer" id="codigoTimer1"></div>
+    <button id="generateCodigo1">Gerar Código (Custo: 10 Conhecimento)</button>
+    <p>Nível: <span id="codigoLevel1">1</span></p>
+</div>
+<div id="dadosGenerationPanel" class="panel resource-generation hidden">
+    <h3>Gerar Dados</h3>
+    <div class="production-label" id="dadosProductionLabel">Produção: 10/10s</div>
+    <div class="progress-bar"><div class="progress" id="dadosProgress1"></div></div>
+    <div class="timer" id="dadosTimer1"></div>
+    <button id="generateDados1">Gerar Dados (Custo: 10 Conhecimento)</button>
+    <p>Nível: <span id="dadosLevel1">1</span></p>
+</div>
+            </div>
+        </div>
+    </div>
