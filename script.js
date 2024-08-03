@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (conhecimento >= cost) {
             conhecimento -= cost;
             updateResources();
-            button.classList.add('hidden');
+            button.parentNode.removeChild(button);
             console.log(`Upgrade ${buttonId} comprado!`);
             unlockResource(buttonId.replace('unlock', '').toLowerCase());
             checkUpgrades();
@@ -39,6 +39,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+
+function buyUpgrade(buttonId, cost) {
+    const button = document.getElementById(buttonId);
+    if (conhecimento >= cost) {
+        // Subtrair o custo do conhecimento
+        conhecimento -= cost;
+        document.getElementById('conhecimentoCounter').textContent = conhecimento;
+        
+        // Remover o botão do DOM
+        button.parentNode.removeChild(button);
+
+        // Aqui você pode adicionar a lógica para ativar o recurso desbloqueado
+        console.log(`Upgrade ${buttonId} comprado!`);
+        
+        // Atualizar a verificação de upgrades após a compra
+        checkUpgrades();
+    } else {
+        console.log("Conhecimento insuficiente para comprar este upgrade.");
+    }
+}
+
+
+
+
+
+    
     document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100));
     document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
     document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados', 300));
