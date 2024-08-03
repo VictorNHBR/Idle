@@ -1,5 +1,3 @@
-   
-
 document.addEventListener('DOMContentLoaded', function() {
     let conhecimento = 500;
     let grana = 0;
@@ -17,43 +15,36 @@ document.addEventListener('DOMContentLoaded', function() {
     let productionRates = {};
 
     resources.forEach(resource => {
-        generationTimers[resource] = null;
-        generationLevels[resource] = 1;
-        productionRates[resource] = baseGenerationAmount;
+        generationTimers[resource] = {};
+        generationLevels[resource] = {};
+        productionRates[resource] = {};
+        for (let i = 1; i <= 3; i++) {
+            generationTimers[resource][i] = null;
+            generationLevels[resource][i] = 1;
+            productionRates[resource][i] = baseGenerationAmount * i;
+        }
     });
 
-
-function buyUpgrade(buttonId, cost) {
-    const button = document.getElementById(buttonId);
-    if (conhecimento >= cost) {
-        // Subtrair o custo do conhecimento
-        conhecimento -= cost;
-        document.getElementById('conhecimentoCounter').textContent = conhecimento;
-        
-        // Remover o botão do DOM
-        button.parentNode.removeChild(button);
-
-        // Aqui você pode adicionar a lógica para ativar o recurso desbloqueado
-        console.log(`Upgrade ${buttonId} comprado!`);
-        
-        // Atualizar a verificação de upgrades após a compra
-        checkUpgrades();
-    } else {
-        console.log("Conhecimento insuficiente para comprar este upgrade.");
+    function buyUpgrade(buttonId, cost) {
+        const button = document.getElementById(buttonId);
+        if (conhecimento >= cost) {
+            conhecimento -= cost;
+            updateResources();
+            button.classList.add('hidden');
+            console.log(`Upgrade ${buttonId} comprado!`);
+            unlockResource(buttonId.replace('unlock', '').toLowerCase());
+            checkUpgrades();
+        } else {
+            console.log("Conhecimento insuficiente para comprar este upgrade.");
+        }
     }
-}
 
-        // Adicionar event listeners para os botões de upgrade
-        document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100));
-        document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
-        document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados', 300));
+    document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100));
+    document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
+    document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados', 300));
 
-        // Inicialização do jogo (exemplo)
-        document.getElementById('conhecimentoCounter').textContent = '500'; // Começar com 500 de conhecimento
-
-	
-    function getGenerationAmount(resource) {
-        return productionRates[resource];
+    function getGenerationAmount(resource, level) {
+        return productionRates[resource][level];
     }
 
     function updateResources() {
@@ -65,9 +56,11 @@ function buyUpgrade(buttonId, cost) {
 
     function updateProductionLabels() {
         resources.forEach(resource => {
-            const label = document.getElementById(`${resource}ProductionLabel`);
-            if (label) {
-                label.textContent = `Produção: ${productionRates[resource]}/10s`;
+            for (let i = 1; i <= 3; i++) {
+                const label = document.getElementById(`${resource}ProductionLabel${i}`);
+                if (label) {
+                    label.textContent = `Produção: ${productionRates[resource][i]}/10s`;
+                }
             }
         });
     }
@@ -76,67 +69,67 @@ function buyUpgrade(buttonId, cost) {
         document.getElementById(panelId).classList.remove('hidden');
     }
 
-    function showResourcePanel(resourceId) {
-        document.getElementById(resourceId).classList.remove('hidden');
-    }
-
     function showButton(buttonId) {
         document.getElementById(buttonId).classList.remove('hidden');
     }
 
-    function startGeneration(resource) {
+    function unlockResource(resource) {
+        showPanel(`${resource}Panel`);
+        showPanel(`${resource}GenerationPanel`);
+        showButton(`${resource}Btn`);
+    }
+
+    function startGeneration(resource, level) {
         if (conhecimento >= generationCost) {
             conhecimento -= generationCost;
             updateResources();
 
-            generationLevels[resource]++;
-            document.getElementById(`${resource}Level1`).textContent = generationLevels[resource];
+            generationLevels[resource][level]++;
+            document.getElementById(`${resource}Level${level}`).textContent = generationLevels[resource][level];
 
-            restartGenerationTimer(resource);
+            if (!generationTimers[resource][level]) {
+                restartGenerationTimer(resource, level);
+            }
         }
     }
 
-   function restartGenerationTimer(resource) {
-        if (generationTimers[resource]) {
-            clearInterval(generationTimers[resource]);
-        }
+    function restartGenerationTimer(resource, level) {
+        if (!generationTimers[resource][level]) {
+            let countdown = generationTime;
+            const progressBar = document.getElementById(`${resource}Progress${level}`);
+            const timerElement = document.getElementById(`${resource}Timer${level}`);
 
-        let countdown = generationTime;
-        const progressBar = document.getElementById(`${resource}Progress1`);
-        const timerElement = document.getElementById(`${resource}Timer1`);
-
-        function updateProgress() {
-            const progress = 1 - (countdown / generationTime);
-            progressBar.style.width = `${progress * 100}%`;
-            timerElement.textContent = `Tempo restante: ${countdown}s`;
-            
-            if (countdown <= 0) {
-                const generationAmount = getGenerationAmount(resource);
-                switch(resource) {
-                    case 'conhecimento':
-                        conhecimento += generationAmount;
-                        break;
-                    case 'grana':
-                        grana += generationAmount;
-                        break;
-                    case 'codigo':
-                        codigo += generationAmount;
-                        break;
-                    case 'dados':
-                        dados += generationAmount;
-                        break;
-                }
-                updateResources();
+            function updateProgress() {
+                const progress = 1 - (countdown / generationTime);
+                progressBar.style.width = `${progress * 100}%`;
+                timerElement.textContent = `Tempo restante: ${countdown}s`;
                 
-                // Reiniciar o contador sem parar o timer
-                countdown = generationTime;
-            } else {
-                countdown--;
+                if (countdown <= 0) {
+                    const generationAmount = getGenerationAmount(resource, level);
+                    switch(resource) {
+                        case 'conhecimento':
+                            conhecimento += generationAmount;
+                            break;
+                        case 'grana':
+                            grana += generationAmount;
+                            break;
+                        case 'codigo':
+                            codigo += generationAmount;
+                            break;
+                        case 'dados':
+                            dados += generationAmount;
+                            break;
+                    }
+                    updateResources();
+                    countdown = generationTime;
+                } else {
+                    countdown--;
+                }
             }
-        }
 
-        updateProgress();
-        generationTimers[resource] = setInterval(updateProgress, 1000);
+            updateProgress();
+            generationTimers[resource][level] = setInterval(updateProgress, 1000);
+        }
     }
 
     document.getElementById('clickable').addEventListener('click', () => {
@@ -174,58 +167,30 @@ function buyUpgrade(buttonId, cost) {
     });
 
     resources.forEach(resource => {
-        const buttonId = `generate${resource.charAt(0).toUpperCase() + resource.slice(1)}1`;
-        document.getElementById(buttonId).addEventListener('click', () => startGeneration(resource));
+        for (let i = 1; i <= 3; i++) {
+            const buttonId = `generate${resource.charAt(0).toUpperCase() + resource.slice(1)}${i}`;
+            const button = document.getElementById(buttonId);
+            if (button) {
+                button.addEventListener('click', () => startGeneration(resource, i));
+            }
+        }
     });
 
-    // Funções de upgrade
-    function unlockResource(resource) {
-        showResourcePanel(`${resource}Panel`);
-        showPanel(`${resource}GenerationPanel`);
-        showButton(`${resource}Btn`);
-        // document.getElementById(`unlock${resource.charAt(0).toUpperCase() + resource.slice(1)}`).disabled = true;
+    function checkUpgrades() {
+        const upgrades = [
+            { id: 'unlockGrana', cost: 100 },
+            { id: 'unlockCodigo', cost: 200 },
+            { id: 'unlockDados', cost: 300 }
+        ];
+
+        upgrades.forEach(upgrade => {
+            const button = document.getElementById(upgrade.id);
+            if (button && !button.classList.contains('hidden')) {
+                button.disabled = conhecimento < upgrade.cost;
+            }
+        });
     }
 
-    document.getElementById('unlockGrana').addEventListener('click', () => {
-        if (conhecimento >= 50) {
-            conhecimento -= 50;
-            unlockResource('grana');
-            updateResources();
-        }
-    });
-
-    document.getElementById('unlockCodigo').addEventListener('click', () => {
-        if (conhecimento >= 100) {
-            conhecimento -= 100;
-            unlockResource('codigo');
-            updateResources();
-        }
-    });
-
-    document.getElementById('unlockDados').addEventListener('click', () => {
-        if (conhecimento >= 150) {
-            conhecimento -= 150;
-            unlockResource('dados');
-            updateResources();
-        }
-    });
-
-function checkUpgrades() {
-    const upgrades = [
-        { id: 'unlockGrana', cost: 50 },
-        { id: 'unlockCodigo', cost: 100 },
-        { id: 'unlockDados', cost: 150 }
-    ];
-
-    upgrades.forEach(upgrade => {
-        const button = document.getElementById(upgrade.id);
-        if (button) {
-            button.disabled = conhecimento < upgrade.cost;
-	// deixa botão desabilitado se não tiver
-        }
-    });
-}
-    // Atualizar recursos e verificar upgrades a cada segundo
     setInterval(() => {
         updateResources();
         checkUpgrades();
@@ -234,6 +199,4 @@ function checkUpgrades() {
     updateResources();
     updateProductionLabels();
     checkUpgrades();
-})();
-
-	    
+});
