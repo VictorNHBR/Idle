@@ -7,6 +7,58 @@ document.addEventListener('DOMContentLoaded', function() {
     let dados = 0;
     let currentResource = 'conhecimento';
 
+
+/////////////////
+
+    // let generators = {
+    //     conhecimento: [
+    //         {
+    //             id: 'conhecimento1',
+    //             name: 'Gerador de Conhecimento Básico',
+    //             costResource: 'conhecimento',
+    //             productionResource: 'conhecimento',
+    //             baseCost: 10,
+    //             baseProduction: 10,
+    //             baseTime: 10,
+    //             costMultiplier: 1.15,
+    //             productionMultiplier: 1.05,
+    //             timeMultiplier: 0.95,
+    //             level: 1
+    //         },
+    //         {
+    //             id: 'conhecimento2',
+    //             name: 'Gerador de Conhecimento Avançado',
+    //             costResource: 'grana',
+    //             productionResource: 'conhecimento',
+    //             baseCost: 100,
+    //             baseProduction: 50,
+    //             baseTime: 30,
+    //             costMultiplier: 1.2,
+    //             productionMultiplier: 1.1,
+    //             timeMultiplier: 0.93,
+    //             level: 0
+    //         }
+    //     ]
+    // };
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////
+
+
+
+
+
+
+	
     const resources = ['conhecimento', 'grana', 'codigo', 'dados'];
     const generationCost = 10;
     const generationTime = 10; // segundos
@@ -54,13 +106,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return productionRates[resource];
     }
 
-    function updateResources() {
-        document.getElementById('conhecimentoCounter').textContent = Math.floor(conhecimento);
-        document.getElementById('granaCounter').textContent = Math.floor(grana);
-        document.getElementById('codigoCounter').textContent = Math.floor(codigo);
-        document.getElementById('dadosCounter').textContent = Math.floor(dados);
-    }
+    // function updateResources() {
+    //     document.getElementById('conhecimentoCounter').textContent = Math.floor(conhecimento);
+    //     document.getElementById('granaCounter').textContent = Math.floor(grana);
+    //     document.getElementById('codigoCounter').textContent = Math.floor(codigo);
+    //     document.getElementById('dadosCounter').textContent = Math.floor(dados);
+    // }
 
+  function updateResources() {
+        resources.forEach(resource => {
+            document.getElementById(`${resource}Counter`).textContent = Math.floor(window[resource]);
+        });
+    }
+	
     function updateProductionLabels() {
         resources.forEach(resource => {
             const label = document.getElementById(`${resource}ProductionLabel`);
