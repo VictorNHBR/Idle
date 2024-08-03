@@ -23,6 +23,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
+const resourcegenConfigs = {
+    conhecimento: {
+        name: 'Conhecimento',
+        costResource: 'conhecimento',
+        baseCost: 10,
+        baseProduction: 1,
+        baseTime: 10,
+        costMultiplier: 1.1,
+        productionMultiplier: 1.05,
+        timeMultiplier: 0.98
+    },
+};
+
+
+
+
+
+
+	
   function buyUpgrade(buttonId, cost) {
             const button = document.getElementById(buttonId);
             const conhecimento = parseInt(document.getElementById('conhecimentoCounter').textContent);
