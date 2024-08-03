@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function restartGenerationTimer(resource) {
+   function restartGenerationTimer(resource) {
         if (generationTimers[resource]) {
             clearInterval(generationTimers[resource]);
         }
@@ -125,7 +125,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         break;
                 }
                 updateResources();
-                restartGenerationTimer(resource);
+                
+                // Reiniciar o contador sem parar o timer
+                countdown = generationTime;
             } else {
                 countdown--;
             }
