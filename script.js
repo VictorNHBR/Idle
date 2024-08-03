@@ -1,6 +1,8 @@
    
 
 document.addEventListener('DOMContentLoaded', function() {
+
+	
     let conhecimento = 500;
     let grana = 0;
     let codigo = 0;
@@ -12,6 +14,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const generationTime = 10; // segundos
     const baseGenerationAmount = 10;
 
+
+// Objeto para armazenar os dados do jogo
+const gameData = {
+    resources: {
+        conhecimento: 0,
+        codigo: 0
+    }
+};
+
+	
     let generationTimers = {};
     let generationLevels = {};
     let productionRates = {};
@@ -23,8 +35,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
+// Configuração dos recursos
 const resourcegenConfigs = {
-    conhecimento: {
+    conhecimento1: {
         name: 'Conhecimento',
         costResource: 'conhecimento',
         baseCost: 10,
@@ -34,9 +47,107 @@ const resourcegenConfigs = {
         productionMultiplier: 1.05,
         timeMultiplier: 0.98
     },
+ 
+    
 };
 
+function initializeSubpanels() {
+    const mainPanel = document.getElementById('conhecimentoGenerationPanel');
+    const subpanels = mainPanel.querySelectorAll('.generation-subpanel');
 
+    subpanels.forEach(subpanel => {
+        const resourceName = subpanel.dataset.resource;
+        const config = resourcegenConfigs[resourceName];
+
+        if (!config) return;
+
+        const productionLabel = subpanel.querySelector('.production-label');
+        const generateButton = subpanel.querySelector('.generate-button');
+        const levelSpan = subpanel.querySelector('.level');
+
+        productionLabel.textContent = `Produção: ${config.baseProduction}/${config.baseTime}s`;
+        generateButton.textContent = `Gerar ${config.name} (Custo: ${config.baseCost} ${config.costResource})`;
+        generateButton.onclick = () => generateResource(resourceName);
+
+        updateSubpanelDisplay(subpanel, config);
+    });
+}
+
+function updateSubpanelDisplay(subpanel, config) {
+    const productionLabel = subpanel.querySelector('.production-label');
+    const generateButton = subpanel.querySelector('.generate-button');
+    const levelSpan = subpanel.querySelector('.level');
+
+    const level = parseInt(levelSpan.textContent);
+    const currentProduction = Math.floor(config.baseProduction * Math.pow(config.productionMultiplier, level - 1));
+    const currentTime = Math.floor(config.baseTime * Math.pow(config.timeMultiplier, level - 1));
+    const currentCost = Math.floor(config.baseCost * Math.pow(config.costMultiplier, level - 1));
+
+    productionLabel.textContent = `Produção: ${currentProduction}/${currentTime}s`;
+    generateButton.textContent = `Gerar ${config.name} (Custo: ${currentCost} ${config.costResource})`;
+}
+
+function generateResource(resourceName) {
+    const config = resourcegenConfigs[resourceName];
+    const subpanel = document.querySelector(`.generation-subpanel[data-resource="${resourceName}"]`);
+    const levelSpan = subpanel.querySelector('.level');
+    const level = parseInt(levelSpan.textContent);
+
+    const currentCost = Math.floor(config.baseCost * Math.pow(config.costMultiplier, level - 1));
+
+    if (gameData.resources[config.costResource] >= currentCost) {
+        gameData.resources[config.costResource] -= currentCost;
+        
+        const production = Math.floor(config.baseProduction * Math.pow(config.productionMultiplier, level - 1));
+        gameData.resources[resourceName] += production;
+
+        // Aqui você pode adicionar a lógica para a barra de progresso e o temporizador
+
+        updateSubpanelDisplay(subpanel, config);
+        updateResourceDisplay();
+    } else {
+        console.log(`Recursos insuficientes para gerar ${config.name}`);
+    }
+}
+
+function updateResourceDisplay() {
+    // Atualize a exibição dos recursos na interface do usuário
+    for (const resource in gameData.resources) {
+        const element = document.getElementById(`${resource}Display`);
+        if (element) {
+            element.textContent = gameData.resources[resource];
+        }
+    }
+}
+
+// Inicialização
+initializeSubpanels();
+updateResourceDisplay();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 
 
 
