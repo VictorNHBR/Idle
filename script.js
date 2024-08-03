@@ -92,7 +92,7 @@ function buyUpgrade(buttonId, cost) {
             generationLevels[resource]++;
             document.getElementById(`${resource}Level1`).textContent = generationLevels[resource];
 
-            restartGenerationTimer(resource);
+            // restartGenerationTimer(resource);
         }
     }
 
