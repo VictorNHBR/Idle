@@ -23,23 +23,25 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-  function buyUpgrade(buttonId, cost) {
-            const button = document.getElementById(buttonId);
-            const conhecimento = parseInt(document.getElementById('conhecimentoCounter').textContent);
+function buyUpgrade(buttonId, cost) {
+    const button = document.getElementById(buttonId);
+    if (conhecimento >= cost) {
+        // Subtrair o custo do conhecimento
+        conhecimento -= cost;
+        document.getElementById('conhecimentoCounter').textContent = conhecimento;
+        
+        // Remover o botão do DOM
+        button.parentNode.removeChild(button);
 
-            if (conhecimento >= cost) {
-                // Subtrair o custo do conhecimento
-                document.getElementById('conhecimentoCounter').textContent = conhecimento - cost;
-                
-                // Esconder o botão
-                button.classList.add('hidden');
-
-                // Aqui você pode adicionar a lógica para ativar o recurso desbloqueado
-                console.log(`Upgrade ${buttonId} comprado!`);
-            } else {
-                console.log("Conhecimento insuficiente para comprar este upgrade.");
-            }
-        }
+        // Aqui você pode adicionar a lógica para ativar o recurso desbloqueado
+        console.log(`Upgrade ${buttonId} comprado!`);
+        
+        // Atualizar a verificação de upgrades após a compra
+        checkUpgrades();
+    } else {
+        console.log("Conhecimento insuficiente para comprar este upgrade.");
+    }
+}
 
         // Adicionar event listeners para os botões de upgrade
         document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100));
@@ -208,12 +210,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    function checkUpgrades() {
-        document.getElementById('unlockGrana').disabled = conhecimento < 50;
-        document.getElementById('unlockCodigo').disabled = conhecimento < 100;
-        document.getElementById('unlockDados').disabled = conhecimento < 150;
-    }
+function checkUpgrades() {
+    const upgrades = [
+        { id: 'unlockGrana', cost: 50 },
+        { id: 'unlockCodigo', cost: 100 },
+        { id: 'unlockDados', cost: 150 }
+    ];
 
+    upgrades.forEach(upgrade => {
+        const button = document.getElementById(upgrade.id);
+        if (button) {
+            button.disabled = conhecimento < upgrade.cost;
+	// deixa botão desabilitado se não tiver
+        }
+    });
+}
     // Atualizar recursos e verificar upgrades a cada segundo
     setInterval(() => {
         updateResources();
