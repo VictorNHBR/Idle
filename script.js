@@ -1,6 +1,4 @@
-   
-
-document.addEventListener('DOMContentLoaded', function() {
+ document.addEventListener('DOMContentLoaded', function() {
     let conhecimento = 500;
     let grana = 0;
     let codigo = 0;
@@ -235,6 +233,8 @@ function checkUpgrades() {
     updateResources();
     updateProductionLabels();
     checkUpgrades();
-})();
+
+   }
+   })();
 
 	    
