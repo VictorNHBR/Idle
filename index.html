@@ -6,7 +6,8 @@
     <title>Jogo Idle Clicker</title>
 <link rel="stylesheet" href="styles.css">
  </head>
-
+<script src="script.js"></script>
+	
 <body>
     <div id="game">
 	
@@ -60,12 +61,32 @@
         </div>
 
 
+
+
 <div class="right-column">
-<div class="generation-panel">
+            <div class="generation-panel">
+		    
+                <div id="conhecimentoGenerationPanel" class="panel resource-generation">
+                    <h3>Gerar Conhecimento</h3>
+                    <div id="conhecimentoGenerators"></div>
+                </div>
 
-
-
-
+                <!-- Other resource generation panels remain unchanged -->
+		    
+                <div id="granaGenerationPanel" class="panel resource-generation hidden">
+                    <div id="granaGenerators"></div>
+                </div>
+                
+                <div id="codigoGenerationPanel" class="panel resource-generation hidden">
+                    <div id="codigoGenerators"></div>
+                </div>
+                
+                <div id="dadosGenerationPanel" class="panel resource-generation hidden">
+                    <div id="dadosGenerators"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -79,6 +100,8 @@
 
 
 //sem mexer
+<!-- <div class="right-column">
+<div class="generation-panel"> -->
 <!-- <div id="conhecimentoGenerationPanel" class="panel resource-generation">
     <h3>Gerar Conhecimento</h3>
     <div class="production-label" id="conhecimentoProductionLabel">Produção: 10/10s</div>
@@ -115,6 +138,9 @@
             </div>
         </div>
     </div>
-<script src="script.js"></script>
+
+
+	
+
 </body>
 	    
