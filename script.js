@@ -38,32 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log("Conhecimento insuficiente para comprar este upgrade.");
         }
     }
-
-
-function buyUpgrade(buttonId, cost) {
-    const button = document.getElementById(buttonId);
-    if (conhecimento >= cost) {
-        // Subtrair o custo do conhecimento
-        conhecimento -= cost;
-        document.getElementById('conhecimentoCounter').textContent = conhecimento;
-        
-        // Remover o botão do DOM
-        button.parentNode.removeChild(button);
-
-        // Aqui você pode adicionar a lógica para ativar o recurso desbloqueado
-        console.log(`Upgrade ${buttonId} comprado!`);
-        
-        // Atualizar a verificação de upgrades após a compra
-        checkUpgrades();
-    } else {
-        console.log("Conhecimento insuficiente para comprar este upgrade.");
-    }
-}
-
-
-
-
-
     
     document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100));
     document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
