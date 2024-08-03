@@ -97,7 +97,5 @@ document.addEventListener('DOMContentLoaded', function() {
         updateProgress();
         generationTimers[resource] = setInterval(updateProgress, 1000);
     }
-
-
 	
 })();
