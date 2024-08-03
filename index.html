@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 button.classList.add('hidden');
 
                 // Aqui você pode adicionar a lógica para ativar o recurso desbloqueado
-                console.log(Upgrade ${buttonId} comprado!);
+                console.log(`Upgrade ${buttonId} comprado!`);
             } else {
                 console.log("Conhecimento insuficiente para comprar este upgrade.");
             }
@@ -321,9 +321,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function updateProductionLabels() {
         resources.forEach(resource => {
-            const label = document.getElementById(${resource}ProductionLabel);
+            const label = document.getElementById(`${resource}ProductionLabel`);
             if (label) {
-                label.textContent = Produção: ${productionRates[resource]}/10s;
+                label.textContent = `Produção: ${productionRates[resource]}/10s`;
             }
         });
     }
@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateResources();
 
             generationLevels[resource]++;
-            document.getElementById(${resource}Level1).textContent = generationLevels[resource];
+            document.getElementById(`${resource}Level1`).textContent = generationLevels[resource];
 
             restartGenerationTimer(resource);
         }
@@ -358,13 +358,13 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         let countdown = generationTime;
-        const progressBar = document.getElementById(${resource}Progress1);
-        const timerElement = document.getElementById(${resource}Timer1);
+        const progressBar = document.getElementById(`${resource}Progress1`);
+        const timerElement = document.getElementById(`${resource}Timer1`);
 
         function updateProgress() {
             const progress = 1 - (countdown / generationTime);
-            progressBar.style.width = ${progress * 100}%;
-            timerElement.textContent = Tempo restante: ${countdown}s;
+            progressBar.style.width = `${progress * 100}%`;
+            timerElement.textContent = `Tempo restante: ${countdown}s`;
             
             if (countdown <= 0) {
                 const generationAmount = getGenerationAmount(resource);
@@ -428,16 +428,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     resources.forEach(resource => {
-        const buttonId = generate${resource.charAt(0).toUpperCase() + resource.slice(1)}1;
+        const buttonId = `generate${resource.charAt(0).toUpperCase() + resource.slice(1)}1`;
         document.getElementById(buttonId).addEventListener('click', () => startGeneration(resource));
     });
 
     // Funções de upgrade
     function unlockResource(resource) {
-        showResourcePanel(${resource}Panel);
-        showPanel(${resource}GenerationPanel);
-        showButton(${resource}Btn);
-        // document.getElementById(unlock${resource.charAt(0).toUpperCase() + resource.slice(1)}).disabled = true;
+        showResourcePanel(`${resource}Panel`);
+        showPanel(`${resource}GenerationPanel`);
+        showButton(`${resource}Btn`);
+        // document.getElementById(`unlock${resource.charAt(0).toUpperCase() + resource.slice(1)}`).disabled = true;
     }
 
     document.getElementById('unlockGrana').addEventListener('click', () => {
