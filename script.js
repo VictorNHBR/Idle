@@ -1,7 +1,7 @@
    
 
 document.addEventListener('DOMContentLoaded', function() {
-    let conhecimento = 0;
+    let conhecimento = 500;
     let grana = 0;
     let codigo = 0;
     let dados = 0;
