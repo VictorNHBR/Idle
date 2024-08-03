@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let currentResource = 'conhecimento';
 
     const resources = ['conhecimento', 'grana', 'codigo', 'dados'];
-    const generationCost = 10;
+    // const generationCost = 10;
     const generationTime = 10; // segundos
     const baseGenerationAmount = 10;
 
