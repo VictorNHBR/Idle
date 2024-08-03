@@ -134,20 +134,20 @@
 }
 
         .upgrade-button {
-  background-color: #111; /* Fundo preto */
-  border: 2px solid #0f0; /* Borda verde neon */
-  color: #0f0; /* Texto verde neon */
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  transition: 0.4s;
-  cursor: pointer;
-  border-radius: 12px;
-  box-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0; /* Efeito neon */
-}
+ 	 background-color: #111; /* Fundo preto */
+ 	 border: 2px solid #0f0; /* Borda verde neon */
+  	color: #0f0; /* Texto verde neon */
+  	padding: 15px 32px;
+  	text-align: center;
+  	text-decoration: none;
+ 	 display: inline-block;
+  	font-size: 16px;
+ 	 margin: 4px 2px;
+ 	 transition: 0.4s;
+  	cursor: pointer;
+  	border-radius: 12px;
+ 	 box-shadow: 0 0 10px #0f0, 0 0 20px #0f0, 0 0 30px #0f0; /* Efeito neon */
+	}
         }
 
 .upgrade-button:hover {
