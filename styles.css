@@ -75,10 +75,9 @@
             margin-bottom: 10px;
         }
         #clickable {
-            width: 100px;
-            height: 100px;
+            width: 150px;
+            height: 150px;
             background-color: #4CAF50;
-            border-radius: 50%;
             cursor: pointer;
             transition: transform 0.1s;
             margin-bottom: 20px;
