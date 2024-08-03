@@ -82,7 +82,7 @@
             cursor: pointer;
             transition: transform 0.1s;
             margin-bottom: 20px;
- 	    background-image: url('PC.jpeg');
+ 	    background-image: url(PC.jpeg);
     	    background-size: cover; /* Para garantir que a imagem cubra todo o elemento */
    	    background-position: center; /* Para centralizar a imagem */
         }
