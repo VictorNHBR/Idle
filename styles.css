@@ -87,8 +87,9 @@
             transition: transform 0.1s;
             margin-bottom: 20px;
  	    background-image: url(PC.jpeg);
-    	    background-size: cover; /* Para garantir que a imagem cubra todo o elemento */
-   	    background-position: center; /* Para centralizar a imagem */
+	    object-fit: cover;
+/*     	    background-size: cover; /* Para garantir que a imagem cubra todo o elemento
+/*    	    background-position: center;  Para centralizar a imagem  */
 	    -webkit-tap-highlight-color: transparent;
     	    -webkit-touch-callout: none;
             -webkit-user-select: none;
