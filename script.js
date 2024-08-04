@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
         dados: false
     };
 
-        function unlockResourcePanel(resource) {
+    
+    function unlockResourcePanel(resource) {
         if (!resourcePanelsUnlocked[resource]) {
             showPanel(`${resource}Panel`);
             resourcePanelsUnlocked[resource] = true;
