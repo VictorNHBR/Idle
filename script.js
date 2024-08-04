@@ -150,15 +150,14 @@ function showPanel(panelId) {
         currentResource = resource;
     }
 
-    function pauseGeneration(resource) {
+     function pauseGeneration(resource) {
         for (let i = 1; i <= 3; i++) {
             if (generationTimers[resource][i]) {
                 clearInterval(generationTimers[resource][i]);
                 generationTimers[resource][i] = null;
-                // Salva o tempo restante
-                const progressBar = document.getElementById(`${resource}Progress${i}`);
-                const progress = parseFloat(progressBar.style.width) / 100;
-                generationStatus[resource][i].remainingTime = Math.round((1 - progress) * generationTime);
+                // Usa o tempo restante armazenado em vez de calcular a partir da barra de progresso
+                const remainingTime = generationStatus[resource][i].remainingTime;
+                generationStatus[resource][i].remainingTime = remainingTime > 0 ? remainingTime : generationTime;
             }
         }
     }
@@ -181,15 +180,15 @@ function showPanel(panelId) {
             document.getElementById(`${resource}Level${level}`).textContent = generationLevels[resource][level];
 
             generationStatus[resource][level].active = true;
+            generationStatus[resource][level].remainingTime = generationTime;
+            
             if (resource === currentResource) {
                 restartGenerationTimer(resource, level, generationTime);
-            } else {
-                generationStatus[resource][level].remainingTime = generationTime;
             }
         }
     }
 
-   function restartGenerationTimer(resource, level, startTime) {
+    function restartGenerationTimer(resource, level, startTime) {
         if (generationTimers[resource][level]) {
             clearInterval(generationTimers[resource][level]);
         }
@@ -199,11 +198,12 @@ function showPanel(panelId) {
         const timerElement = document.getElementById(`${resource}Timer${level}`);
 
         function updateProgress() {
-            const progress = 1 - (countdown / generationTime);
-            progressBar.style.width = `${progress * 100}%`;
-            timerElement.textContent = `Tempo restante: ${countdown}s`;
-            
-            if (countdown <= 0) {
+            if (countdown > 0) {
+                const progress = 1 - (countdown / generationTime);
+                progressBar.style.width = `${progress * 100}%`;
+                timerElement.textContent = `Tempo restante: ${countdown}s`;
+                countdown--;
+            } else {
                 const generationAmount = getGenerationAmount(resource, level);
                 switch(resource) {
                     case 'conhecimento':
@@ -221,8 +221,6 @@ function showPanel(panelId) {
                 }
                 updateResources();
                 countdown = generationTime;
-            } else {
-                countdown--;
             }
             generationStatus[resource][level].remainingTime = countdown;
         }
