@@ -13,7 +13,16 @@ document.addEventListener('DOMContentLoaded', function() {
     let generationTimers = {};
     let generationLevels = {};
     let productionRates = {};
-
+    
+function initializeGame() {
+    // Mostrar apenas o painel de conhecimento inicialmente
+    switchActivePanel('conhecimento');
+    
+    // Esconder os botões de recursos que ainda não foram desbloqueados
+    ['grana', 'codigo', 'dados'].forEach(resource => {
+        document.getElementById(`${resource}Btn`).classList.add('hidden');
+    });
+}
     resources.forEach(resource => {
         generationTimers[resource] = {};
         generationLevels[resource] = {};
@@ -42,6 +51,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100));
     document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
     document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados', 300));
+
+    document.getElementById('conhecimentoBtn').addEventListener('click', () => switchActivePanel('conhecimento'));
+    document.getElementById('granaBtn').addEventListener('click', () => switchActivePanel('grana'));
+    document.getElementById('codigoBtn').addEventListener('click', () => switchActivePanel('codigo'));
+    document.getElementById('dadosBtn').addEventListener('click', () => switchActivePanel('dados'));
+    
 
     function getGenerationAmount(resource, level) {
         return productionRates[resource][level];
@@ -74,11 +89,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function unlockResource(resource) {
-        showPanel(`${resource}Panel`);
-        showPanel(`${resource}GenerationPanel`);
+        // showPanel(`${resource}Panel`);
+        // showPanel(`${resource}GenerationPanel`);
         showButton(`${resource}Btn`);
     }
 
+function switchActivePanel(resource) {
+    resources.forEach(res => {
+        if (res === resource) {
+            showPanel(`${res}GenerationPanel`);
+        } else {
+            hidePanel(`${res}GenerationPanel`);
+        }
+    });
+    currentResource = resource;
+}
+    
     function startGeneration(resource, level) {
         if (conhecimento >= generationCost) {
             conhecimento -= generationCost;
