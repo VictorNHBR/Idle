@@ -257,7 +257,7 @@ document.getElementById('dadosBtn').addEventListener('click', () => {
 function checkUpgrades() {
     const upgradeButtons = document.querySelectorAll('.upgrade-button');
     upgradeButtons.forEach(button => {
-        const cost = parseInt(button.getAttribute('data-cost'), 10);
+        const upgradeCost = parseInt(button.getAttribute('data-cost'), 10);
         button.disabled = conhecimento < cost;
     });
 }
