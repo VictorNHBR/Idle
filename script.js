@@ -258,7 +258,7 @@ function checkUpgrades() {
     const upgradeButtons = document.querySelectorAll('.upgrade-button');
     upgradeButtons.forEach(button => {
         const upgradeCost = parseInt(button.getAttribute('data-cost'), 10);
-        button.disabled = conhecimento < cost;
+        button.disabled = conhecimento < upgradeCost;
     });
 }
 
