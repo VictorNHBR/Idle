@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let generationTimers = {};
     let generationLevels = {};
     let productionRates = {};
+    
 function hidePanel(panelId) {
     const panel = document.getElementById(panelId);
     if (panel) {
@@ -133,4 +134,6 @@ document.getElementById('dadosBtn').addEventListener('click', () => {
     updateResources();
     updateProductionLabels();
     checkUpgrades();
+
+    }
 });
