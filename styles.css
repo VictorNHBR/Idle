@@ -89,6 +89,9 @@
  	    background-image: url(PC.jpeg);
     	    background-size: cover; /* Para garantir que a imagem cubra todo o elemento */
    	    background-position: center; /* Para centralizar a imagem */
+	    -webkit-tap-highlight-color: transparent;
+    	    -webkit-touch-callout: none;
+            -webkit-user-select: none;
         }
         #clickable:active {
             transform: scale(0.95);
@@ -119,6 +122,7 @@
             user-select: none;
             -webkit-user-select: none;
             touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
         }
 	.ativ-button.active {
             box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
