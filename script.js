@@ -13,6 +13,26 @@ document.addEventListener('DOMContentLoaded', function() {
     let generationTimers = {};
     let generationLevels = {};
     let productionRates = {};
+
+function hidePanel(panelId) {
+    const panel = document.getElementById(panelId);
+    if (panel) {
+        panel.classList.add('hidden');
+    } else {
+        console.log(`Painel com ID ${panelId} não encontrado.`);
+    }
+}
+
+
+function showPanel(panelId) {
+    const panel = document.getElementById(panelId);
+    if (panel) {
+        panel.classList.remove('hidden');
+    } else {
+        console.log(`Painel com ID ${panelId} não encontrado.`);
+    }
+}
+
     
 function initializeGame() {
     // Mostrar apenas o painel de conhecimento inicialmente
@@ -192,7 +212,7 @@ document.getElementById('dadosBtn').addEventListener('click', () => {
     currentResource = 'dados';
 });
 
-    resources.forEach(resource => {
+        resources.forEach(resource => {
         for (let i = 1; i <= 3; i++) {
             const buttonId = `generate${resource.charAt(0).toUpperCase() + resource.slice(1)}${i}`;
             const button = document.getElementById(buttonId);
