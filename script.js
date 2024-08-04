@@ -137,7 +137,7 @@ function showPanel(panelId) {
         showButton(`${resource}Btn`);
     }
 
-  function switchActivePanel(resource) {
+    function switchActivePanel(resource) {
         resources.forEach(res => {
             if (res === resource) {
                 showPanel(`${res}GenerationPanel`);
@@ -148,14 +148,14 @@ function showPanel(panelId) {
             }
         });
         currentResource = resource;
+        console.log(`Switched to ${resource} panel`);  // Log para depuração
     }
 
-     function pauseGeneration(resource) {
+   function pauseGeneration(resource) {
         for (let i = 1; i <= 3; i++) {
             if (generationTimers[resource][i]) {
                 clearInterval(generationTimers[resource][i]);
                 generationTimers[resource][i] = null;
-                // Usa o tempo restante armazenado em vez de calcular a partir da barra de progresso
                 const remainingTime = generationStatus[resource][i].remainingTime;
                 generationStatus[resource][i].remainingTime = remainingTime > 0 ? remainingTime : generationTime;
             }
@@ -163,7 +163,7 @@ function showPanel(panelId) {
     }
 
 
-   function resumeGeneration(resource) {
+    function resumeGeneration(resource) {
         for (let i = 1; i <= 3; i++) {
             if (generationStatus[resource][i].active && !generationTimers[resource][i]) {
                 restartGenerationTimer(resource, i, generationStatus[resource][i].remainingTime);
@@ -171,7 +171,7 @@ function showPanel(panelId) {
         }
     }
     
-   function startGeneration(resource, level) {
+    function startGeneration(resource, level) {
         if (conhecimento >= generationCost) {
             conhecimento -= generationCost;
             updateResources();
@@ -186,9 +186,10 @@ function showPanel(panelId) {
                 restartGenerationTimer(resource, level, generationTime);
             }
         }
+        console.log(`Started generation for ${resource} level ${level}`);  // Log para depuração
     }
 
-    function restartGenerationTimer(resource, level, startTime) {
+   function restartGenerationTimer(resource, level, startTime) {
         if (generationTimers[resource][level]) {
             clearInterval(generationTimers[resource][level]);
         }
@@ -227,28 +228,29 @@ function showPanel(panelId) {
 
         updateProgress();
         generationTimers[resource][level] = setInterval(updateProgress, 1000);
+        console.log(`Restarted timer for ${resource} level ${level}`);  // Log para depuração
     }
-
+    
     resources.forEach(resource => {
         document.getElementById(`${resource}Btn`).addEventListener('click', () => switchActivePanel(resource));
     });
 
 
-document.getElementById('conhecimentoBtn').addEventListener('click', () => {
-    currentResource = 'conhecimento';
-});
+// document.getElementById('conhecimentoBtn').addEventListener('click', () => {
+//     currentResource = 'conhecimento';
+// });
 
-document.getElementById('granaBtn').addEventListener('click', () => {
-    currentResource = 'grana';
-});
+// document.getElementById('granaBtn').addEventListener('click', () => {
+//     currentResource = 'grana';
+// });
 
-document.getElementById('codigoBtn').addEventListener('click', () => {
-    currentResource = 'codigo';
-});
+// document.getElementById('codigoBtn').addEventListener('click', () => {
+//     currentResource = 'codigo';
+// });
 
-document.getElementById('dadosBtn').addEventListener('click', () => {
-    currentResource = 'dados';
-});
+// document.getElementById('dadosBtn').addEventListener('click', () => {
+//     currentResource = 'dados';
+// });
 
         resources.forEach(resource => {
         for (let i = 1; i <= 3; i++) {
