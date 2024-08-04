@@ -152,6 +152,14 @@
             color: #666;
             margin-top: 5px;
         }
+
+        button {
+            margin: 5px;
+            padding: 10px;
+            cursor: pointer;
+            width: 180px;
+        }
+
 	    
         .hidden {
             display: none;
