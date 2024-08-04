@@ -71,17 +71,17 @@ function initializeGame() {
     document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
     document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados', 300));
 
-        // function showPanelOnce(btn, panel) {
-        //     return function() {
-        //         panel.classList.remove('hidden');
-        //         btn.removeEventListener('click', showPanelOnce);
-        //     };
-        // }
+            function showPanelOnce(btn, panel) {
+            return function() {
+                panel.classList.remove('hidden');
+                btn.removeEventListener('click', showPanelOnce);
+            };
+        }
 
     
-        // conhecimentoBtn.addEventListener('click', showPanelOnce(granaBtn, granaPanel));
-        // granaBtn.addEventListener('click', showPanelOnce(codigoBtn, codigoPanel));
-        // outroBtn.addEventListener('click', showPanelOnce(dadosBtn, dadosPanel));
+        conhecimentoBtn.addEventListener('click', showPanelOnce(granaBtn, granaPanel));
+        granaBtn.addEventListener('click', showPanelOnce(codigoBtn, codigoPanel));
+        outroBtn.addEventListener('click', showPanelOnce(dadosBtn, dadosPanel));
 
     
     document.getElementById('conhecimentoBtn').addEventListener('click', () => switchActivePanel('conhecimento'));
