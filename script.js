@@ -79,10 +79,9 @@ function initializeGame() {
         }
 
     
-        conhecimentoBtn.addEventListener('click', showPanelOnce(granaBtn, granaPanel));
-        granaBtn.addEventListener('click', showPanelOnce(codigoBtn, codigoPanel));
-        outroBtn.addEventListener('click', showPanelOnce(dadosBtn, dadosPanel));
-
+      document.getElementById('granaBtn').addEventListener('click', () => showPanelOnce(granaBtn, granaPanel));
+    document.getElementById('codigoBtn').addEventListener('click', () => showPanelOnce(codigoBtn, codigoPanel));
+    document.getElementById('dadosBtn').addEventListener('click', () => showPanelOnce(dadosBtn, dadosPanel));
     
     document.getElementById('conhecimentoBtn').addEventListener('click', () => switchActivePanel('conhecimento'));
     document.getElementById('granaBtn').addEventListener('click', () => switchActivePanel('grana'));
