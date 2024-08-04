@@ -77,10 +77,10 @@ function showPanel(panelId) {
     document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
     document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados', 300));
 
-    document.getElementById('conhecimentoBtn').addEventListener('click', () => switchActivePanel('conhecimento'));
-    document.getElementById('granaBtn').addEventListener('click', () => switchActivePanel('grana'));
-    document.getElementById('codigoBtn').addEventListener('click', () => switchActivePanel('codigo'));
-    document.getElementById('dadosBtn').addEventListener('click', () => switchActivePanel('dados'));
+    // document.getElementById('conhecimentoBtn').addEventListener('click', () => switchActivePanel('conhecimento'));
+    // document.getElementById('granaBtn').addEventListener('click', () => switchActivePanel('grana'));
+    // document.getElementById('codigoBtn').addEventListener('click', () => switchActivePanel('codigo'));
+    // document.getElementById('dadosBtn').addEventListener('click', () => switchActivePanel('dados'));
 
     // acho que os eventlistener de cima tiraram esse
     document.getElementById('clickable').addEventListener('click', () => {
