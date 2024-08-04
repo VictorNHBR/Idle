@@ -84,6 +84,7 @@ function initializeGame() {
 
     function buyUpgrade(buttonId, cost) {
         const button = document.getElementById(buttonId);
+        const cost = parseInt(button.getAttribute('data-cost'), 10);
         if (conhecimento >= cost) {
             conhecimento -= cost;
             updateResources();
@@ -97,9 +98,9 @@ function initializeGame() {
     }
 
     
-    document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100));
-    document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
-    document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados', 300));
+    document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana'));
+    document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo'));
+    document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados',));
 
     
     document.getElementById('conhecimentoBtn').addEventListener('click', () => switchActivePanel('conhecimento'));
@@ -252,20 +253,30 @@ document.getElementById('dadosBtn').addEventListener('click', () => {
         }
     });
 
-    function checkUpgrades() {
-        const upgrades = [
-            { id: 'unlockGrana', cost: 100 },
-            { id: 'unlockCodigo', cost: 200 },
-            { id: 'unlockDados', cost: 300 }
-        ];
 
-        upgrades.forEach(upgrade => {
-            const button = document.getElementById(upgrade.id);
-            if (button && !button.classList.contains('hidden')) {
-                button.disabled = conhecimento < upgrade.cost;
-            }
-        });
-    }
+function checkUpgrades() {
+    const upgradeButtons = document.querySelectorAll('.upgrade-button');
+    upgradeButtons.forEach(button => {
+        const cost = parseInt(button.getAttribute('data-cost'), 10);
+        button.disabled = conhecimento < cost;
+    });
+}
+
+    
+    // function checkUpgrades() {
+    //     const upgrades = [
+    //         { id: 'unlockGrana', cost: 100 },
+    //         { id: 'unlockCodigo', cost: 200 },
+    //         { id: 'unlockDados', cost: 300 }
+    //     ];
+
+    //     upgrades.forEach(upgrade => {
+    //         const button = document.getElementById(upgrade.id);
+    //         if (button && !button.classList.contains('hidden')) {
+    //             button.disabled = conhecimento < upgrade.cost;
+    //         }
+    //     });
+    // }
 
     setInterval(() => {
         updateResources();
