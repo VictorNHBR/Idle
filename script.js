@@ -23,7 +23,6 @@ function hidePanel(panelId) {
     }
 }
 
-
 function showPanel(panelId) {
     const panel = document.getElementById(panelId);
     if (panel) {
@@ -32,7 +31,6 @@ function showPanel(panelId) {
         console.log(`Painel com ID ${panelId} não encontrado.`);
     }
 }
-
     
 function initializeGame() {
     // Mostrar apenas o painel de conhecimento inicialmente
@@ -68,21 +66,21 @@ function initializeGame() {
         }
     }
 
-
-
     
     document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100));
     document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
     document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados', 300));
 
-    function showPanelOnce() {
-            conhecimentoBtn.removeEventListener('click', showPanelOnce);
-}
+        function showPanelOnce(btn, panel) {
+            return function() {
+                panel.classList.remove('hidden');
+                btn.removeEventListener('click', showPanelOnce);
+            };
+        }
 
-   
-    document.getElementById('granaBtn').addEventListener('click', (showPanelOnce) => granaPanel.classList.remove('hidden');
-    document.getElementById('codigoBtn').addEventListener('click', (showPanelOnce) => codigoPanel.classList.remove('hidden');
-    document.getElementById('dadosBtn').addEventListener('click', (showPanelOnce) => dadosPanel.classList.remove('hidden');
+        conhecimentoBtn.addEventListener('click', showPanelOnce(granaBtn, granaPanel));
+        granaBtn.addEventListener('click', showPanelOnce(codigoBtn, codigoPanel));
+        outroBtn.addEventListener('click', showPanelOnce(dadosBtn, dadosPanel));
 
     
     document.getElementById('conhecimentoBtn').addEventListener('click', () => switchActivePanel('conhecimento'));
