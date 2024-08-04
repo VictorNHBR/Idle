@@ -153,6 +153,7 @@ function initializeGame() {
     }
 
     function showButton(buttonId) {
+        const button = document.getElementById(buttonId);
         document.getElementById(buttonId).classList.remove('hidden');
     }
 
