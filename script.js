@@ -24,7 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!resourcePanelsUnlocked[resource]) {
             showPanel(`${resource}Panel`);
             resourcePanelsUnlocked[resource] = true;
-        }
+        } else {
+        console.error(`Painel com ID ${panelId} não encontrado.`);
     }
 
     function addOneTimeUnlockListener(buttonId, resource) {
@@ -33,7 +34,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const unlockHandler = function() {
                 unlockResourcePanel(resource);
                 button.removeEventListener('click', unlockHandler);
-            };
+            }; else {
+        console.error(`Erro na funcao one time`);
             button.addEventListener('click', unlockHandler);
         }
     }
