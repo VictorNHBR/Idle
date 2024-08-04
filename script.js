@@ -35,15 +35,13 @@ function showPanel(panelId) {
 }
 
     
-function initializeGame() {
-    // Mostrar apenas o painel de conhecimento inicialmente
-    switchActivePanel('conhecimento');
-    
-    // Esconder os botões de recursos que ainda não foram desbloqueados
-    ['grana', 'codigo', 'dados'].forEach(resource => {
-        document.getElementById(`${resource}Btn`).classList.add('hidden');
-    });
-}
+    function initializeGame() {
+        switchActivePanel('conhecimento');
+        
+        ['grana', 'codigo', 'dados'].forEach(resource => {
+            document.getElementById(`${resource}Btn`).classList.add('hidden');
+        });
+
         resources.forEach(resource => {
             generationTimers[resource] = {};
             generationLevels[resource] = {};
@@ -57,8 +55,9 @@ function initializeGame() {
                     active: false,
                     remainingTime: generationTime
                 };
-        }
-    });
+            }
+        });
+    }
 
     function buyUpgrade(buttonId, cost) {
         const button = document.getElementById(buttonId);
@@ -138,7 +137,7 @@ function initializeGame() {
         showButton(`${resource}Btn`);
     }
 
-    function switchActivePanel(resource) {
+  function switchActivePanel(resource) {
         resources.forEach(res => {
             if (res === resource) {
                 showPanel(`${res}GenerationPanel`);
@@ -151,7 +150,7 @@ function initializeGame() {
         currentResource = resource;
     }
 
-        function pauseGeneration(resource) {
+    function pauseGeneration(resource) {
         for (let i = 1; i <= 3; i++) {
             if (generationTimers[resource][i]) {
                 clearInterval(generationTimers[resource][i]);
@@ -164,7 +163,8 @@ function initializeGame() {
         }
     }
 
-    function resumeGeneration(resource) {
+
+   function resumeGeneration(resource) {
         for (let i = 1; i <= 3; i++) {
             if (generationStatus[resource][i].active && !generationTimers[resource][i]) {
                 restartGenerationTimer(resource, i, generationStatus[resource][i].remainingTime);
@@ -172,7 +172,7 @@ function initializeGame() {
         }
     }
     
-    function startGeneration(resource, level) {
+   function startGeneration(resource, level) {
         if (conhecimento >= generationCost) {
             conhecimento -= generationCost;
             updateResources();
@@ -180,8 +180,11 @@ function initializeGame() {
             generationLevels[resource][level]++;
             document.getElementById(`${resource}Level${level}`).textContent = generationLevels[resource][level];
 
-            if (!generationTimers[resource][level]) {
-                restartGenerationTimer(resource, level);
+            generationStatus[resource][level].active = true;
+            if (resource === currentResource) {
+                restartGenerationTimer(resource, level, generationTime);
+            } else {
+                generationStatus[resource][level].remainingTime = generationTime;
             }
         }
     }
