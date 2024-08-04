@@ -93,7 +93,7 @@
         #clickable:active {
             transform: scale(0.95);
         }
-        .button {
+        .ativ-button {
             align-items: center;
             background-color: #fff;
             border-radius: 12px;
@@ -121,11 +121,11 @@
             touch-action: manipulation;
         }
 
-        .button:hover {
+        .ativ-button:hover {
             box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
         }
 
-        .button:active {
+        .ativ-button:active {
             box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
             background-color: #f0f0f0;
         }
