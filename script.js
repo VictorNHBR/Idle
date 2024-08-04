@@ -71,22 +71,22 @@ function initializeGame() {
     document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
     document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados', 300));
 
-            function showPanelOnce(btn, panel) {
-            return function() {
-                panel.classList.remove('hidden');
-                btn.removeEventListener('click', showPanelOnce);
-            };
-        }
+    //         function showPanelOnce(btn, panel) {
+    //         return function() {
+    //             panel.classList.remove('hidden');
+    //             btn.removeEventListener('click', showPanelOnce);
+    //         };
+    //     }
 
     
-      document.getElementById('granaBtn').addEventListener('click', () => showPanelOnce(granaBtn, granaPanel));
-    document.getElementById('codigoBtn').addEventListener('click', () => showPanelOnce(codigoBtn, codigoPanel));
-    document.getElementById('dadosBtn').addEventListener('click', () => showPanelOnce(dadosBtn, dadosPanel));
+    //   document.getElementById('granaBtn').addEventListener('click', () => showPanelOnce(granaBtn, granaPanel));
+    // document.getElementById('codigoBtn').addEventListener('click', () => showPanelOnce(codigoBtn, codigoPanel));
+    // document.getElementById('dadosBtn').addEventListener('click', () => showPanelOnce(dadosBtn, dadosPanel));
     
-    document.getElementById('conhecimentoBtn').addEventListener('click', () => switchActivePanel('conhecimento'));
-    document.getElementById('granaBtn').addEventListener('click', () => switchActivePanel('grana'));
-    document.getElementById('codigoBtn').addEventListener('click', () => switchActivePanel('codigo'));
-    document.getElementById('dadosBtn').addEventListener('click', () => switchActivePanel('dados'));
+    document.getElementById('conhecimentoBtn').addEventListener('click', () => switchActivePanel('conhecimento'), panel('conhecimento').remove('hidden'));
+    document.getElementById('granaBtn').addEventListener('click', () => switchActivePanel('grana'), panel('grana').remove('hidden'));
+    document.getElementById('codigoBtn').addEventListener('click', () => switchActivePanel('codigo'), panel('codigo').remove('hidden')););
+    document.getElementById('dadosBtn').addEventListener('click', () => switchActivePanel('dados'), panel('dados').remove('hidden')););
 
     // acho que os eventlistener de cima tiraram esse
     document.getElementById('clickable').addEventListener('click', () => {
