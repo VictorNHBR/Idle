@@ -78,6 +78,7 @@ function initializeGame() {
             };
         }
 
+    
         conhecimentoBtn.addEventListener('click', showPanelOnce(granaBtn, granaPanel));
         granaBtn.addEventListener('click', showPanelOnce(codigoBtn, codigoPanel));
         outroBtn.addEventListener('click', showPanelOnce(dadosBtn, dadosPanel));
