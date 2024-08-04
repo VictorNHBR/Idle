@@ -197,6 +197,7 @@ width: 100px; /* Define a largura para 100px */
 outline: none;
 padding: 16px 24px;
 text-align: center;
+justify-content: center;
 text-decoration: none;
 transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
 user-select: none;
