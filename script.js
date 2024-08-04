@@ -67,11 +67,24 @@ function initializeGame() {
             console.log("Conhecimento insuficiente para comprar este upgrade.");
         }
     }
+
+
+
     
     document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100));
     document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
     document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados', 300));
 
+    function showPanelOnce() {
+            conhecimentoBtn.removeEventListener('click', showPanelOnce);
+}
+
+   
+    document.getElementById('granaBtn').addEventListener('click', (showPanelOnce) => granaPanel.classList.remove('hidden');
+    document.getElementById('codigoBtn').addEventListener('click', (showPanelOnce) => codigoPanel.classList.remove('hidden');
+    document.getElementById('dadosBtn').addEventListener('click', (showPanelOnce) => dadosPanel.classList.remove('hidden');
+
+    
     document.getElementById('conhecimentoBtn').addEventListener('click', () => switchActivePanel('conhecimento'));
     document.getElementById('granaBtn').addEventListener('click', () => switchActivePanel('grana'));
     document.getElementById('codigoBtn').addEventListener('click', () => switchActivePanel('codigo'));
