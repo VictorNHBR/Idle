@@ -76,7 +76,25 @@ function initializeGame() {
     document.getElementById('granaBtn').addEventListener('click', () => switchActivePanel('grana'));
     document.getElementById('codigoBtn').addEventListener('click', () => switchActivePanel('codigo'));
     document.getElementById('dadosBtn').addEventListener('click', () => switchActivePanel('dados'));
-    
+
+    // acho que os eventlistener de cima tiraram esse
+    document.getElementById('clickable').addEventListener('click', () => {
+        switch(currentResource) {
+            case 'conhecimento':
+                conhecimento++;
+                break;
+            case 'grana':
+                grana++;
+                break;
+            case 'codigo':
+                codigo++;
+                break;
+            case 'dados':
+                dados++;
+                break;
+        }
+        updateResources();
+    });
 
     function getGenerationAmount(resource, level) {
         return productionRates[resource][level];
@@ -177,24 +195,6 @@ function switchActivePanel(resource) {
             generationTimers[resource][level] = setInterval(updateProgress, 1000);
         }
     }
-
-    document.getElementById('clickable').addEventListener('click', () => {
-        switch(currentResource) {
-            case 'conhecimento':
-                conhecimento++;
-                break;
-            case 'grana':
-                grana++;
-                break;
-            case 'codigo':
-                codigo++;
-                break;
-            case 'dados':
-                dados++;
-                break;
-        }
-        updateResources();
-    });
 
 document.getElementById('conhecimentoBtn').addEventListener('click', () => {
     currentResource = 'conhecimento';
