@@ -120,7 +120,10 @@
             -webkit-user-select: none;
             touch-action: manipulation;
         }
-
+	.ativ-button.active {
+            box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
+            background-color: #f0f0f0;
+        }
         .ativ-button:hover {
             box-shadow: #121212 0 0 0 3px, transparent 0 0 0 0;
         }
