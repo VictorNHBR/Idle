@@ -43,9 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
     addOneTimeUnlockListener('codigoBtn', 'codigo');
     addOneTimeUnlockListener('dadosBtn', 'dados');
 
-    
-
-
 function hidePanel(panelId) {
     const panel = document.getElementById(panelId);
     if (panel) {
