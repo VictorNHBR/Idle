@@ -83,20 +83,20 @@ function initializeGame() {
         }
     });
 
-    function buyUpgrade(buttonId, Ccost) {
-        const button = document.getElementById(buttonId);
-        const Ccost = parseInt(button.getAttribute('data-cost'), 10);
-        if (conhecimento >= Ccost) {
-            conhecimento -= Ccost;
-            updateResources();
-            button.parentNode.removeChild(button);
-            console.log(`Upgrade ${buttonId} comprado!`);
-            unlockResource(buttonId.replace('unlock', '').toLowerCase());
-            checkUpgrades();
-        } else {
-            console.log("Conhecimento insuficiente para comprar este upgrade.");
-        }
+function buyUpgrade(buttonId) {
+    const button = document.getElementById(buttonId);
+    const cost = parseInt(button.getAttribute('data-cost'), 10);
+    if (conhecimento >= cost) {
+        conhecimento -= cost;
+        updateResources();
+        button.parentNode.removeChild(button);
+        console.log(`Upgrade ${buttonId} comprado!`);
+        unlockResource(buttonId.replace('unlock', '').toLowerCase());
+        checkUpgrades();
+    } else {
+        console.log("Conhecimento insuficiente para comprar este upgrade.");
     }
+}
 
     
     document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana'));
@@ -258,8 +258,8 @@ document.getElementById('dadosBtn').addEventListener('click', () => {
 function checkUpgrades() {
     const upgradeButtons = document.querySelectorAll('.upgrade-button');
     upgradeButtons.forEach(button => {
-        const upgradeCost = parseInt(button.getAttribute('data-cost'), 10);
-        button.disabled = conhecimento < upgradeCost;
+        const Cost = parseInt(button.getAttribute('data-cost'), 10);
+        button.disabled = conhecimento < Cost;
     });
 }
 
