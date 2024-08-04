@@ -166,8 +166,10 @@ function switchActivePanel(resource) {
     resources.forEach(res => {
         if (res === resource) {
             showPanel(`${res}GenerationPanel`);
+            button.classList.add('active');
         } else {
             hidePanel(`${res}GenerationPanel`);
+            button.classList.remove('active');
         }
     });
     currentResource = resource;
