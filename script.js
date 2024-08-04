@@ -199,3 +199,4 @@ document.getElementById('dadosBtn').addEventListener('click', () => {
     updateResources();
     updateProductionLabels();
     checkUpgrades();
+});
