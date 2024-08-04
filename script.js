@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const unlockHandler = function() {
                 unlockResourcePanel(resource);
                 button.removeEventListener('click', unlockHandler);
-            }; else {
+            } else {
         console.error(`Erro na funcao one time`);
             button.addEventListener('click', unlockHandler);
         }
