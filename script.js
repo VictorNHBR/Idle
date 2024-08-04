@@ -150,21 +150,21 @@ document.addEventListener('DOMContentLoaded', function() {
         updateResources();
     });
 
-    document.getElementById('learnBtn').addEventListener('click', () => {
-        currentResource = 'conhecimento';
-    });
+document.getElementById('conhecimentoBtn').addEventListener('click', () => {
+    currentResource = 'conhecimento';
+});
 
-    document.getElementById('workBtn').addEventListener('click', () => {
-        currentResource = 'grana';
-    });
+document.getElementById('granaBtn').addEventListener('click', () => {
+    currentResource = 'grana';
+});
 
-    document.getElementById('codeBtn').addEventListener('click', () => {
-        currentResource = 'codigo';
-    });
+document.getElementById('codigoBtn').addEventListener('click', () => {
+    currentResource = 'codigo';
+});
 
-    document.getElementById('trainBtn').addEventListener('click', () => {
-        currentResource = 'dados';
-    });
+document.getElementById('dadosBtn').addEventListener('click', () => {
+    currentResource = 'dados';
+});
 
     resources.forEach(resource => {
         for (let i = 1; i <= 3; i++) {
