@@ -165,11 +165,14 @@ function initializeGame() {
 
 function switchActivePanel(resource) {
     resources.forEach(res => {
+        const panel = document.getElementById(`${res}GenerationPanel`);
+        const button = document.getElementById(`${res}Btn`);
+        
         if (res === resource) {
-            showPanel(`${res}GenerationPanel`);
+            panel.classList.remove('hidden');
             button.classList.add('active');
         } else {
-            hidePanel(`${res}GenerationPanel`);
+            panel.classList.add('hidden');
             button.classList.remove('active');
         }
     });
