@@ -14,6 +14,38 @@ document.addEventListener('DOMContentLoaded', function() {
     let generationLevels = {};
     let productionRates = {};
 
+    const resourcePanelsUnlocked = {
+        grana: false,
+        codigo: false,
+        dados: false
+    };
+
+        function unlockResourcePanel(resource) {
+        if (!resourcePanelsUnlocked[resource]) {
+            showPanel(`${resource}Panel`);
+            resourcePanelsUnlocked[resource] = true;
+        }
+    }
+
+    function addOneTimeUnlockListener(buttonId, resource) {
+        const button = document.getElementById(buttonId);
+        if (button) {
+            const unlockHandler = function() {
+                unlockResourcePanel(resource);
+                button.removeEventListener('click', unlockHandler);
+            };
+            button.addEventListener('click', unlockHandler);
+        }
+    }
+
+    // Adicionar listeners de desbloqueio único
+    addOneTimeUnlockListener('granaBtn', 'grana');
+    addOneTimeUnlockListener('codigoBtn', 'codigo');
+    addOneTimeUnlockListener('dadosBtn', 'dados');
+
+    
+
+
 function hidePanel(panelId) {
     const panel = document.getElementById(panelId);
     if (panel) {
