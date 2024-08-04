@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
             resourcePanelsUnlocked[resource] = true;
         } else {
         console.error(`Painel com ID ${panelId} não encontrado.`);
-    }
+    } }
 
     function addOneTimeUnlockListener(buttonId, resource) {
         const button = document.getElementById(buttonId);
