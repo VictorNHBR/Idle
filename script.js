@@ -83,11 +83,11 @@ function initializeGame() {
         }
     });
 
-    function buyUpgrade(buttonId, cost) {
+    function buyUpgrade(buttonId, Ccost) {
         const button = document.getElementById(buttonId);
-        const cost = parseInt(button.getAttribute('data-cost'), 10);
-        if (conhecimento >= cost) {
-            conhecimento -= cost;
+        const Ccost = parseInt(button.getAttribute('data-cost'), 10);
+        if (conhecimento >= Ccost) {
+            conhecimento -= Ccost;
             updateResources();
             button.parentNode.removeChild(button);
             console.log(`Upgrade ${buttonId} comprado!`);
