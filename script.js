@@ -14,60 +14,58 @@ document.addEventListener('DOMContentLoaded', function() {
     let generationLevels = {};
     let productionRates = {};
 
+    const upgradeManager = {
+        costModifiers: {
+            global: 1,
+            unlockGrana: 1,
+            unlockCodigo: 1,
+            unlockDados: 1
+        },
 
-const upgradeManager = {
-    costModifiers: {
-        global: 1,
-        unlockGrana: 1,
-        unlockCodigo: 1,
-        unlockDados: 1
-    },
-
-       getModifiedCost(upgradeId) {
-        const button = document.getElementById(upgradeId);
-        const baseCost = parseInt(button.getAttribute('data-base-cost'), 10);
-        return Math.floor(baseCost * this.costModifiers.global * this.costModifiers[upgradeId]);
-    },
+        getModifiedCost(upgradeId) {
+            const button = document.getElementById(upgradeId);
+            const baseCost = parseInt(button.getAttribute('data-base-cost'), 10);
+            return Math.floor(baseCost * this.costModifiers.global * (this.costModifiers[upgradeId] || 1));
+        },
     
-    setCostModifier(upgradeId, modifier) {
-        this.costModifiers[upgradeId] = modifier;
-        this.updateUpgradeButton(upgradeId);
-    },
+        setCostModifier(upgradeId, modifier) {
+            this.costModifiers[upgradeId] = modifier;
+            this.updateUpgradeButton(upgradeId);
+        },
     
-    setGlobalCostModifier(modifier) {
-        this.costModifiers.global = modifier;
-        this.updateAllUpgradeButtons();
-    },
+        setGlobalCostModifier(modifier) {
+            this.costModifiers.global = modifier;
+            this.updateAllUpgradeButtons();
+        },
 
+        updateUpgradeButton(upgradeId) {
+            const button = document.getElementById(upgradeId);
+            if (button) {
+                const modifiedCost = this.getModifiedCost(upgradeId);
+                button.textContent = `${button.textContent.split('(')[0]} (Custo: ${modifiedCost})`;
+                button.setAttribute('data-cost', modifiedCost);
+            }
+        },
 
-      updateUpgradeButton(upgradeId) {
-        const button = document.getElementById(upgradeId);
-        const modifiedCost = this.getModifiedCost(upgradeId);
-        button.textContent = `${button.textContent.split('(')[0]} (Custo: ${modifiedCost})`;
-        button.setAttribute('data-cost', modifiedCost);
-    },
+        updateAllUpgradeButtons() {
+            document.querySelectorAll('.upgrade-button').forEach(button => {
+                this.updateUpgradeButton(button.id);
+            });
+        }
+    };
 
-       updateAllUpgradeButtons() {
-        document.querySelectorAll('.upgrade-button').forEach(button => {
-            this.updateUpgradeButton(button.id);
-        });
-    }
-};
-
-    
     const resourcePanelsUnlocked = {
         grana: false,
         codigo: false,
         dados: false
     };
 
-        function unlockResourcePanel(resource) {
+    function unlockResourcePanel(resource) {
         if (!resourcePanelsUnlocked[resource]) {
             showPanel(`${resource}Panel`);
             resourcePanelsUnlocked[resource] = true;
-        } else {
-        console.error(`Painel com ID ${panelId} não encontrado.`);
-    } }
+        }
+    }
 
     function addOneTimeUnlockListener(buttonId, resource) {
         const button = document.getElementById(buttonId);
@@ -80,39 +78,37 @@ const upgradeManager = {
         }
     }
 
-    // Adicionar listeners de desbloqueio único
-    addOneTimeUnlockListener('granaBtn', 'grana');
-    addOneTimeUnlockListener('codigoBtn', 'codigo');
-    addOneTimeUnlockListener('dadosBtn', 'dados');
+    addOneTimeUnlockListener('unlockGrana', 'grana');
+    addOneTimeUnlockListener('unlockCodigo', 'codigo');
+    addOneTimeUnlockListener('unlockDados', 'dados');
 
-function hidePanel(panelId) {
-    const panel = document.getElementById(panelId);
-    if (panel) {
-        panel.classList.add('hidden');
-    } else {
-        console.log(`Painel com ID ${panelId} não encontrado.`);
+    function hidePanel(panelId) {
+        const panel = document.getElementById(panelId);
+        if (panel) {
+            panel.classList.add('hidden');
+        } else {
+            console.log(`Painel com ID ${panelId} não encontrado.`);
+        }
     }
-}
 
-function showPanel(panelId) {
-    const panel = document.getElementById(panelId);
-    if (panel) {
-        panel.classList.remove('hidden');
-    } else {
-        console.log(`Painel com ID ${panelId} não encontrado.`);
+    function showPanel(panelId) {
+        const panel = document.getElementById(panelId);
+        if (panel) {
+            panel.classList.remove('hidden');
+        } else {
+            console.log(`Painel com ID ${panelId} não encontrado.`);
+        }
     }
-}
     
-function initializeGame() {
-    // Mostrar apenas o painel de conhecimento inicialmente
-    switchActivePanel('conhecimento');
-    
-    // Esconder os botões de recursos que ainda não foram desbloqueados
-    ['grana', 'codigo', 'dados'].forEach(resource => {
-        document.getElementById(`${resource}Btn`).classList.add('hidden');
-    });
-    upgradeManager.updateAllUpgradeButtons();
-}
+    function initializeGame() {
+        switchActivePanel('conhecimento');
+        
+        ['grana', 'codigo', 'dados'].forEach(resource => {
+            document.getElementById(`${resource}Btn`).classList.add('hidden');
+        });
+        upgradeManager.updateAllUpgradeButtons();
+    }
+
     resources.forEach(resource => {
         generationTimers[resource] = {};
         generationLevels[resource] = {};
@@ -124,33 +120,30 @@ function initializeGame() {
         }
     });
 
-function buyUpgrade(upgradeId) {
-    const cost = upgradeManager.getModifiedCost(upgradeId);
-    if (conhecimento >= cost) {
-        conhecimento -= cost;
-        updateResources();
-        const button = document.getElementById(upgradeId);
-        button.parentNode.removeChild(button);
-        console.log(`Upgrade ${upgradeId} comprado!`);
-        unlockResource(upgradeId.replace('unlock', '').toLowerCase());
-        checkUpgrades();
-    } else {
-        console.log("Conhecimento insuficiente para comprar este upgrade.");
+    function buyUpgrade(upgradeId) {
+        const cost = upgradeManager.getModifiedCost(upgradeId);
+        if (conhecimento >= cost) {
+            conhecimento -= cost;
+            updateResources();
+            const button = document.getElementById(upgradeId);
+            button.parentNode.removeChild(button);
+            console.log(`Upgrade ${upgradeId} comprado!`);
+            unlockResource(upgradeId.replace('unlock', '').toLowerCase());
+            checkUpgrades();
+        } else {
+            console.log("Conhecimento insuficiente para comprar este upgrade.");
+        }
     }
-}
 
-    
-document.querySelectorAll('.upgrade-button').forEach(button => {
-    button.addEventListener('click', () => buyUpgrade(button.id));
-});
+    document.querySelectorAll('.upgrade-button').forEach(button => {
+        button.addEventListener('click', () => buyUpgrade(button.id));
+    });
 
-    
     document.getElementById('conhecimentoBtn').addEventListener('click', () => switchActivePanel('conhecimento'));
     document.getElementById('granaBtn').addEventListener('click', () => switchActivePanel('grana'));
     document.getElementById('codigoBtn').addEventListener('click', () => switchActivePanel('codigo'));
     document.getElementById('dadosBtn').addEventListener('click', () => switchActivePanel('dados'));
 
-    // acho que os eventlistener de cima tiraram esse
     document.getElementById('clickable').addEventListener('click', () => {
         switch(currentResource) {
             case 'conhecimento':
@@ -191,30 +184,20 @@ document.querySelectorAll('.upgrade-button').forEach(button => {
         });
     }
 
-    function showPanel(panelId) {
-        document.getElementById(panelId).classList.remove('hidden');
-    }
-
-    function showButton(buttonId) {
-        document.getElementById(buttonId).classList.remove('hidden');
-    }
-
     function unlockResource(resource) {
-        // showPanel(`${resource}Panel`);
-        // showPanel(`${resource}GenerationPanel`);
         showButton(`${resource}Btn`);
     }
 
-function switchActivePanel(resource) {
-    resources.forEach(res => {
-        if (res === resource) {
-            showPanel(`${res}GenerationPanel`);
-        } else {
-            hidePanel(`${res}GenerationPanel`);
-        }
-    });
-    currentResource = resource;
-}
+    function switchActivePanel(resource) {
+        resources.forEach(res => {
+            if (res === resource) {
+                showPanel(`${res}GenerationPanel`);
+            } else {
+                hidePanel(`${res}GenerationPanel`);
+            }
+        });
+        currentResource = resource;
+    }
     
     function startGeneration(resource, level) {
         if (conhecimento >= generationCost) {
@@ -269,23 +252,7 @@ function switchActivePanel(resource) {
         }
     }
 
-document.getElementById('conhecimentoBtn').addEventListener('click', () => {
-    currentResource = 'conhecimento';
-});
-
-document.getElementById('granaBtn').addEventListener('click', () => {
-    currentResource = 'grana';
-});
-
-document.getElementById('codigoBtn').addEventListener('click', () => {
-    currentResource = 'codigo';
-});
-
-document.getElementById('dadosBtn').addEventListener('click', () => {
-    currentResource = 'dados';
-});
-
-        resources.forEach(resource => {
+    resources.forEach(resource => {
         for (let i = 1; i <= 3; i++) {
             const buttonId = `generate${resource.charAt(0).toUpperCase() + resource.slice(1)}${i}`;
             const button = document.getElementById(buttonId);
@@ -295,12 +262,13 @@ document.getElementById('dadosBtn').addEventListener('click', () => {
         }
     });
 
-function checkUpgrades() {
-    document.querySelectorAll('.upgrade-button').forEach(button => {
-        const cost = upgradeManager.getModifiedCost(button.id);
-        button.disabled = conhecimento < cost;
-    });
-}
+    function checkUpgrades() {
+        document.querySelectorAll('.upgrade-button').forEach(button => {
+            const cost = upgradeManager.getModifiedCost(button.id);
+            button.disabled = conhecimento < cost;
+        });
+    }
+
     setInterval(() => {
         updateResources();
         checkUpgrades();
@@ -309,4 +277,5 @@ function checkUpgrades() {
     updateResources();
     updateProductionLabels();
     checkUpgrades();
+    initializeGame();
 });
