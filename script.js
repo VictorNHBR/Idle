@@ -325,7 +325,7 @@ function checkUpgrades() {
     updateResources();
     updateProductionLabels();
     checkUpgrades();
-});
+};
 
 
 document.addEventListener('DOMContentLoaded', function() {
