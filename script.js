@@ -162,16 +162,16 @@ function initializeGame() {
         showButton(`${resource}Btn`);
     }
 
-    function switchActivePanel(resource) {
-        resources.forEach(res => {
-            if (res === resource) {
-                showPanel(`${res}GenerationPanel`);
-            } else {
-                hidePanel(`${res}GenerationPanel`);
-            }
-        });
-        currentResource = resource;
-    }
+function switchActivePanel(resource) {
+    resources.forEach(res => {
+        if (res === resource) {
+            showPanel(`${res}GenerationPanel`);
+        } else {
+            hidePanel(`${res}GenerationPanel`);
+        }
+    });
+    currentResource = resource;
+}
     
     function startGeneration(resource, level) {
         if (conhecimento >= generationCost) {
