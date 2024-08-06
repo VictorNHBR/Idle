@@ -76,10 +76,11 @@
         }
 
 .resource-generation {
-    padding: 1cm 10px; /* 1cm padding top and bottom, 10px left and right */
+    padding: 0,50cm 10px; /* 1cm padding top and bottom, 10px left and right */
     border-top: 1px solid #eee;
     cursor: pointer;
     transition: background-color 0.3s;
+    position: relative; /* Adicionado para posicionar o timer relativamente a este elemento */
 }
         .resource-generation:hover {
             background-color: #f5f5f5;
@@ -171,7 +172,6 @@
     border-radius: 10px;
     overflow: hidden;
     margin-top: 5px;
-    position: relative; /* Added to position the timer */
 }
 
 .progress {
@@ -184,20 +184,19 @@
     font-size: 14px;
     color: #666;
     margin-top: 5px;
-    position: absolute; /* Position the timer absolutely */
-    bottom: -20px; /* Place it below the progress bar */
-    left: 0; /* Align it with the left edge of the progress bar */
-    width: 100%; /* Make it span the full width */
-    text-align: center; /* Center the text */
+    position: absolute; /* Posiciona o timer absolutamente */
+    bottom: 1cm; /* Coloca o timer 1cm acima da base do resource-generation */
+    left: 10px; /* Alinha com a margem esquerda do resource-generation */
+    width: calc(100% - 20px); /* Largura total menos o padding horizontal */
+    text-align: left; /* Alinha o texto à esquerda */
 }
 
-        button {
+	button {
             margin: 5px;
             padding: 10px;
             cursor: pointer;
             width: 180px;
         }
-
 	    
         .hidden {
             display: none;
