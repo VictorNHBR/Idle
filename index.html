@@ -56,6 +56,74 @@
                
             </div>
         </div>
+<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
+
+ <div class="right-column">
+            <div id="conhecimentoGenerationPanel" class="generation-panel">
+            <div class="resource-title">
+                Gerar Conhecimento
+            </div>
+            <div class="resource-generation" onclick="handleClick('conhecimento', 1)">
+                <div class="generation-title">Gerar Conhecimento Básico</div>
+                <div class="generation-cost">Custo: 10 Conhecimento</div>
+                <div class="production-label">Produção: 10/10s</div>
+                <div class="progress-bar"><div class="progress"></div></div>
+                <p>Nível: <span>1</span></p>
+            </div>
+            <div class="resource-generation hidden" onclick="handleClick('conhecimento', 2)">
+                <div class="generation-title">Gerar Conhecimento Avançado</div>
+                <div class="generation-cost">Custo: 20 Conhecimento</div>
+                <div class="production-label">Produção: 20/10s</div>
+                <div class="progress-bar"><div class="progress"></div></div>
+                <p>Nível: <span>1</span></p>
+            </div>
+        </div>
+
+      <div id="dadosGenerationPanel" class="generation-panel hidden">
+            <div class="resource-title">
+                Gerar Dados
+            </div>
+            <div class="resource-generation" onclick="handleClick('dados', 1)">
+                <div class="generation-title">Gerar Dados Básicos</div>
+                <div class="generation-cost">Custo: 10 Conhecimento</div>
+                <div class="production-label">Produção: 10/10s</div>
+                <div class="progress-bar"><div class="progress"></div></div>
+                <p>Nível: <span>1</span></p>
+            </div>
+        </div>
+
+        <!-- Código (Inicialmente oculto) -->
+        <div id="codigoGenerationPanel" class="generation-panel hidden">
+            <div class="resource-title">
+                Gerar Código
+            </div>
+            <div class="resource-generation" onclick="handleClick('codigo', 1)">
+                <div class="generation-title">Gerar Código Básico</div>
+                <div class="generation-cost">Custo: 10 Conhecimento</div>
+                <div class="production-label">Produção: 10/10s</div>
+                <div class="progress-bar"><div class="progress"></div></div>
+                <p>Nível: <span>1</span></p>
+            </div>
+        </div>
+
+        <!-- Grana (Inicialmente oculto) -->
+        <div id="granaGenerationPanel" class="generation-panel hidden">
+            <div class="resource-title">
+                Gerar Grana
+            </div>
+            <div class="resource-generation" onclick="handleClick('grana', 1)">
+                <div class="generation-title">Gerar Grana Básica</div>
+                <div class="generation-cost">Custo: 10 Conhecimento</div>
+                <div class="production-label">Produção: 10/10s</div>
+                <div class="progress-bar"><div class="progress"></div></div>
+                <p>Nível: <span>1</span></p>
+            </div>
+        </div>
+    </div>
+        
+<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
+
+        
         <div class="right-column">
             <div class="generation-panel">
                 <div id="conhecimentoGenerationPanel" class="panel resource-generation">
@@ -136,6 +204,9 @@
             </div>
         </div>
     </div>
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////// -->
+    
 
 </body>
 </html>
