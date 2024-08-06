@@ -53,10 +53,8 @@
             overflow-y: auto;
         }
         .generation-panel {
-            flex: 1;
-            background-color: #f0f0f0;
-            padding: 10px;
-            overflow-y: auto;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
         }
 
         .resource-title {
