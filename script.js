@@ -165,9 +165,9 @@ function initializeGame() {
     function switchActivePanel(resource) {
         resources.forEach(res => {
             if (res === resource) {
-                showPanel(`${res}Panel`);
+                showPanel(`${res}GenerationPanel`);
             } else {
-                hidePanel(`${res}Panel`);
+                hidePanel(`${res}GenerationPanel`);
             }
         });
         currentResource = resource;
