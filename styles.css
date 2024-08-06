@@ -25,30 +25,12 @@
             flex-direction: column;
         }
         .resource-panel {
-            border: 1px solid #ccc;
-            margin: 10px;
-            padding: 10px;
-        }
-
-
-        .resource-button {
-            margin: 5px 0;
-            padding: 10px;
-            background-color: #e0e0e0;
-            border: none;
-            cursor: pointer;
-            text-align: left;
-        }
-
-        .title-panel {
+            flex: 3;
             background-color: #f0f0f0;
-            padding: 5px;
-            margin-bottom: 10px;
-        }
-
-        .button-panel {
+            padding: 10px;
             display: flex;
             flex-direction: column;
+            overflow-y: auto;
         }
         .minigames-panel {
             flex: 1;
@@ -64,19 +46,6 @@
             align-items: center;
             padding: 10px;
         }
-        .button-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .button-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-
-
         .upgrades-panel {
             flex: 1;
             background-color: #e0e0e0;
@@ -167,37 +136,20 @@
             background-color: #f0f0f0;
         }
 
-/*         .progress-bar {
+        .progress-bar {
             width: 100%;
             height: 20px;
             background-color: #e0e0e0;
             border-radius: 10px;
             overflow: hidden;
             margin-top: 5px;
-        } */
-
-        .progress-bar {
-            width: 100%;
-            background-color: #ddd;
-            margin-top: 5px;
         }
-
-
         .progress {
-            width: 0;
-            height: 10px;
-            background-color: #4CAF50;
-            transition: width 0.5s ease-in-out;
-        }
-
-
-
-/*         .progress {
             width: 0;
             height: 100%;
             background-color: #4CAF50;
             transition: width 0.1s;
-        } */
+        }
         .timer {
             font-size: 14px;
             color: #666;
@@ -249,4 +201,3 @@ background-color: #006f9a;
     background-color: #cccccc;
     cursor: not-allowed;
 }
-
