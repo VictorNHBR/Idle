@@ -1,4 +1,50 @@
-	body, html {
+:root {
+  --conhecimento-color: #00FFFF; /* Neon Blue */
+  --grana-color: #00FF00; /* Lime Green */
+  --codigo-color: #606060; /* Granite */
+  --dados-color: #FFBF00; /* Amber */
+}
+
+
+#conhecimentoGenerationPanel .resource-title {
+  color: var(--conhecimento-color);
+  border-bottom: 2px solid var(--conhecimento-color);
+}
+
+#granaGenerationPanel .resource-title {
+  color: var(--grana-color);
+  border-bottom: 2px solid var(--grana-color);
+}
+
+#codigoGenerationPanel .resource-title {
+  color: var(--codigo-color);
+  border-bottom: 2px solid var(--codigo-color);
+}
+
+#dadosGenerationPanel .resource-title {
+  color: var(--dados-color);
+  border-bottom: 2px solid var(--dados-color);
+}
+
+/* You may also want to update the progress bar colors to match */
+#conhecimentoGenerationPanel .progress {
+  background-color: var(--conhecimento-color);
+}
+
+#granaGenerationPanel .progress {
+  background-color: var(--grana-color);
+}
+
+#codigoGenerationPanel .progress {
+  background-color: var(--codigo-color);
+}
+
+#dadosGenerationPanel .progress {
+  background-color: var(--dados-color);
+}
+
+
+body, html {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -59,12 +105,16 @@
         }
 
 .resource-title {
-    background-color: #f0f0f0;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 1.5em; /* Increased font size */
-    text-align: center; /* Centered horizontally */
+  background-color: #f0f0f0;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: center;
 }
+
+
+
+
 
         .generation-title {
             font-weight: bold;
@@ -128,12 +178,30 @@
             background-color: white;
         }
 
-        .panel-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-            background-color: #e0e0e0;
-            padding: 5px;
-        }
+ .panel-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+  padding: 5px;
+  color: white;
+}
+
+#conhecimentoPanel .panel-title {
+  background-color: var(--conhecimento-color);
+}
+
+#granaPanel .panel-title {
+  background-color: var(--grana-color);
+}
+
+#codigoPanel .panel-title {
+  background-color: var(--codigo-color);
+}
+
+#dadosPanel .panel-title {
+  background-color: var(--dados-color);
+}
+
+
         .resource-counter {
             font-size: 18px;
             margin-bottom: 10px;
