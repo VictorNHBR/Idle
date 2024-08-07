@@ -5,7 +5,6 @@
   --dados-color: #FFA500; /* Amber */
 }
 
-
 #conhecimentoGenerationPanel .resource-title {
   color: var(--conhecimento-color);
   border-bottom: 2px solid var(--conhecimento-color);
