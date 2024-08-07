@@ -73,7 +73,7 @@ body, html {
         }
         .resource-panel {
             flex: 3;
-            background-color: #f0f0f0;
+            background-color: #474545;
             padding: 10px;
             display: flex;
             flex-direction: column;
@@ -81,7 +81,7 @@ body, html {
         }
         .minigames-panel {
             flex: 1;
-            background-color: #d0d0d0;
+            background-color: #474545;
             padding: 10px;
             overflow-y: auto;
         }
@@ -92,10 +92,11 @@ body, html {
             justify-content: center;
             align-items: center;
             padding: 10px;
+	    background-color: #474545;
         }
         .upgrades-panel {
             flex: 1;
-            background-color: #e0e0e0;
+            background-color: #474545;
             padding: 10px;
             overflow-y: auto;
         }
