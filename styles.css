@@ -72,7 +72,7 @@ body, html {
         }
         .resource-panel {
             flex: 3;
-            background-color: #474545;
+            background-color: #c9c9c9;
             padding: 10px;
             display: flex;
             flex-direction: column;
@@ -80,7 +80,7 @@ body, html {
         }
         .minigames-panel {
             flex: 1;
-            background-color: #474545;
+            background-color: #c9c9c9;
             padding: 10px;
             overflow-y: auto;
         }
@@ -91,11 +91,11 @@ body, html {
             justify-content: center;
             align-items: center;
             padding: 10px;
-	    background-color: #474545;
+	    background-color: #c9c9c9;
         }
         .upgrades-panel {
             flex: 1;
-            background-color: #474545;
+            background-color: #c9c9c9;
             padding: 10px;
             overflow-y: auto;
         }
