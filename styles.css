@@ -112,11 +112,7 @@ body, html {
   text-align: center;
 }
 
-
-
-
-
-        .generation-title {
+       .generation-title {
             font-weight: bold;
             margin-bottom: 5px;
         }
@@ -230,7 +226,7 @@ body, html {
             transform: scale(0.95);
         }
         .ativ-button {
-	    margin: 0.5cm  
+	    margin: 1.5cm  
             align-items: center;
             background-color: #fff;
             border-radius: 12px;
@@ -309,11 +305,11 @@ body, html {
 }
 
         .upgrade-button {  
-  background-color: #008CBA; /* Azul */
-  border: none;
+  background-color: #3346ad; /* Azul */
+  border: 0,5rem black solid;
   color: white;
   width: 100px; /* Largura */
-  height: 60px; /* Altura */
+  height:100px; /* Altura */
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -323,9 +319,10 @@ body, html {
   cursor: pointer;
   border-radius: 12px;
   box-shadow: 0 9px #999;
+  font-weight: bold;
         }
 .upgrade-button:hover {
-background-color: #006f9a;
+background-color: #556ce9;
 }
 .upgrade-button:disabled {
     background-color: #cccccc;
