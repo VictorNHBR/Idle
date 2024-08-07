@@ -207,20 +207,25 @@ body, html {
             margin-bottom: 10px;
         }
 
-        #clickable {
-            width: 250px;
-            height: 250px;
-            background-color: #4CAF50;
-            cursor: pointer;
-            transition: transform 0.1s;
-            margin-bottom: 20px;
- 	    background-image: url(PC.jpeg);
-		background-size: contain; 
-	background-position: center; 
-	    -webkit-tap-highlight-color: transparent;
-    	    -webkit-touch-callout: none;
-            -webkit-user-select: none;
-        }
+      
+#clickable {
+  width: 250px;
+  height: 250px;
+  background-image: url(PC.jpeg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition: transform 0.1s;
+  margin-bottom: 20px;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+
+#clickable:active {
+  transform: scale(0.95);
+}
         #clickable:active {
             transform: scale(0.95);
         }
