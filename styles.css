@@ -161,6 +161,7 @@ body, html {
         }
 
 .resource-generation {
+    background-color: #faf7f7
     padding: 1cm 10px; /* 1cm padding top and bottom, 10px left and right */
     border-top: 1px solid #eee;
     cursor: pointer;
@@ -170,6 +171,7 @@ body, html {
 
 .resource-generation p {
     margin: 5px 0; /* Reduce vertical spacing between paragraphs */
+    background-color: #faf7f7
 }
 
 .progress-bar {
