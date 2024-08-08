@@ -5,6 +5,34 @@
   --dados-color: #FFA500; /* Amber */
 }
 
+/* Conhecimento */
+#conhecimentoGenerationPanel {
+    background-image: url('conhecimento.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Dados */
+#dadosGenerationPanel {
+    background-image: url('dados.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Grana */
+#granaGenerationPanel {
+    background-image: url('grana.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Código */
+#codigoGenerationPanel {
+    background-image: url('codigo.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
 #conhecimentoGenerationPanel .resource-title {
   color: var(--conhecimento-color);
   border-bottom: 2px solid var(--conhecimento-color);
