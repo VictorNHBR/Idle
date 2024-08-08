@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let dados = 0;
     let currentResource = 'conhecimento';
 
+    
     const resources = ['conhecimento', 'grana', 'codigo', 'dados'];
     const generationCost = 10;
     const generationTime = 10; // segundos
