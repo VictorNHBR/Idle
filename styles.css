@@ -161,7 +161,7 @@ body, html {
         }
 
 .resource-generation {
-    background-color: #faf7f7
+    background-color: #faf7f7;
     padding: 1cm 10px; /* 1cm padding top and bottom, 10px left and right */
     border-top: 1px solid #eee;
     cursor: pointer;
