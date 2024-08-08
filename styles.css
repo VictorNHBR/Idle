@@ -7,28 +7,28 @@
 
 /* Conhecimento */
 #conhecimentoGenerationPanel {
-
+    background-image: url('conhecimento.jpg');
     background-size: cover;
     background-position: center;
 }
 
 /* Dados */
 #dadosGenerationpanel {
-
+    background-image: url('dados.jpg');
     background-size: cover;
     background-position: center;
 }
 
 /* Grana */
 #granaGenerationPanel {
-
+    background-image: url('grana.jpg');
     background-size: cover;
     background-position: center;
 }
 
 /* Código */
 #codigoGenerationPanel {
-
+    background-image: url('codigo.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -68,23 +68,6 @@
 
 #dadosGenerationPanel .progress {
   background-color: var(--dados-color);
-}
-
-
-.image-container {
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: space-around;
-    position: absolute;
-    bottom: 0;
-    z-index: 0; /* Posiciona a imagem-container abaixo dos painéis de recurso */
-}
-
-.image-container img {
-    max-width: 200px;
-    height: auto;
-    margin: 0 10px;
 }
 
 
@@ -146,6 +129,7 @@ body, html {
             overflow-y: auto;
         }
         .generation-panel {
+	
             border: 1px solid #ccc;
             margin-bottom: 20px;
         }
