@@ -7,28 +7,28 @@
 
 /* Conhecimento */
 #conhecimentoGenerationPanel {
-    background-image: url('Conhecimento.png');
+
     background-size: cover;
     background-position: center;
 }
 
 /* Dados */
-#dadosnel {
-    background-image: url('Data.png');
+#dadosGenerationpanel {
+
     background-size: cover;
     background-position: center;
 }
 
 /* Grana */
 #granaGenerationPanel {
-    background-image: url('Grana.png');
+
     background-size: cover;
     background-position: center;
 }
 
 /* Código */
 #codigoGenerationPanel {
-    background-image: url('Code.png');
+
     background-size: cover;
     background-position: center;
 }
@@ -68,6 +68,22 @@
 
 #dadosGenerationPanel .progress {
   background-color: var(--dados-color);
+}
+
+
+.image-container {
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.image-container img {
+    max-width: 200px;
+    height: auto;
+    margin: 0 10px;
 }
 
 
