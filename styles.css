@@ -107,7 +107,7 @@ body, html {
             flex-direction: column;
         }
         .resource-panel {
-	    z-index: 1
+/* 	    z-index: 1 */
             flex: 3;
             background-color: #c9c9c9;
             padding: 10px;
@@ -222,21 +222,20 @@ body, html {
 }
 
 #conhecimentoPanel .panel-title {
-  background-color: white;
+  background-color:var(--conhecimento-color);
 }
 
 #granaPanel .panel-title {
-  background-color: white;
+  background-color: var(--grana-color);
 }
 
 #codigoPanel .panel-title {
-  background-color: white;
+  background-color: var(--codigo-color);
 }
 
 #dadosPanel .panel-title {
-  background-color: white;
+  background-color: var(--dados-color);
 }
-
 
         .resource-counter {
             font-size: 18px;
