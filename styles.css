@@ -78,6 +78,8 @@
     text-align: center;
     display: flex;
     justify-content: space-around;
+    z-index: -1;
+    position: relative;
 }
 
 .image-container img {
