@@ -7,28 +7,28 @@
 
 /* Conhecimento */
 #conhecimentoGenerationPanel {
-    background-image: url('conhecimento.png');
+    background-image: url('Conhecimento.png');
     background-size: cover;
     background-position: center;
 }
 
 /* Dados */
 #dadosGenerationpanel {
-    background-image: url('dados.png');
+    background-image: url('Data.png');
     background-size: cover;
     background-position: center;
 }
 
 /* Grana */
 #granaGenerationPanel {
-    background-image: url('grana.png');
+    background-image: url('Grana.png');
     background-size: cover;
     background-position: center;
 }
 
 /* Código */
 #codigoGenerationPanel {
-    background-image: url('codigo.png');
+    background-image: url('Code.png');
     background-size: cover;
     background-position: center;
 }
