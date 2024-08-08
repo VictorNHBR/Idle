@@ -10,6 +10,8 @@
     background-image: url('Conhecimento.png');
     background-size: cover;
     background-position: center;
+    flex: 1;
+    flex-direction: column;
 }
 
 /* Dados */
@@ -17,6 +19,8 @@
     background-image: url('Data.png');
     background-size: cover;
     background-position: center;
+	    flex: 1;
+    flex-direction: column;
 }
 
 /* Grana */
@@ -24,6 +28,8 @@
     background-image: url('Grana.png');
     background-size: cover;
     background-position: center;
+	    flex: 1;
+    flex-direction: column;
 }
 
 /* Código */
@@ -31,6 +37,8 @@
     background-image: url('Code.png');
     background-size: cover;
     background-position: center;
+	    flex: 1;
+    flex-direction: column;
 }
 
 #conhecimentoGenerationPanel .resource-title {
