@@ -74,12 +74,11 @@
 .image-container {
     width: 100%;
     height: auto;
-    margin-top: 20px;
-    text-align: center;
     display: flex;
     justify-content: space-around;
-    z-index: -1;
-    position: relative;
+    position: absolute;
+    bottom: 0;
+    z-index: 0; /* Posiciona a imagem-container abaixo dos painéis de recurso */
 }
 
 .image-container img {
@@ -117,6 +116,7 @@ body, html {
             flex-direction: column;
         }
         .resource-panel {
+	    z-index: 1
             flex: 3;
             background-color: #c9c9c9;
             padding: 10px;
