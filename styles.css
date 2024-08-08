@@ -99,10 +99,10 @@ body, html {
         .center-column {
             display: flex;
             flex-direction: column;
-            width: 30%;
+            width: 45%;
         }
         .right-column {
-            width: 40%;
+            width: 25%;
             display: flex;
             flex-direction: column;
         }
@@ -222,19 +222,19 @@ body, html {
 }
 
 #conhecimentoPanel .panel-title {
-  background-color: var(--conhecimento-color);
+  background-color: white;
 }
 
 #granaPanel .panel-title {
-  background-color: var(--grana-color);
+  background-color: white;
 }
 
 #codigoPanel .panel-title {
-  background-color: var(--codigo-color);
+  background-color: white;
 }
 
 #dadosPanel .panel-title {
-  background-color: var(--dados-color);
+  background-color: white;
 }
 
 
