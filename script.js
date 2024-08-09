@@ -267,6 +267,26 @@ document.getElementById('dadosBtn').addEventListener('click', () => {
         });
     }
 
+function updateGenerationButtons() {
+    resources.forEach(resource => {
+        for (let i = 1; i <= 3; i++) {
+            const panelId = `generate${resource.charAt(0).toUpperCase() + resource.slice(1)}${i}`;
+            // const panelId = `${resource}GenerationPanel`;
+            const panel = document.getElementById(panelId);
+            
+            if (button) {
+                if (conhecimento < generationCost) {
+                    panel.classList.add('disabled');
+                } else {
+                    panel.classList.remove('disabled');
+                }
+            }
+        }
+    });
+}
+
+
+    
     setInterval(() => {
         updateResources();
         checkUpgrades();
