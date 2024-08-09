@@ -259,7 +259,7 @@ function updateGenerationButtons() {
             // const panelId = `${resource}GenerationPanel`;
             const panel = document.getElementById(panelId);
             
-            if (button) {
+            if (panel) {
                 if (conhecimento < generationCost) {
                     panel.classList.add('disabled');
                 } else {
