@@ -252,21 +252,6 @@ document.getElementById('dadosBtn').addEventListener('click', () => {
         }
     });
 
-    function checkUpgrades() {
-        const upgrades = [
-            { id: 'unlockGrana', cost: 100 },
-            { id: 'unlockCodigo', cost: 200 },
-            { id: 'unlockDados', cost: 300 }
-        ];
-
-        upgrades.forEach(upgrade => {
-            const button = document.getElementById(upgrade.id);
-            if (button && !button.classList.contains('hidden')) {
-                button.disabled = conhecimento < upgrade.cost;
-            }
-        });
-    }
-
 function updateGenerationButtons() {
     resources.forEach(resource => {
         for (let i = 1; i <= 3; i++) {
@@ -284,12 +269,28 @@ function updateGenerationButtons() {
         }
     });
 }
+ 
 
+    function checkUpgrades() {
+        const upgrades = [
+            { id: 'unlockGrana', cost: 100 },
+            { id: 'unlockCodigo', cost: 200 },
+            { id: 'unlockDados', cost: 300 }
+        ];
 
-    
+        upgrades.forEach(upgrade => {
+            const button = document.getElementById(upgrade.id);
+            if (button && !button.classList.contains('hidden')) {
+                button.disabled = conhecimento < upgrade.cost;
+            }
+        });
+    }
+
+   
     setInterval(() => {
         updateResources();
         checkUpgrades();
+        updateGenerationButtons();
     }, 1000);
 
     updateResources();
