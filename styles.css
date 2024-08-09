@@ -1,9 +1,25 @@
+
+
 :root {
   --conhecimento-color: #00008B; /* Neon Blue */
   --grana-color: #008000; /* Lime Green */
   --codigo-color: #0C090A; /* Granite */
   --dados-color: #FFA500; /* Amber */
 }
+
+.resource-counter,
+.production-label,
+.generation-title,
+.generation-cost,
+.timer,
+.level-display {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+
 
 /* Conhecimento */
 #conhecimentoGenerationPanel {
