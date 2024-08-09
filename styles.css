@@ -183,7 +183,7 @@ body, html {
     cursor: pointer;
     transition: background-color 0.3s;
     position: relative; /* Added for absolute positioning of the level */
-    opacity: 0.7;
+/*     opacity: 0.7; */
 
 }
         .resource-generation:hover {
@@ -191,12 +191,13 @@ body, html {
         }
         .resource-generation:active {
             background-color: #e0e0e0;
-	    opacity: 1;
+/* 	    opacity: 1; */
         }
 
 .resource-generation.disabled {
     cursor: not-allowed;
-    opacity: 0.5;
+/*     opacity: 0.5; */
+	background-color: #bdb9b9;
 }
 
 .resource-generation p {
