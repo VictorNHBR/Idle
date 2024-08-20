@@ -100,7 +100,21 @@ function initializeGame() {
     document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100));
     document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
     document.getElementById('unlockDados').addEventListener('click', () => buyUpgrade('unlockDados', 300));
+    
+//document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100), { once: true });
+// Acho que como a função buyupgrade tem remove child então não precisa do once: true
 
+
+// Fazer para sumir após o botão ser clicado
+// const upgradeButton = document.getElementById('upgradeButton');
+
+// upgradeButton.addEventListener('click', function() {
+//     console.log('Upgrade aplicado!');
+//     // Remover o botão do DOM após o clique
+//     upgradeButton.parentNode.removeChild(upgradeButton);
+//     // A partir deste ponto, o event listener não funcionará mais, pois o botão foi removido.
+// });
+    
     
     document.getElementById('conhecimentoBtn').addEventListener('click', () => switchActivePanel('conhecimento'));
     document.getElementById('granaBtn').addEventListener('click', () => switchActivePanel('grana'));
