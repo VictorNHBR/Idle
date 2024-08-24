@@ -84,37 +84,44 @@ body, html {
             height: 100%;
             overflow: hidden;
         }
-        #game {
-            display: flex;
-            height: 100vh;
-		flex-wrap: wrap;
-        }
-        .left-column {
-            display: flex;
-            flex-direction: column;
-            width: 30%;
-        }
-        .center-column {
-            display: flex;
-            flex-direction: column;
-            width: 45%;
-        }
-
-
-.geral-panel {
-    width: calc(75% - 20px); /* Ocupa 75% da largura, ajustando 20px para a margem */
-    background-color: #c9c9c9;
-    padding: 10px;
-    overflow-y: auto;
-    margin-top: 20px;
-   
+#game {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
 }
 
-        .right-column {
-            width: 25%;
-            display: flex;
-            flex-direction: column;
-        }
+.top-section {
+    display: flex;
+    flex: 1;
+    width: 100%;
+}
+
+.left-column {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+
+.center-column {
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-column {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Garante que ocupe toda a altura disponível */
+}
+
+.geral-panel {
+    width: 100%; /* Ocupa toda a largura abaixo das colunas */
+    background-color: #c9c9c9;
+    padding: 10px;
+    margin-top: 20px;
+    box-sizing: border-box;
+}
         .resource-panel {
 /* 	    z-index: 1 */
             flex: 3;
