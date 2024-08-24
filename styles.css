@@ -102,19 +102,12 @@ body, html {
 
 
 .geral-panel {
-
-clear: both; /* Garante que o painel fique abaixo das colunas */
-    width: calc(75% - 20px); /* Largura para ocupar a esquerda e centro, ajustado para a margem */
+    width: calc(75% - 20px); /* Ocupa 75% da largura, ajustando 20px para a margem */
     background-color: #c9c9c9;
     padding: 10px;
     overflow-y: auto;
-    margin-top: 20px; /* Espaçamento superior para garantir que não sobreponha outros elementos */
-	
-/*     width: 75%;  Ocupa a largura das colunas esquerda e central combinadas
-    background-color: #c9c9c9;
-    padding: 10px;
-    overflow-y: auto;
-    order: 3;  Garante que o GeralPanel apareça após as colunas esquerda e central */
+    margin-top: 20px;
+   
 }
 
         .right-column {
