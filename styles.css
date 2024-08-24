@@ -1,10 +1,10 @@
+
 :root {
   --conhecimento-color: #00008B; /* Neon Blue */
   --grana-color: #008000; /* Lime Green */
   --codigo-color: #0C090A; /* Granite */
   --dados-color: #FFA500; /* Amber */
 }
-
 .resource-counter,
 .production-label,
 .generation-title,
@@ -84,44 +84,31 @@ body, html {
             height: 100%;
             overflow: hidden;
         }
-#game {
-    display: flex;
-    flex-wrap: nowrap;
-    height: 100vh;
-}
-
-left-column {
-    width: 30%;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-}
-
-.center-column {
-    width: 45%;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-}
-
-.right-column {
-    width: 25%;
-    display: flex;
-    flex-direction: column;
-    height: 100vh; /* Ocupa toda a altura da tela */
-    box-sizing: border-box;
-}
-
-.geral-panel {
-    height: 50%;
-    width: calc(75%); /* Ocupa a largura combinada das left e center columns */
-    background-color: #c9c9c9;
-    padding: 10px;
-    position: absolute; /* Posiciona fora do fluxo normal */
-    bottom: 0; /* Alinha ao fundo */
-    left: 0; /* Alinha à esquerda, garantindo que fique abaixo das colunas left e center */
-    box-sizing: border-box;
-}
+        #game {
+            display: flex;
+            height: 100vh;
+        }
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+	    height: 50%;
+		    flex: 1;
+        }
+        .center-column {
+            display: flex;
+            flex-direction: column;
+            width: 45%;
+            height: 50%;
+		    flex: 1;
+        }
+        .right-column {
+            width: 25%;
+	    height: 50%;
+            display: flex;
+            flex-direction: column;
+	        flex: 1;
+        }
         .resource-panel {
 /* 	    z-index: 1 */
             flex: 3;
@@ -131,6 +118,23 @@ left-column {
             flex-direction: column;
             overflow-y: auto;
         }
+        .geralPanel {
+            flex: 1;
+            background-color: #c9c9c9;
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+
+/*     width: calc(75%); /* Ocupa a largura combinada das left e center columns
+    background-color: #c9c9c9;
+    padding: 10px;
+    height: 50%;  Ocupa 50% da tela verticalmente
+    position: absolute; Posiciona fora do fluxo normal 
+    bottom: 0; Alinha ao fundo 
+    left: 0; Alinha à esquerda, garantindo que fique abaixo das colunas left e center 
+    box-sizing: border-box; */
+
 
         .click-panel {
             flex: 2;
@@ -141,7 +145,6 @@ left-column {
             padding: 10px;
 	    background-color: #c9c9c9;
         }
-
         .generation-panel {
 	
             border: 1px solid #ccc;
