@@ -119,22 +119,16 @@ body, html {
             overflow-y: auto;
         }
         .geralPanel {
-            flex: 1;
-            background-color: #c9c9c9;
-            padding: 10px;
-            overflow-y: auto;
-        }
 
-
-/*     width: calc(75%); /* Ocupa a largura combinada das left e center columns
-    background-color: #c9c9c9;
+width: calc(75%); 
+    background-color: 
     padding: 10px;
-    height: 50%;  Ocupa 50% da tela verticalmente
-    position: absolute; Posiciona fora do fluxo normal 
-    bottom: 0; Alinha ao fundo 
-    left: 0; Alinha à esquerda, garantindo que fique abaixo das colunas left e center 
-    box-sizing: border-box; */
-
+    height: 50%;  
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    box-sizing: border-box; 
+        }
 
         .click-panel {
             flex: 2;
