@@ -106,6 +106,7 @@ body, html {
         #game {
             display: flex;
             height: 100vh;
+	    position: relative;
         }
         .left-column {
             display: flex;
@@ -221,8 +222,6 @@ body, html {
     text-align: left; /* Align text to the left */
 }
 
-
-
         .panel {
             border: 1px solid #ccc;
             margin-bottom: 10px;
@@ -274,7 +273,6 @@ body, html {
   -webkit-user-select: none;
 } */
 
-
         #clickable {
             width: 250px;
             height: 250px;
@@ -286,7 +284,6 @@ body, html {
             transition: transform 0.1s;
             margin-bottom: 0.5cm;
         }
-
 
 
 #clickable:active {
