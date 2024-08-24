@@ -87,6 +87,7 @@ body, html {
         #game {
             display: flex;
             height: 100vh;
+		flex-wrap: wrap;
         }
         .left-column {
             display: flex;
@@ -98,6 +99,16 @@ body, html {
             flex-direction: column;
             width: 45%;
         }
+
+
+.geral-panel {
+    width: 75%; /* Ocupa a largura das colunas esquerda e central combinadas */
+    background-color: #c9c9c9;
+    padding: 10px;
+    overflow-y: auto;
+    order: 3; /* Garante que o GeralPanel apareça após as colunas esquerda e central */
+}
+
         .right-column {
             width: 25%;
             display: flex;
@@ -112,12 +123,7 @@ body, html {
             flex-direction: column;
             overflow-y: auto;
         }
-        .minigames-panel {
-            flex: 1;
-            background-color: #c9c9c9;
-            padding: 10px;
-            overflow-y: auto;
-        }
+
         .click-panel {
             flex: 2;
             display: flex;
@@ -127,12 +133,7 @@ body, html {
             padding: 10px;
 	    background-color: #c9c9c9;
         }
-        .upgrades-panel {
-            flex: 1;
-            background-color: #c9c9c9;
-            padding: 10px;
-            overflow-y: auto;
-        }
+
         .generation-panel {
 	
             border: 1px solid #ccc;
