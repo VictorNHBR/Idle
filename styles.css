@@ -41,7 +41,7 @@
 
 /* Grana */
 #granaGenerationPanel {
-    background-image: url('Grana.png');
+/*     background-image: url('Grana.png'); */
     background-size: cover;
     background-position: center;
 	    flex: 1;
