@@ -236,10 +236,8 @@ body, html {
             background-color: white;
         }
  .panel-title {
-/*   font-weight: bold;
-  margin-bottom: 5px;
-  padding: 5px;
-  color: white; */
+    font-weight: bold;
+    color: white;
     display: flex;
     justify-content: space-between; /* Mantém o título à esquerda e o contador à direita */
     align-items: center; /* Centraliza verticalmente ambos */
@@ -259,6 +257,8 @@ body, html {
 }
 
 .resource-counter {
+    font-weight: bold;
+    color: white;
     font-size: 18px;
     margin-bottom: 0;
     text-align: right;
