@@ -5,6 +5,7 @@
   --codigo-color: #0C090A; /* Granite */
   --dados-color: #FFA500; /* Amber */
 }
+
 .resource-counter,
 .production-label,
 .generation-title,
@@ -252,10 +253,16 @@ body, html {
 #dadosPanel .panel-title {
   background-color: var(--dados-color);
 }
-        .resource-counter {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
+
+.resource-counter {
+    font-size: 18px;
+    margin-bottom: 0; /* Remove o espaço inferior */
+    text-align: right; /* Alinha o texto à direita */
+    float: right; /* Move o counter para a direita */
+    margin-top: -25px; /* Ajuste o espaço superior para alinhar verticalmente */
+    position: relative; /* Mantém a posição dentro do panel-title */
+    padding-right: 10px; /* Adiciona espaço à direita para um melhor alinhamento */
+}
       
 #clickable {
   width: 250px;
