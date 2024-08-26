@@ -176,16 +176,37 @@ function initializeGame() {
         showButton(`${resource}Btn`);
     }
 
+// function switchActivePanel(resource) {
+//     resources.forEach(res => {
+//         if (res === resource) {
+//             showPanel(`${res}GenerationPanel`);
+//         } else {
+//             hidePanel(`${res}GenerationPanel`);
+//         }
+//     });
+//     currentResource = resource;
+// }
+
 function switchActivePanel(resource) {
     resources.forEach(res => {
+        const button = document.getElementById(`${res}Btn`);
         if (res === resource) {
+            // Mostrar o painel correspondente
             showPanel(`${res}GenerationPanel`);
+            // Adicionar a classe 'active' ao botão selecionado
+            button.classList.add('ativ-button', 'active');
         } else {
+            // Esconder outros painéis
             hidePanel(`${res}GenerationPanel`);
+            // Remover a classe 'active' dos outros botões
+            button.classList.remove('ativ-button', 'active');
         }
     });
     currentResource = resource;
 }
+
+
+    
     
     function startGeneration(resource, level) {
         if (conhecimento >= generationCost) {
