@@ -236,10 +236,14 @@ body, html {
             background-color: white;
         }
  .panel-title {
-  font-weight: bold;
+/*   font-weight: bold;
   margin-bottom: 5px;
   padding: 5px;
-  color: white;
+  color: white; */
+    display: flex;
+    justify-content: space-between; /* Mantém o título à esquerda e o contador à direita */
+    align-items: center; /* Centraliza verticalmente ambos */
+    padding: 5px 10px; /* Ajusta o espaço interno para um melhor layout */
 }
 #conhecimentoPanel .panel-title {
   background-color:var(--conhecimento-color);
@@ -256,12 +260,9 @@ body, html {
 
 .resource-counter {
     font-size: 18px;
-    margin-bottom: 0; /* Remove o espaço inferior */
-    text-align: right; /* Alinha o texto à direita */
-    float: right; /* Move o counter para a direita */
-    margin-top: -25px; /* Ajuste o espaço superior para alinhar verticalmente */
-    position: relative; /* Mantém a posição dentro do panel-title */
-    padding-right: 10px; /* Adiciona espaço à direita para um melhor alinhamento */
+    margin-bottom: 0;
+    text-align: right;
+    margin-left: auto; /* Garante que o contador fique à direita */
 }
       
 #clickable {
