@@ -199,7 +199,7 @@ function switchActivePanel(resource) {
             // Esconder outros painéis
             hidePanel(`${res}GenerationPanel`);
             // Remover a classe 'active' dos outros botões
-            button.classList.remove('ativ-button', 'active');
+            button.classList.remove('active');
         }
     });
     currentResource = resource;
