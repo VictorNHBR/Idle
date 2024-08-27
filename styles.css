@@ -2,7 +2,7 @@
 :root {
   --conhecimento-color: #00008B; /* Neon Blue */
   --grana-color: #008000; /* Lime Green */
-  --codigo-color: #0C090A; /* Granite */
+  --codigo-color: #8400ea; /* Granite */
   --dados-color: #FFA500; /* Amber */
 }
 .resource-counter,
@@ -16,6 +16,25 @@
   -moz-user-select: none;
   -ms-user-select: none;
 }
+
+
+#conhecimentoPanel{
+    background-color:#b8d5fd;
+}
+#dadosPanel{
+    background-color:#fdf7b8;
+}
+
+#granaPanel{
+    background-color:#cbfdb8;
+}
+
+#codigoGenerationPanel {
+    background-color:#d8a6ff;
+}
+
+
+
 
 /* Conhecimento */
 #conhecimentoGenerationPanel {
@@ -47,7 +66,7 @@
 /* Código */
 #codigoGenerationPanel {
 /*     background-image: url('Code.png'); */
-    background-color:#f1f1f1;
+    background-color:#d8a6ff;
     background-size: cover;
     background-position: center;
 	    flex: 1;
@@ -76,8 +95,8 @@
 #granaGenerationPanel .progress {
   background-color: var(--grana-color);
 }
-#codigoGenerationPanel .progress {
-  background-color: var(--codigo-color);
+#GenerationPanel .progress {
+  background-color: var(---color);
 }
 #dadosGenerationPanel .progress {
   background-color: var(--dados-color);
@@ -273,8 +292,8 @@ body, html {
 #granaPanel .panel-title {
   background-color: var(--grana-color);
 }
-#codigoPanel .panel-title {
-  background-color: var(--codigo-color);
+#Panel .panel-title {
+  background-color: var(---color);
 }
 #dadosPanel .panel-title {
   background-color: var(--dados-color);
