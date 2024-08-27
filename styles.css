@@ -110,11 +110,25 @@ body, html {
     overflow: hidden;
 }
 
+#conhecimentoUnlock1{
+    background-image: url('C1.png');
+}
+#conhecimentoUnlock2{
+    background-image: url('C2.png');
+}
+#conhecimentoUnlock3{
+    background-image: url('C3.png');
+}
+
+
+
 .unlock-buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0.1cm 0;
+    background-size: cover;
+    background-position: center;
 }
 
 .unlock-btn {
