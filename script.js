@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    let conhecimento = 500;
+    let conhecimento = 1000;
     let grana = 0;
     let codigo = 0;
     let dados = 0;
@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
         dados: false
     };
 
-        function unlockResourcePanel(resource) {
+
+    function unlockResourcePanel(resource) {
         if (!resourcePanelsUnlocked[resource]) {
             showPanel(`${resource}Panel`);
             resourcePanelsUnlocked[resource] = true;
@@ -61,6 +62,10 @@ function showPanel(panelId) {
         console.log(`Painel com ID ${panelId} não encontrado.`);
     }
 }
+
+
+
+    
     
 function initializeGame() {
     // Mostrar apenas o painel de conhecimento inicialmente
@@ -95,7 +100,6 @@ function initializeGame() {
             console.log("Conhecimento insuficiente para comprar este upgrade.");
         }
     }
-
     
     document.getElementById('unlockGrana').addEventListener('click', () => buyUpgrade('unlockGrana', 100));
     document.getElementById('unlockCodigo').addEventListener('click', () => buyUpgrade('unlockCodigo', 200));
