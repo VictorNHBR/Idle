@@ -235,26 +235,38 @@ body, html {
     background-color: #c9c9c9;
     padding: 10px;
     overflow-y: auto;
+/*     align-items: stretch;  */
 }
 
         .generation-panel {
 	 border: 1px solid #ccc;
         }
 
+.conhecimentounlock-panel, 
+.granaunlock-panel, 
+.codigounlock-panel, 
+.dataunlock-panel {
+    flex: 1; /* Permite que o panel visível ocupe todo o espaço disponível */
+    box-sizing: border-box; /* Inclui padding e bordas no tamanho total da div */
+    padding: 10px; /* Espaço interno no panel */
+}
+
+
+
         .conhecimentounlock-panel {
-	 border: 1px solid #ccc;
+/* 	 border: 1px solid #ccc; */
 	 background-color:#b8d5fd;
         }
         .granaunlock-panel {
-	 border: 1px solid #ccc;
+
 	 background-color:#cbfdb8;
         }
         .codigounlock-panel {
-	 border: 1px solid #ccc;
+
 	 background-color:#d8a6ff;
         }
         .dataunlock-panel {
-	 border: 1px solid #ccc;
+
 	 background-color:#fdf7b8;
         }
 
