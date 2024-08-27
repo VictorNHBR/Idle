@@ -293,7 +293,7 @@ body, html {
   background-color: var(--grana-color);
 }
 #codigoPanel .panel-title {
-  background-color: var(---color);
+  background-color: var(--codigo-color);
 }
 #dadosPanel .panel-title {
   background-color: var(--dados-color);
