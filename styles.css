@@ -89,17 +89,26 @@ body, html {
 }
 
 
+.resource-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5cm 0;
+}
+
 .resource-btn {
-    width: 30px;
-    height: 30px;
-    background-color: #c9c9c9;
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border-radius: 5px;
 }
 
 .resource-btn:hover {
     background-color: #e0e0e0;
 }
-
-
 
 
 #game {
