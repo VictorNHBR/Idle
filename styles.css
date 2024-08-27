@@ -233,7 +233,6 @@ body, html {
 .bottom-panel {
     height: 100%;
     background-color: #c9c9c9;
-    padding: 10px;
     overflow-y: auto;
 /*     align-items: stretch;  */
 }
