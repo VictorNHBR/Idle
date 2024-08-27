@@ -155,7 +155,7 @@ body, html {
     margin: 0.1cm 0;
 }
 
-.unlock-btn {
+/* .unlock-btn {
     width: 60px;
     height: 60px;
     padding: 5px;
@@ -166,6 +166,32 @@ body, html {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;	
+} */
+
+.unlock-btn {
+  width: 100px; /* Largura da tecla */
+  height: 100px; /* Altura da tecla */
+  background-color: #e0e0e0; /* Cor de fundo da tecla */
+  border-radius: 5px; /* Arredonda ligeiramente os cantos */
+  box-shadow: 
+    inset -2px -2px 5px rgba(255, 255, 255, 0.8), /* Sombra clara na parte superior e esquerda */
+    inset 2px 2px 5px rgba(0, 0, 0, 0.3), /* Sombra escura na parte inferior e direita */
+    2px 2px 5px rgba(0, 0, 0, 0.4); /* Sombra externa para criar profundidade */
+  position: relative; /* Necessário para a pseudo-classe :before */	
+}
+
+.unlock-btn:before {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  background-color: #f0f0f0; /* Cor da parte superior da tecla */
+  border-radius: 3px; /* Arredonda um pouco os cantos da parte superior */
+  box-shadow: 
+    -2px -2px 5px rgba(255, 255, 255, 0.8), /* Sombra clara no topo da parte superior */
+    2px 2px 5px rgba(0, 0, 0, 0.2); /* Sombra escura na parte inferior da parte superior */
 }
 
 .unlock-btn:hover {
