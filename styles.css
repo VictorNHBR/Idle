@@ -173,8 +173,10 @@ body, html {
 
 #game {
     display: flex;
-    height: 100vh;
+    height: 100%;
 }
+/* Testar 100% */
+
 
 .left-section {
     display: flex;
