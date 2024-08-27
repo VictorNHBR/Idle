@@ -17,7 +17,6 @@
   -ms-user-select: none;
 }
 
-
 #conhecimentoPanel{
     background-color:#b8d5fd;
 }
@@ -116,7 +115,6 @@ body, html {
 #conhecimentoUnlock3{
     background-image: url('C3.png');
 }
-
 
 #granaUnlock1{
     background-image: url('G1.png');
@@ -240,9 +238,34 @@ body, html {
 }
 
         .generation-panel {
-	
-            border: 1px solid #ccc;
+	 border: 1px solid #ccc;
         }
+
+        .conhecimentounlock-panel {
+	 border: 1px solid #ccc;
+	 background-color:#b8d5fd;
+        }
+        .granaunlock-panel {
+	 border: 1px solid #ccc;
+	 background-color:#cbfdb8;
+        }
+        .codigounlock-panel {
+	 border: 1px solid #ccc;
+	 background-color:#d8a6ff;
+        }
+        .dataunlock-panel {
+	 border: 1px solid #ccc;
+	 background-color:#fdf7b8;
+        }
+
+#conhecimentounlock-panel {
+/*     background-image: url('Code.png'); */
+    background-color:#d8a6ff;
+    background-size: cover;
+    background-position: center;
+	    flex: 1;
+    flex-direction: column;
+}
 
 .resource-title {
   background-color: #f0f0f0;
@@ -260,6 +283,7 @@ body, html {
             color: #666;
             margin-bottom: 5px;
         }
+
 .resource-generation {
     background-color: #faf7f7;
     padding: 1cm 10px; /* 1cm padding top and bottom, 10px left and right */
