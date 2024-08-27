@@ -33,9 +33,6 @@
     background-color:#d8a6ff;
 }
 
-
-
-
 /* Conhecimento */
 #conhecimentoGenerationPanel {
 /*     background-image: url('Conhecimento.png'); */
@@ -121,14 +118,41 @@ body, html {
 }
 
 
+#granaUnlock1{
+    background-image: url('G1.png');
+}
+
+#granaUnlock3{
+    background-image: url('G3.png');
+}
+
+#codigoUnlock1{
+    background-image: url('CO1.png');
+}
+
+#codigoUnlock2{
+    background-image: url('CO2.png');
+}
+
+#codigoUnlock3{
+    background-image: url('CO3.png');
+}
+
+#dadosUnlock1{
+    background-image: url('D1.png');
+}
+#dadosUnlock2{
+    background-image: url('D2.png');
+}
+#dadosUnlock3{
+    background-image: url('D3.png');
+}
 
 .unlock-buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin: 0.1cm 0;
-    background-size: cover;
-    background-position: center;
 }
 
 .unlock-btn {
@@ -139,6 +163,9 @@ body, html {
     background-color: #f0f0f0;
     cursor: pointer;
     border-radius: 5px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;	
 }
 
 .unlock-btn:hover {
