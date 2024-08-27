@@ -247,6 +247,7 @@ body, html {
 .dataunlock-panel {
     flex: 1; /* Permite que o panel visível ocupe todo o espaço disponível */
     display: flex;
+    height: 100%;
 }
 
 
