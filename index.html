@@ -7,120 +7,132 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    
-    <script src="script.js"></script>
-    <div id="game">
-        <div class="left-section">
-            <div class="top-half">
-                <div class="left-column">
-                    <div class="resource-panel">
-                        <div class="panel-title">Recursos</div>
-                        <div id="conhecimentoPanel" class="panel">
-                            <div class="panel-title">Conhecimento <span class="resource-counter">Quantidade: <span id="conhecimentoCounter">0</span></span></div>
-                            <div class="unlock-buttons">
-                            <button id="conhecimentoUnlock1" class="unlock-btn" data-unlock="1"</button>
-                            <button id="conhecimentoUnlock2" class="unlock-btn" data-unlock="2"</button>
-                            <button id="conhecimentoUnlock3" class="unlock-btn" data-unlock="3"</button>
-                        </div>
-                            </div>
-                        <div id="granaPanel" class="panel hidden">
-                             <div class="panel-title">Grana <span class="resource-counter">Quantidade: <span id="granaCounter">0</span></span></div>
-                            <div class="unlock-buttons">
-                            <button id="conhecimentoUnlock1" class="unlock-btn" data-unlock="1"</button>
-                            <button id="conhecimentoUnlock2" class="unlock-btn" data-unlock="2"</button>
-                            <button id="conhecimentoUnlock3" class="unlock-btn" data-unlock="3"</button>
-                        </div>
-                        <div id="codigoPanel" class="panel hidden">
-                            <div class="panel-title">Código <span class="resource-counter">Quantidade: <span id="codigoCounter">0</span></span></div>
-                            <div class="unlock-buttons">
-                            <button id="codigoUnlock1" class="unlock-btn" data-unlock="1"</button>
-                            <button id="codigoUnlock2" class="unlock-btn" data-unlock="2"</button>
-                            <button id="codigoUnlock3" class="unlock-btn" data-unlock="3"</button>
-                        </div>
-                        <div id="dadosPanel" class="panel hidden">
-                            <div class="panel-title">Dados <span class="resource-counter">Quantidade: <span id="dadosCounter">0</span></span></div>
-                            <div class="unlock-buttons">
-                            <button id="dadosUnlock1" class="unlock-btn" data-unlock="1"</button>
-                            <button id="dadosUnlock2" class="unlock-btn" data-unlock="2"</button>
-                            <button id="dadosUnlock3" class="unlock-btn" data-unlock="3"</button>
+<script src="script.js"></script>
+<div id="game">
+    <div class="left-section">
+        <div class="top-half">
+            <div class="left-column">
+                <div class="resource-panel">
+                    <div class="panel-title">Recursos</div>
+                    <div id="conhecimentoPanel" class="panel">
+                        <div class="panel-title">Conhecimento <span class="resource-counter">Quantidade: <span id="conhecimentoCounter">0</span></span></div>
+                        <div class="unlock-buttons">
+                            <button id="conhecimentoUnlock1" class="unlock-btn" data-unlock="1"></button>
+                            <button id="conhecimentoUnlock2" class="unlock-btn" data-unlock="2"></button>
+                            <button id="conhecimentoUnlock3" class="unlock-btn" data-unlock="3"></button>
                         </div>
                     </div>
-                </div>
-                <div class="center-column">
-                    <div class="click-panel">
-                        <div id="clickable"></div>
-                        <div>
-                            <button id="conhecimentoBtn" class="ativ-button active">Aprender</button>
-                            <button id="granaBtn" class="ativ-button hidden">Trabalhar</button>
-                            <button id="codigoBtn" class="ativ-button hidden">Programar</button>
-                            <button id="dadosBtn" class="ativ-button hidden">Treinar</button>
+                    <div id="granaPanel" class="panel hidden">
+                        <div class="panel-title">Grana <span class="resource-counter">Quantidade: <span id="granaCounter">0</span></span></div>
+                        <div class="unlock-buttons">
+                            <button id="granaUnlock1" class="unlock-btn" data-unlock="1"></button>
+                            <button id="granaUnlock2" class="unlock-btn" data-unlock="2"></button>
+                            <button id="granaUnlock3" class="unlock-btn" data-unlock="3"></button>
+                        </div>
+                    </div>
+                    <div id="codigoPanel" class="panel hidden">
+                        <div class="panel-title">Código <span class="resource-counter">Quantidade: <span id="codigoCounter">0</span></span></div>
+                        <div class="unlock-buttons">
+                            <button id="codigoUnlock1" class="unlock-btn" data-unlock="1"></button>
+                            <button id="codigoUnlock2" class="unlock-btn" data-unlock="2"></button>
+                            <button id="codigoUnlock3" class="unlock-btn" data-unlock="3"></button>
+                        </div>
+                    </div>
+                    <div id="dadosPanel" class="panel hidden">
+                        <div class="panel-title">Dados <span class="resource-counter">Quantidade: <span id="dadosCounter">0</span></span></div>
+                        <div class="unlock-buttons">
+                            <button id="dadosUnlock1" class="unlock-btn" data-unlock="1"></button>
+                            <button id="dadosUnlock2" class="unlock-btn" data-unlock="2"></button>
+                            <button id="dadosUnlock3" class="unlock-btn" data-unlock="3"></button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="bottom-half">
-                <div class="bottom-panel">
-                <div class="panel-title">Upgrades</div>
-                <button id="unlockDados" class="upgrade-button" data-cost="100">Treinar</button>
-                <button id="unlockGrana" class="upgrade-button" data-cost="100">Trabalhar</button>		
-                <button id="unlockCodigo" class="upgrade-button" data-cost="100">Programar</button>
+            <div class="center-column">
+                <div class="click-panel">
+                    <div id="clickable"></div>
+                    <div>
+                        <button id="conhecimentoBtn" class="ativ-button active">Aprender</button>
+                        <button id="granaBtn" class="ativ-button hidden">Trabalhar</button>
+                        <button id="codigoBtn" class="ativ-button hidden">Programar</button>
+                        <button id="dadosBtn" class="ativ-button hidden">Treinar</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="right-column">
-            <div id="conhecimentoGenerationPanel" class="generation-panel">
-                <div class="resource-title">Gerar Conhecimento</div>
-                <div class="resource-generation" id="generateConhecimento1">
-                    <div class="level-display">Nível: <span id="conhecimentoLevel1">1</span></div>
-                    <div class="generation-title">Gerar Conhecimento Básico</div>
-                    <div class="generation-cost">Custo: 10 Conhecimento</div>
-                    <div class="production-label" id="conhecimentoProductionLabel1">Produção: 10/10s</div>
-                    <div class="progress-bar"><div class="progress" id="conhecimentoProgress1"></div></div>
-                    <div class="timer" id="conhecimentoTimer1">Tempo restante: 10s</div>
-                </div>
-                <div class="resource-generation hidden" id="generateConhecimento2">
-                    <div class="level-display">Nível: <span id="conhecimentoLevel2">1</span></div>
-                    <div class="generation-title">Gerar Conhecimento Avançado</div>
-                    <div class="generation-cost">Custo: 20 Conhecimento</div>
-                    <div class="production-label" id="conhecimentoProductionLabel2">Produção: 10/10s</div>
-                    <div class="progress-bar"><div class="progress" id="conhecimentoProgress2"></div></div>
-                    <div class="timer" id="conhecimentoTimer2">Tempo restante: 10s</div>
-                </div>
-            </div>
-            <div id="dadosGenerationPanel" class="generation-panel hidden">
-                <div class="resource-title">Gerar Dados</div>
-                <div class="resource-generation" id="generateDados1">
-                    <div class="level-display">Nível: <span id="dadosLevel1">1</span></div>
-                    <div class="generation-title">Gerar Dados Básicos</div>
-                    <div class="generation-cost">Custo: 10 Conhecimento</div>
-                    <div class="production-label" id="dadosProductionLabel1">Produção: 10/10s</div>
-                    <div class="progress-bar"><div class="progress" id="dadosProgress1"></div></div>
-                    <div class="timer" id="dadosTimer1">Tempo restante: 10s</div>
-                </div>
-            </div>
-            <div id="codigoGenerationPanel" class="generation-panel hidden">
-                <div class="resource-title">Gerar Código</div>
-                <div class="resource-generation" id="generateCodigo1">
-                    <div class="level-display">Nível: <span id="codigoLevel1">1</span></div>
-                    <div class="generation-title">Gerar Código Básico</div>
-                    <div class="generation-cost">Custo: 10 Conhecimento</div>
-                    <div class="production-label" id="codigoProductionLabel1">Produção: 10/10s</div>
-                    <div class="progress-bar"><div class="progress" id="codigoProgress1"></div></div>
-                    <div class="timer" id="codigoTimer1">Tempo restante: 10s</div>
-                </div>
-            </div>
-            <div id="granaGenerationPanel" class="generation-panel hidden">
-                <div class="resource-title">Gerar Grana</div>
-                <div class="resource-generation" id="generateGrana1">
-                    <div class="level-display">Nível: <span id="granaLevel1">1</span></div>
-                    <div class="generation-title">Gerar Grana Básica</div>
-                    <div class="generation-cost">Custo: 10 Conhecimento</div>
-                    <div class="production-label" id="granaProductionLabel1">Produção: 10/10s</div>
-                    <div class="progress-bar"><div class="progress" id="granaProgress1"></div></div>
-                    <div class="timer" id="granaTimer1">Tempo restante: 10s</div>
-                </div>
+        <div class="bottom-half">
+            <div class="bottom-panel">
+                <div class="panel-title">Upgrades</div>
+                <button id="unlockDados" class="upgrade-button" data-cost="100">Treinar</button>
+                <button id="unlockGrana" class="upgrade-button" data-cost="100">Trabalhar</button>
+                <button id="unlockCodigo" class="upgrade-button" data-cost="100">Programar</button>
             </div>
         </div>
     </div>
+    <div class="right-column">
+        <div id="conhecimentoGenerationPanel" class="generation-panel">
+            <div class="resource-title">Gerar Conhecimento</div>
+            <div class="resource-generation" id="generateConhecimento1">
+                <div class="level-display">Nível: <span id="conhecimentoLevel1">1</span></div>
+                <div class="generation-title">Gerar Conhecimento Básico</div>
+                <div class="generation-cost">Custo: 10 Conhecimento</div>
+                <div class="production-label" id="conhecimentoProductionLabel1">Produção: 10/10s</div>
+                <div class="progress-bar">
+                    <div class="progress" id="conhecimentoProgress1"></div>
+                </div>
+                <div class="timer" id="conhecimentoTimer1">Tempo restante: 10s</div>
+            </div>
+            <div class="resource-generation hidden" id="generateConhecimento2">
+                <div class="level-display">Nível: <span id="conhecimentoLevel2">1</span></div>
+                <div class="generation-title">Gerar Conhecimento Avançado</div>
+                <div class="generation-cost">Custo: 20 Conhecimento</div>
+                <div class="production-label" id="conhecimentoProductionLabel2">Produção: 10/10s</div>
+                <div class="progress-bar">
+                    <div class="progress" id="conhecimentoProgress2"></div>
+                </div>
+                <div class="timer" id="conhecimentoTimer2">Tempo restante: 10s</div>
+            </div>
+        </div>
+        <div id="dadosGenerationPanel" class="generation-panel hidden">
+            <div class="resource-title">Gerar Dados</div>
+            <div class="resource-generation" id="generateDados1">
+                <div class="level-display">Nível: <span id="dadosLevel1">1</span></div>
+                <div class="generation-title">Gerar Dados Básicos</div>
+                <div class="generation-cost">Custo: 10 Conhecimento</div>
+                <div class="production-label" id="dadosProductionLabel1">Produção: 10/10s</div>
+                <div class="progress-bar">
+                    <div class="progress" id="dadosProgress1"></div>
+                </div>
+                <div class="timer" id="dadosTimer1">Tempo restante: 10s</div>
+            </div>
+        </div>
+        <div id="codigoGenerationPanel" class="generation-panel hidden">
+            <div class="resource-title">Gerar Código</div>
+            <div class="resource-generation" id="generateCodigo1">
+                <div class="level-display">Nível: <span id="codigoLevel1">1</span></div>
+                <div class="generation-title">Gerar Código Básico</div>
+                <div class="generation-cost">Custo: 10 Conhecimento</div>
+                <div class="production-label" id="codigoProductionLabel1">Produção: 10/10s</div>
+                <div class="progress-bar">
+                    <div class="progress" id="codigoProgress1"></div>
+                </div>
+                <div class="timer" id="codigoTimer1">Tempo restante: 10s</div>
+            </div>
+        </div>
+        <div id="granaGenerationPanel" class="generation-panel hidden">
+            <div class="resource-title">Gerar Grana</div>
+            <div class="resource-generation" id="generateGrana1">
+                <div class="level-display">Nível: <span id="granaLevel1">1</span></div>
+                <div class="generation-title">Gerar Grana Básica</div>
+                <div class="generation-cost">Custo: 10 Conhecimento</div>
+                <div class="production-label" id="granaProductionLabel1">Produção: 10/10s</div>
+                <div class="progress-bar">
+                    <div class="progress" id="granaProgress1"></div>
+                </div>
+                <div class="timer" id="granaTimer1">Tempo restante: 10s</div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
