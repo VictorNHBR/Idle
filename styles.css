@@ -247,8 +247,7 @@ body, html {
 .codigounlock-panel, 
 .dataunlock-panel {
     flex: 1; /* Permite que o panel visível ocupe todo o espaço disponível */
-    box-sizing: border-box; /* Inclui padding e bordas no tamanho total da div */
-    padding: 10px; /* Espaço interno no panel */
+    display: flex;
 }
 
 
