@@ -88,6 +88,20 @@ body, html {
     overflow: hidden;
 }
 
+
+.resource-btn {
+    width: 30px;
+    height: 30px;
+    background-color: #c9c9c9;
+}
+
+.resource-btn:hover {
+    background-color: #e0e0e0;
+}
+
+
+
+
 #game {
     display: flex;
     height: 100vh;
