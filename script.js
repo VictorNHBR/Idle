@@ -143,92 +143,23 @@ function initializeGame() {
     document.getElementById('granaBtn').addEventListener('click', () => switchActivePanel('grana'));
     document.getElementById('codigoBtn').addEventListener('click', () => switchActivePanel('codigo'));
     document.getElementById('dadosBtn').addEventListener('click', () => switchActivePanel('dados'));
-
-
-///////////////////COIN////////////////////
-
-function createCoin(resource) {
-  const coin = document.createElement('div');
-  coin.classList.add('coin');
-
-  const icon = document.createElement('i');
-  const value = document.createElement('span');
-  value.classList.add('value');
-
-  // Definir o ícone e o valor com base no recurso
-  switch (resource) {
-    case 'conhecimento':
-      icon.classList.add('fas', 'fa-brain');
-      value.textContent = '+1';
-      coin.style.color = '#1E90FF'; // Azul para conhecimento
-      break;
-    case 'grana':
-      icon.classList.add('fas', 'fa-dollar-sign');
-      value.textContent = '+1';
-      coin.style.color = '#FFD700'; // Dourado para grana
-      break;
-    case 'codigo':
-      icon.classList.add('fas', 'fa-code');
-      value.textContent = '+1';
-      coin.style.color = '#4B0082'; // Roxo para código
-      break;
-    case 'dados':
-      icon.classList.add('fas', 'fa-database');
-      value.textContent = '+1';
-      coin.style.color = '#32CD32'; // Verde para dados
-      break;
-  }
-
-  coin.appendChild(icon);
-  coin.appendChild(value);
-
-  const offsetX = Math.random() * 60 - 30; // Range de -30px a +30px
-  const offsetY = Math.random() * 60 - 30; // Range de -30px a +30px
-
-  coin.style.position = 'fixed';
-  coin.style.left = `${clickX + offsetX}px`;
-  coin.style.top = `${clickY + offsetY}px`;
-
-  // Ajustar para o centro do ícone
-  coin.style.transform = 'translate(-50%, -50%)';
-
-  document.getElementById('clickable').appendChild(coin);
-
-  // Remover o ícone após a animação
-  setTimeout(() => {
-    coin.remove();
-  }, 1000);
-}
-
-
-///////////////////COIN////////////////////
-
    
 // acho que os eventlistener de cima tiraram esse
-document.getElementById('clickable').addEventListener('click', (event) => {
-  // Calcula a posição do clique relativa ao viewport
-  const rect = event.target.getBoundingClientRect();
-  const clickX = event.clientX - rect.left;
-  const clickY = event.clientY - rect.top;
-
-  switch(currentResource) {
-    case 'conhecimento':
-      conhecimento++;
-      createCoin('conhecimento', event.clientX, event.clientY);
-      break;
-    case 'grana':
-      grana++;
-      createCoin('grana', event.clientX, event.clientY);
-      break;
-    case 'codigo':
-      codigo++;
-      createCoin('codigo', event.clientX, event.clientY);
-      break;
-    case 'dados':
-      dados++;
-      createCoin('dados', event.clientX, event.clientY);
-      break;
-  }
+    document.getElementById('clickable').addEventListener('click', () => {
+        switch(currentResource) {
+            case 'conhecimento':
+                conhecimento++;
+                break;
+            case 'grana':
+                grana++;
+                break;
+            case 'codigo':
+                codigo++;
+                break;
+            case 'dados':
+                dados++;
+                break;
+        }
   updateResources();
 });
 
