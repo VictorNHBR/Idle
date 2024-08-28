@@ -149,7 +149,6 @@ function initializeGame() {
 
 ///////////////////COIN////////////////////
 
-
 function createCoin(resource) {
   const coin = document.createElement('div');
   coin.classList.add('coin');
@@ -192,13 +191,13 @@ function createCoin(resource) {
   coin.style.left = `${offsetX}px`;
   coin.style.top = `${offsetY}px`;
 
-  document.getElementById('click-panel').appendChild(coin);
+  document.getElementById('click-area').appendChild(coin);
 
   // Remover o ícone após a animação
   setTimeout(() => {
     coin.remove();
   }, 1000);
-
+}
 
 
 ///////////////////COIN////////////////////
