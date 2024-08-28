@@ -428,6 +428,7 @@ body, html {
   height: 250px; */
 width: 100%;
 height: 100%;
+position: relative;
   background-image: url(PC2.png);
   background-size: contain;
   background-repeat: no-repeat;
