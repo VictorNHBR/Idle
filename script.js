@@ -147,20 +147,84 @@ function initializeGame() {
     document.getElementById('codigoBtn').addEventListener('click', () => switchActivePanel('codigo'));
     document.getElementById('dadosBtn').addEventListener('click', () => switchActivePanel('dados'));
 
+
+///////////////////COIN////////////////////
+
+
+function createCoin(resource) {
+  const coin = document.createElement('div');
+  coin.classList.add('coin');
+
+  const icon = document.createElement('i');
+  const value = document.createElement('span');
+  value.classList.add('value');
+
+  // Definir o ícone e o valor com base no recurso
+  switch (resource) {
+    case 'conhecimento':
+      icon.classList.add('fas', 'fa-brain');
+      value.textContent = '+1';
+      coin.style.color = '#1E90FF'; // Azul para conhecimento
+      break;
+    case 'grana':
+      icon.classList.add('fas', 'fa-dollar-sign');
+      value.textContent = '+1';
+      coin.style.color = '#FFD700'; // Dourado para grana
+      break;
+    case 'codigo':
+      icon.classList.add('fas', 'fa-code');
+      value.textContent = '+1';
+      coin.style.color = '#4B0082'; // Roxo para código
+      break;
+    case 'dados':
+      icon.classList.add('fas', 'fa-database');
+      value.textContent = '+1';
+      coin.style.color = '#32CD32'; // Verde para dados
+      break;
+  }
+
+  coin.appendChild(icon);
+  coin.appendChild(value);
+
+  // Posição aleatória ao redor do clique
+  const offsetX = Math.random() * 200 - 100;
+  const offsetY = Math.random() * 200 - 100;
+
+  coin.style.left = `${offsetX}px`;
+  coin.style.top = `${offsetY}px`;
+
+  document.getElementById('click-panel').appendChild(coin);
+
+  // Remover o ícone após a animação
+  setTimeout(() => {
+    coin.remove();
+  }, 1000);
+
+
+
+///////////////////COIN////////////////////
+
+
+
+    
     // acho que os eventlistener de cima tiraram esse
     document.getElementById('clickable').addEventListener('click', () => {
         switch(currentResource) {
             case 'conhecimento':
                 conhecimento++;
+                createCoin('conhecimento');
                 break;
             case 'grana':
                 grana++;
+                createCoin('grana');
                 break;
             case 'codigo':
                 codigo++;
+                createCoin('codigo');
                 break;
             case 'dados':
                 dados++;
+                createCoin('dados');
                 break;
         }
         updateResources();
