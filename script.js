@@ -206,28 +206,33 @@ function createCoin(resource) {
 
 
     
-    // acho que os eventlistener de cima tiraram esse
-    document.getElementById('clickable').addEventListener('click', () => {
-        switch(currentResource) {
-            case 'conhecimento':
-                conhecimento++;
-                createCoin('conhecimento');
-                break;
-            case 'grana':
-                grana++;
-                createCoin('grana');
-                break;
-            case 'codigo':
-                codigo++;
-                createCoin('codigo');
-                break;
-            case 'dados':
-                dados++;
-                createCoin('dados');
-                break;
-        }
-        updateResources();
-    });
+// acho que os eventlistener de cima tiraram esse
+document.getElementById('clickable').addEventListener('click', (event) => {
+  // Calcula a posição do clique relativa ao viewport
+  const rect = event.target.getBoundingClientRect();
+  const clickX = event.clientX - rect.left;
+  const clickY = event.clientY - rect.top;
+
+  switch(currentResource) {
+    case 'conhecimento':
+      conhecimento++;
+      createCoin('conhecimento', event.clientX, event.clientY);
+      break;
+    case 'grana':
+      grana++;
+      createCoin('grana', event.clientX, event.clientY);
+      break;
+    case 'codigo':
+      codigo++;
+      createCoin('codigo', event.clientX, event.clientY);
+      break;
+    case 'dados':
+      dados++;
+      createCoin('dados', event.clientX, event.clientY);
+      break;
+  }
+  updateResources();
+});
 
     function getGenerationAmount(resource, level) {
         return productionRates[resource][level];
