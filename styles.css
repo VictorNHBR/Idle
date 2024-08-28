@@ -364,6 +364,7 @@ body, html {
     align-items: center; /* Centraliza verticalmente ambos */
     padding: 5px 10px; /* Ajusta o espaço interno para um melhor layout */
 }
+
 #conhecimentoPanel .panel-title {
   background-color:var(--conhecimento-color);
 }
