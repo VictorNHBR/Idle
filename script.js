@@ -39,7 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     currentActivePanel = newPanelId;
                 }
             });
-        });    
+        });   
+    }
+
 
     function unlockResourcePanel(resource) {
         if (!resourcePanelsUnlocked[resource]) {
