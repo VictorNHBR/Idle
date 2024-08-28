@@ -21,6 +21,26 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
 
+    let currentActivePanel = null;
+
+    function initializeUnlockButtons() {
+        const unlockButtons = document.querySelectorAll('.unlock-btn');
+        unlockButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const resource = this.id.replace('Unlock', '').replace(/\d+$/, '');
+                const unlockLevel = this.dataset.unlock;
+                const newPanelId = `${resource}${unlockLevel}Panel`;
+
+                if (newPanelId !== currentActivePanel) {
+                    if (currentActivePanel) {
+                        document.getElementById(currentActivePanel).classList.add('hidden');
+                    }
+                    document.getElementById(newPanelId).classList.remove('hidden');
+                    currentActivePanel = newPanelId;
+                }
+            });
+        });    
+
     function unlockResourcePanel(resource) {
         if (!resourcePanelsUnlocked[resource]) {
             showPanel(`${resource}Panel`);
@@ -332,7 +352,9 @@ function updateGenerationButtons() {
         updateGenerationButtons();
     }, 1000);
 
+        
     updateResources();
     updateProductionLabels();
     checkUpgrades();
+    initializeUnlockButtons();
 });
