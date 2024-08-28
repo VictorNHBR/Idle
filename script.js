@@ -84,8 +84,6 @@ function showPanel(panelId) {
     }
 }
 
-
-
     
     
 function initializeGame() {
@@ -191,7 +189,7 @@ function createCoin(resource) {
   coin.style.left = `${offsetX}px`;
   coin.style.top = `${offsetY}px`;
 
-  document.getElementById('click-area').appendChild(coin);
+  document.getElementById('click-panel').appendChild(coin);
 
   // Remover o ícone após a animação
   setTimeout(() => {
