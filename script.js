@@ -182,13 +182,15 @@ function createCoin(resource) {
   coin.appendChild(icon);
   coin.appendChild(value);
 
-  // Posição aleatória ao redor do clique
-  coin.style.position = 'fixed';
-  const offsetX = Math.random() * 200 - 100;
-  const offsetY = Math.random() * 200 - 100;
+  const offsetX = Math.random() * 60 - 30; // Range de -30px a +30px
+  const offsetY = Math.random() * 60 - 30; // Range de -30px a +30px
 
-  coin.style.left = `${offsetX}px`;
-  coin.style.top = `${offsetY}px`;
+  coin.style.position = 'fixed';
+  coin.style.left = `${clickX + offsetX}px`;
+  coin.style.top = `${clickY + offsetY}px`;
+
+  // Ajustar para o centro do ícone
+  coin.style.transform = 'translate(-50%, -50%)';
 
   document.getElementById('clickable').appendChild(coin);
 
