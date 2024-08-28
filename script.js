@@ -203,9 +203,7 @@ function createCoin(resource) {
 
 ///////////////////COIN////////////////////
 
-
-
-    
+   
 // acho que os eventlistener de cima tiraram esse
 document.getElementById('clickable').addEventListener('click', (event) => {
   // Calcula a posição do clique relativa ao viewport
