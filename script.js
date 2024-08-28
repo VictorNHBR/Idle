@@ -183,6 +183,7 @@ function createCoin(resource) {
   coin.appendChild(value);
 
   // Posição aleatória ao redor do clique
+  coin.style.position = 'fixed';
   const offsetX = Math.random() * 200 - 100;
   const offsetY = Math.random() * 200 - 100;
 
