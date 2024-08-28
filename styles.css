@@ -5,6 +5,43 @@
   --codigo-color: #8400ea; /* Granite */
   --dados-color: #FFA500; /* Amber */
 }
+
+
+///////////////////////////////////////// coin ////////////////////////////////
+
+
+.coin {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  color: #1E90FF; /* Azul para o ícone */
+  animation: floatUp 1s ease-out forwards;
+  pointer-events: none;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5); /* Sombra para destacar o ícone */
+}
+
+.value {
+  font-size: 16px;
+  font-weight: bold;
+  color: black;
+  margin-left: 5px; /* Espaço entre o ícone e o valor */
+  opacity: 1;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4); /* Sombra para destacar o valor */
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+///////////////////////////////////////// coin ////////////////////////////////
+
 .resource-counter,
 .production-label,
 .generation-title,
