@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
         dados: false
     };
 
-
     let currentActivePanel = null;
 
     function initializeUnlockButtons() {
